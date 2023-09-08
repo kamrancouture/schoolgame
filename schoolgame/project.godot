@@ -14,6 +14,10 @@ config/name="schoolgame"
 run/main_scene="res://world.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Global.gd"
+
 [global]
 
 snap=false
