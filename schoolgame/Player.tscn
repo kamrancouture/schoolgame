@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/kenney_top-down-shooter/PNG/Hitman 1/hitman1_reload.png" type="Texture" id=1]
 [ext_resource path="res://Assets/kenney_top-down-shooter/PNG/Hitman 1/hitman1_silencer.png" type="Texture" id=2]
 [ext_resource path="res://Assets/kenney_top-down-shooter/PNG/Hitman 1/hitman1_stand.png" type="Texture" id=3]
 [ext_resource path="res://Player.gd" type="Script" id=4]
 [ext_resource path="res://Azalea Font/Azalea-BF64f6fe9c7c4b6.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://sound_effects/Rifle-Reload-Foley-B-www.fesliyanstudios.com.mp3" type="AudioStream" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -59,5 +60,8 @@ margin_right = 392.0
 margin_bottom = 594.0
 custom_fonts/font = SubResource( 3 )
 text = "Ammo: 30/30"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 
 [connection signal="timeout" from="fire_rate" to="." method="_on_fire_rate_timeout"]

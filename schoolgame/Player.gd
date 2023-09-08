@@ -30,7 +30,7 @@ func _physics_process(delta):
 		speed *= 1.5
 		$AnimatedSprite.play("idle")
 	
-	if Input.is_action_just_pressed("reload"):
+	if Input.is_action_just_pressed("reload") and not reloading and not ammo == max_ammo:
 		reload()
 	
 	if Input.is_action_pressed("shoot") and can_shoot and gun_in_hand and ammo > 0 and not reloading:
@@ -49,6 +49,7 @@ func _physics_process(delta):
 func reload():
 	reloading = true
 	$AnimatedSprite.play("reload")
+	$AudioStreamPlayer.play()
 	yield($AnimatedSprite , "animation_finished")
 	reloading = false
 	$AnimatedSprite.play("pistol")
