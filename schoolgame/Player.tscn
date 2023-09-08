@@ -20,7 +20,7 @@ animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "reload",
-"speed": 5.0
+"speed": 0.75
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -43,5 +43,11 @@ position = Vector2( 34, 9 )
 
 [node name="fire_rate" type="Timer" parent="."]
 one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 14.0
 
 [connection signal="timeout" from="fire_rate" to="." method="_on_fire_rate_timeout"]

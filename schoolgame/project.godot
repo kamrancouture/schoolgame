@@ -59,13 +59,6 @@ shoot={
  ]
 }
 
-[layer_names]
-
-2d_render/layer_1="player"
-2d_render/layer_2="enamy"
-2d_render/layer_3="enamy_ bullet"
-2d_render/layer_4="player_bullet"
-
 [physics]
 
 common/enable_pause_aware_picking=true

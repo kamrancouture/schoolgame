@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+var reloading = false
+var ammo = 30
+var max_ammo = 30
 export var fire_rate = 0.2
 var Player_Bullet = preload("res://player_bullet.tscn")
 var can_shoot = true
@@ -12,6 +15,7 @@ func _ready():
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
+	print(ammo)
 	velocity = Input.get_vector("a_click" , "d_click" , "w_click" , "s_click") * speed
 	move_and_slide(velocity)
 	look_at(get_global_mouse_position())
@@ -20,21 +24,32 @@ func _physics_process(delta):
 		gun_in_hand = true
 		speed /= 1.5
 		$AnimatedSprite.play("pistol")
-	elif Input.is_action_just_pressed("gun"):
+	elif Input.is_action_just_pressed("gun") and not reloading:
 		gun_in_hand = false
 		speed *= 1.5
 		$AnimatedSprite.play("idle")
 	
 	
-	if Input.is_action_pressed("shoot") and can_shoot and gun_in_hand:
+	if Input.is_action_pressed("shoot") and can_shoot and gun_in_hand and ammo > 0:
+		ammo -= 1
 		can_shoot = false
 		var player_bullet = Player_Bullet.instance()
 		player_bullet.global_position = $bullet_spawn.global_position
 		player_bullet.global_rotation = global_rotation
 		get_parent().add_child(player_bullet)
 		$fire_rate.start(fire_rate)
-		
+	elif ammo == 0 and gun_in_hand:
+		reloading = true
+		reload()
 
+
+
+func reload():
+	$AnimatedSprite.play("reload")
+	yield($AnimatedSprite , "animation_finished")
+	reloading = false
+	$AnimatedSprite.play("pistol")
+	ammo = max_ammo
 
 func _on_fire_rate_timeout():
 	can_shoot = true
