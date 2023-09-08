@@ -2,15 +2,16 @@ extends KinematicBody2D
 
 onready var player = get_parent().get_node("Player")
 var Bullet = preload("res://enamy_bullet.tscn")
-
+var aggrivated = false
 var kill_player = false
 
 func _physics_process(delta):
 	look_at(player.global_position)
 	
+	print(kill_player)
 	
-	
-	if kill_player == true:
+	if kill_player == true and not aggrivated:
+		aggrivated = true
 		$shoot_timer.start()
 	
 
@@ -26,9 +27,13 @@ func shoot():
 	
 	
 
-func _on_Area2D_body_entered(body):
-	kill_player = true
+
+	
 
 
 func _on_shoot_timer_timeout():
 	shoot()
+
+
+func _on_Area2D_area_entered(area):
+	kill_player = true

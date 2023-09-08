@@ -31,5 +31,5 @@ shape = SubResource( 2 )
 
 [node name="shoot_timer" type="Timer" parent="."]
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
