@@ -17,4 +17,6 @@ func _physics_process(delta):
 		gun_in_hand = false
 		speed *= 1.5
 		$AnimatedSprite.play("idle")
-
+	
+	
+	
