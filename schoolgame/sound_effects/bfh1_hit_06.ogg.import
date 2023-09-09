@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bfh1_hit_06.ogg-10231827b689dfce2d52b156a1ef29cb.oggstr"
+
+[deps]
+
+source_file="res://sound_effects/bfh1_hit_06.ogg"
+dest_files=[ "res://.import/bfh1_hit_06.ogg-10231827b689dfce2d52b156a1ef29cb.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

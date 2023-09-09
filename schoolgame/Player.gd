@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var Death_Effect = preload("res://player_death.tscn")
+var Blood_Effect = preload("res://player_blood_effect.tscn")
 var reloading = false
 var ammo = 30
 var max_ammo = 30
@@ -10,14 +12,34 @@ var gun_in_hand = false
 var velocity = Vector2.ZERO
 var speed = 450
 var rng = RandomNumberGenerator.new()
-export var health = 15
+export var health = 30
 
 func _ready():
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
+	
+	if health <= 0:
+		Global.player_alive = false
+		set_physics_process(false)
+		hide()
+		var death_effect = Death_Effect.instance()
+		death_effect.global_position = global_position
+		death_effect.emitting = true
+		get_parent().add_child(death_effect)
+	
 	$CanvasLayer/Ammo.text = "Ammo: " + String(ammo) + "/" + String(max_ammo)
 	velocity = Input.get_vector("a_click" , "d_click" , "w_click" , "s_click") * speed
+	
+	if not velocity == Vector2.ZERO and not gun_in_hand:
+		$walking.pitch_scale = 1.5
+		$walking.stream_paused = false
+	elif not velocity == Vector2.ZERO:
+		$walking.pitch_scale = 1
+		$walking.stream_paused = false
+	else:
+		$walking.stream_paused = true
+	
 	move_and_slide(velocity)
 	look_at(get_global_mouse_position())
 	
@@ -34,22 +56,34 @@ func _physics_process(delta):
 		reload()
 	
 	if Input.is_action_pressed("shoot") and can_shoot and gun_in_hand and ammo > 0 and not reloading:
-		ammo -= 1
-		can_shoot = false
-		var player_bullet = Player_Bullet.instance()
-		player_bullet.global_position = $bullet_spawn.global_position
-		player_bullet.global_rotation = global_rotation
-		get_parent().add_child(player_bullet)
-		$fire_rate.start(fire_rate)
-	elif ammo == 0 and gun_in_hand:
+		shoot()
+	
+	elif ammo == 0 and gun_in_hand and not reloading:
 		reload()
 
 
+func hit():
+	var blood_effect = Blood_Effect.instance()
+	blood_effect.global_position = global_position
+	blood_effect.emitting = true
+	get_parent().add_child(blood_effect)
+	$hit.play()
+
+
+func shoot():
+	ammo -= 1
+	can_shoot = false
+	var player_bullet = Player_Bullet.instance()
+	player_bullet.global_position = $bullet_spawn.global_position
+	player_bullet.global_rotation = global_rotation
+	get_parent().add_child(player_bullet)
+	$gunshot.play()
+	$fire_rate.start(fire_rate)
 
 func reload():
 	reloading = true
+	$reload.play()
 	$AnimatedSprite.play("reload")
-	$AudioStreamPlayer.play()
 	yield($AnimatedSprite , "animation_finished")
 	reloading = false
 	$AnimatedSprite.play("pistol")
