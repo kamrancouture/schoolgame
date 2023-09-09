@@ -5,15 +5,17 @@ offsets = PoolRealArray( 0, 0.709497, 1 )
 colors = PoolColorArray( 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0 )
 
 [node name="player_death" type="CPUParticles2D"]
-amount = 25000
-lifetime = 5.0
+emitting = false
+amount = 30000
+lifetime = 10.0
+one_shot = true
 explosiveness = 1.0
 direction = Vector2( 0, 0 )
 spread = 180.0
 gravity = Vector2( 0, 0 )
-initial_velocity = 1500.0
+initial_velocity = 2000.0
 initial_velocity_random = 1.0
-damping = 2500.0
+damping = 2750.0
 scale_amount = 5.0
 color = Color( 1, 0, 0, 1 )
 color_ramp = SubResource( 1 )

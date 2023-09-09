@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="Gradient" id=1]
-colors = PoolColorArray( 0.784314, 0, 0, 1, 0.784314, 0, 0, 0 )
+colors = PoolColorArray( 0, 0.490196, 0, 1, 0, 0.490196, 0, 0 )
 
-[node name="death_blood" type="CPUParticles2D"]
+[node name="zombie_death_effect" type="CPUParticles2D"]
 emitting = false
 amount = 2500
 lifetime = 15.0
@@ -16,5 +16,5 @@ initial_velocity = 1250.0
 initial_velocity_random = 1.0
 damping = 3000.0
 scale_amount = 10.0
-color = Color( 0.784314, 0, 0, 1 )
+color = Color( 0, 0.490196, 0, 1 )
 color_ramp = SubResource( 1 )

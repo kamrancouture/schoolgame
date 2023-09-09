@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.726257, 1 )
+colors = PoolColorArray( 0, 0.686275, 0, 1, 0, 0.686275, 0, 1, 0, 0.686275, 0, 0 )
+
+[node name="zombie_blood_effect" type="CPUParticles2D"]
+emitting = false
+amount = 25
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.98
+direction = Vector2( 0, 0 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 500.0
+initial_velocity_random = 0.5
+damping = 1250.0
+scale_amount = 5.0
+color = Color( 0, 0.686275, 0, 1 )
+color_ramp = SubResource( 1 )

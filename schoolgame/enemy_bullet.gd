@@ -11,6 +11,7 @@ func _physics_process(delta):
 
 
 func _on_enemy_bullet_body_entered(body):
-	body.health -= damage
-	body.hit()
+	if "health" in body:
+		body.health -= damage
+		body.hit()
 	queue_free()

@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var Blood_Effect = preload("res://blood_effect.tscn")
 var Death_Blood = preload("res://death_blood.tscn")
 onready var player = get_parent().get_node("Player")
 var Bullet = preload("res://enemy_bullet.tscn")
@@ -27,15 +28,20 @@ func _physics_process(delta):
 	
 
 
-
+func hit():
+	var blood_effect = Blood_Effect.instance()
+	blood_effect.global_position = global_position
+	blood_effect.emitting = true
+	get_parent().add_child(blood_effect)
 
 
 func shoot():
-	var bullet = Bullet.instance()
-	bullet.global_position = $Position2D.global_position
-	bullet.rotation = global_rotation
-	get_parent().add_child(bullet)
-	$shoot.play()
+	if Global.player_alive:
+		var bullet = Bullet.instance()
+		bullet.global_position = $Position2D.global_position
+		bullet.rotation = global_rotation
+		get_parent().add_child(bullet)
+		$shoot.play()
 
 
 func _on_shoot_timer_timeout():

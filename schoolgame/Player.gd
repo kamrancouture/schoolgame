@@ -10,16 +10,21 @@ var Player_Bullet = preload("res://player_bullet.tscn")
 var can_shoot = true
 var gun_in_hand = false
 var velocity = Vector2.ZERO
-var speed = 450
+var speed = 300
 var rng = RandomNumberGenerator.new()
+export var max_health = 30
 export var health = 30
 
 func _ready():
+	$CanvasLayer/health_bar.max_value = max_health
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
 	
+	$CanvasLayer/health_bar.value = health
+	
 	if health <= 0:
+		$CanvasLayer/health_bar.hide()
 		Global.player_alive = false
 		set_physics_process(false)
 		hide()
@@ -31,6 +36,9 @@ func _physics_process(delta):
 	$CanvasLayer/Ammo.text = "Ammo: " + String(ammo) + "/" + String(max_ammo)
 	velocity = Input.get_vector("a_click" , "d_click" , "w_click" , "s_click") * speed
 	
+	velocity = move_and_slide(velocity)
+	look_at(get_global_mouse_position())
+	
 	if not velocity == Vector2.ZERO and not gun_in_hand:
 		$walking.pitch_scale = 1.5
 		$walking.stream_paused = false
@@ -39,9 +47,6 @@ func _physics_process(delta):
 		$walking.stream_paused = false
 	else:
 		$walking.stream_paused = true
-	
-	move_and_slide(velocity)
-	look_at(get_global_mouse_position())
 	
 	if Input.is_action_just_pressed("gun") and not gun_in_hand:
 		gun_in_hand = true
