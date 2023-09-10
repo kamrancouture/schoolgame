@@ -28,17 +28,17 @@ animations = [ {
 "speed": 0.75
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
-
-[sub_resource type="DynamicFont" id=3]
-size = 64
-font_data = ExtResource( 5 )
-
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.784314, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0, 0, 0, 0.196078 )
+
+[sub_resource type="CircleShape2D" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+size = 64
+font_data = ExtResource( 5 )
 
 [node name="Player" type="KinematicBody2D"]
 z_index = 1
@@ -49,6 +49,16 @@ script = ExtResource( 4 )
 position = Vector2( 7, 0 )
 frames = SubResource( 1 )
 animation = "idle"
+
+[node name="health_bar" type="ProgressBar" parent="AnimatedSprite"]
+margin_left = -30.0
+margin_top = 22.0
+margin_right = 30.0
+margin_bottom = 27.0
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
+value = 50.0
+percent_visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
@@ -71,16 +81,6 @@ margin_right = 392.0
 margin_bottom = 594.0
 custom_fonts/font = SubResource( 3 )
 text = "Ammo: 30/30"
-
-[node name="health_bar" type="ProgressBar" parent="CanvasLayer"]
-margin_left = 482.0
-margin_top = 320.0
-margin_right = 542.0
-margin_bottom = 325.0
-custom_styles/fg = SubResource( 4 )
-custom_styles/bg = SubResource( 5 )
-value = 50.0
-percent_visible = false
 
 [node name="reload" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )

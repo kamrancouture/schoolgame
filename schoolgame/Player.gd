@@ -16,15 +16,15 @@ export var max_health = 30
 export var health = 30
 
 func _ready():
-	$CanvasLayer/health_bar.max_value = max_health
+	$AnimatedSprite/health_bar.max_value = max_health
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
 	
-	$CanvasLayer/health_bar.value = health
+	$AnimatedSprite/health_bar.value = health
 	
 	if health <= 0:
-		$CanvasLayer/health_bar.hide()
+		$AnimatedSprite/health_bar.hide()
 		Global.player_alive = false
 		set_physics_process(false)
 		hide()
@@ -38,6 +38,7 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity)
 	look_at(get_global_mouse_position())
+	$AnimatedSprite/health_bar.set_rotation(0)
 	
 	if not velocity == Vector2.ZERO and not gun_in_hand:
 		$walking.pitch_scale = 1.5
