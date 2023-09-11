@@ -20,7 +20,7 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=2]
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 672.126
+radius = 24.7386
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 13.0384
@@ -55,6 +55,11 @@ shape = SubResource( 4 )
 [node name="hit_timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="stop_go_timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="timeout" from="hit_timer" to="." method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="stop_go_timer" to="." method="_on_stop_go_timer_timeout"]
