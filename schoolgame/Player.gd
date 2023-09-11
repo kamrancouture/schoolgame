@@ -16,17 +16,16 @@ export var max_health = 30
 export var health = 30
 
 func _ready():
-	$AnimatedSprite/health_bar.max_value = max_health
+	$health_bar.max_value = max_health
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
 	
-	$AnimatedSprite/health_bar.value = health
+	$health_bar.value = health
 	
 	if health <= 0:
-		$AnimatedSprite/health_bar.hide()
+		$health_bar.hide()
 		Global.player_alive = false
-		set_physics_process(false)
 		hide()
 		var death_effect = Death_Effect.instance()
 		death_effect.global_position = global_position
@@ -37,8 +36,11 @@ func _physics_process(delta):
 	velocity = Input.get_vector("a_click" , "d_click" , "w_click" , "s_click") * speed
 	
 	velocity = move_and_slide(velocity)
-	look_at(get_global_mouse_position())
-	$AnimatedSprite/health_bar.set_rotation(0)
+	$AnimatedSprite.look_at(get_global_mouse_position())
+	
+	$health_bar.rect_rotation = -rotation
+	
+	$health_bar.set_rotation(0)
 	
 	if not velocity == Vector2.ZERO and not gun_in_hand:
 		$walking.pitch_scale = 1.5
@@ -80,8 +82,8 @@ func shoot():
 	ammo -= 1
 	can_shoot = false
 	var player_bullet = Player_Bullet.instance()
-	player_bullet.global_position = $bullet_spawn.global_position
-	player_bullet.global_rotation = global_rotation
+	player_bullet.global_position = $AnimatedSprite/bullet_spawn.global_position
+	player_bullet.global_rotation = $AnimatedSprite.global_rotation
 	get_parent().add_child(player_bullet)
 	$gunshot.play()
 	$fire_rate.start(fire_rate)

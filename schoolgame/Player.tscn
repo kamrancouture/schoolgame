@@ -28,13 +28,13 @@ animations = [ {
 "speed": 0.75
 } ]
 
+[sub_resource type="CircleShape2D" id=2]
+
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.784314, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0, 0, 0, 0.196078 )
-
-[sub_resource type="CircleShape2D" id=2]
 
 [sub_resource type="DynamicFont" id=3]
 size = 64
@@ -50,15 +50,8 @@ position = Vector2( 7, 0 )
 frames = SubResource( 1 )
 animation = "idle"
 
-[node name="health_bar" type="ProgressBar" parent="AnimatedSprite"]
-margin_left = -30.0
-margin_top = 22.0
-margin_right = 30.0
-margin_bottom = 27.0
-custom_styles/fg = SubResource( 4 )
-custom_styles/bg = SubResource( 5 )
-value = 50.0
-percent_visible = false
+[node name="bullet_spawn" type="Position2D" parent="AnimatedSprite"]
+position = Vector2( 30, 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
@@ -66,11 +59,18 @@ shape = SubResource( 2 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
-[node name="bullet_spawn" type="Position2D" parent="."]
-position = Vector2( 37, 9 )
-
 [node name="fire_rate" type="Timer" parent="."]
 one_shot = true
+
+[node name="health_bar" type="ProgressBar" parent="."]
+margin_left = -23.0
+margin_top = 22.0
+margin_right = 37.0
+margin_bottom = 27.0
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
+value = 50.0
+percent_visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
