@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var gun_picked_up = false
 var Death_Effect = preload("res://player_death.tscn")
 var Blood_Effect = preload("res://player_blood_effect.tscn")
 var reloading = false
@@ -10,7 +11,7 @@ var Player_Bullet = preload("res://player_bullet.tscn")
 var can_shoot = true
 var gun_in_hand = false
 var velocity = Vector2.ZERO
-var speed = 300
+var speed = 180
 var rng = RandomNumberGenerator.new()
 export var max_health = 30
 export var health = 30
@@ -51,11 +52,11 @@ func _physics_process(delta):
 	else:
 		$walking.stream_paused = true
 	
-	if Input.is_action_just_pressed("gun") and not gun_in_hand:
+	if Input.is_action_just_pressed("gun") and not gun_in_hand and gun_picked_up:
 		gun_in_hand = true
 		speed /= 1.5
 		$AnimatedSprite.play("pistol")
-	elif Input.is_action_just_pressed("gun") and not reloading:
+	elif Input.is_action_just_pressed("gun") and not reloading and gun_picked_up:
 		gun_in_hand = false
 		speed *= 1.5
 		$AnimatedSprite.play("idle")
