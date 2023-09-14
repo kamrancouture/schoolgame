@@ -10,7 +10,6 @@ var Player_Bullet = preload("res://player_bullet.tscn")
 var can_shoot = true
 var gun_in_hand = false
 var velocity = Vector2.ZERO
-var speed = 180
 var rng = RandomNumberGenerator.new()
 export var max_health = 30
 export var health = 30
@@ -33,7 +32,7 @@ func _physics_process(delta):
 		get_parent().add_child(death_effect)
 	
 	$CanvasLayer/Ammo.text = "Ammo: " + String(ammo) + "/" + String(max_ammo)
-	velocity = Input.get_vector("a_click" , "d_click" , "w_click" , "s_click") * speed
+	velocity = Input.get_vector("a_click" , "d_click" , "w_click" , "s_click") * Global.player_speed
 	
 	velocity = move_and_slide(velocity)
 	$AnimatedSprite.look_at(get_global_mouse_position())
@@ -53,11 +52,11 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("gun") and not gun_in_hand and Global.gun_picked_up:
 		gun_in_hand = true
-		speed /= 1.5
+		Global.player_speed /= 1.5
 		$AnimatedSprite.play("pistol")
 	elif Input.is_action_just_pressed("gun") and not reloading and Global.gun_picked_up:
 		gun_in_hand = false
-		speed *= 1.5
+		Global.player_speed *= 1.5
 		$AnimatedSprite.play("idle")
 	
 	if Input.is_action_just_pressed("reload") and not reloading and not ammo == max_ammo:
