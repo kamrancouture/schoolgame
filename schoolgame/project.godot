@@ -20,11 +20,13 @@ Global="*res://Global.gd"
 
 [display]
 
+mouse_cursor/custom_image="res://Assets/kenney_crosshair-pack/PNG/Outline Retina/crosshair173.png"
 window/stretch/mode="2d"
 
 [global]
 
 snap=false
+mouse=false
 
 [gui]
 

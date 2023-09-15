@@ -1,30 +1,41 @@
 extends Area2D
 
+var duck_type = null
 var can_die = false
 var moving_right = true
 var velocity = Vector2.ZERO
 var speed = 10
 var Blood_Splatter = preload("res://duck_blood_splatter.tscn")
 
-var ducks = [
-	preload("res://icon.png"),
-	preload("res://Assets/kenney_top-down-shooter/PNG/Robot 1/robot1_gun.png"),
-	preload("res://Assets/kenney_top-down-shooter/PNG/Hitman 1/hitman1_gun.png")
-]
-
 var rng = RandomNumberGenerator.new()
 
+var ducks = [
+	"blue",
+	"black",
+	"red"
+]
+
 func _ready():
+	rng.randomize()
+	randomize()
+	speed = rng.randf_range(5,15)
 	if moving_right:
+		$duck_type.flip_h = false
 		global_position.x = -50
 		velocity.x = speed
 	else:
+		$duck_type.flip_h = true
 		global_position.x = 1074
 		velocity.x = -speed
-	rng.randomize()
-	randomize()
+
 	ducks.shuffle()
-	$duck_type.texture = ducks.front()
+	duck_type = ducks.front()
+	if duck_type == "blue":
+		$AnimationPlayer.play("blue_duck")
+	elif duck_type == "black":
+		$AnimationPlayer.play("black_duck")
+	else:
+		$AnimationPlayer.play("red_duck")
 
 
 func _physics_process(delta):

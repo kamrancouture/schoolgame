@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/imgbin-sprite-bird-animated-film-sprite-red-bird-lot-illustration-q3V88WjES4EXUmfPK8DYE11Ra.jpg-17b255d37f39779907818ad6ef8cdc7e.stex"
+path="res://.import/PngItem_2330591.png-c6dd8a8a2bae2135173688f0a4919466.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/imgbin-sprite-bird-animated-film-sprite-red-bird-lot-illustration-q3V88WjES4EXUmfPK8DYE11Ra.jpg"
-dest_files=[ "res://.import/imgbin-sprite-bird-animated-film-sprite-red-bird-lot-illustration-q3V88WjES4EXUmfPK8DYE11Ra.jpg-17b255d37f39779907818ad6ef8cdc7e.stex" ]
+source_file="res://Assets/PngItem_2330591.png"
+dest_files=[ "res://.import/PngItem_2330591.png-c6dd8a8a2bae2135173688f0a4919466.stex" ]
 
 [params]
 
