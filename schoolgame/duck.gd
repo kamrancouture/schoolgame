@@ -48,7 +48,8 @@ func _physics_process(delta):
 		get_parent().add_child(blood_splatter)
 		get_parent().score += rng.randi_range(7500 , 25000)
 		queue_free()
-
+	else:
+		pass
 
 func _on_duck_mouse_entered():
 	can_die = true

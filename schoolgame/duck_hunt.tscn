@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://duck_hunt.gd" type="Script" id=1]
 [ext_resource path="res://Azalea Font/Azalea-BF64f6fe9c7c4b6.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://sound_effects/gun_fire.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/wargroove-landscape-wallpaper-67088-69386-hd-wallpapers-thumb.jpg" type="Texture" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.141176, 0.141176, 0.141176, 0.686275 )
@@ -19,6 +20,12 @@ font_data = ExtResource( 2 )
 size = 64
 font_data = ExtResource( 2 )
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 78.5, 331 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 76.5, 331 )
+
 [node name="duck_hunt" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -29,7 +36,11 @@ autostart = true
 [node name="Score_panel" type="Panel" parent="."]
 margin_right = 532.0
 margin_bottom = 88.0
+mouse_filter = 2
 custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="score_label" type="Label" parent="Score_panel"]
 margin_right = 238.0
@@ -42,6 +53,7 @@ margin_left = 197.0
 margin_top = 1.0
 margin_right = 532.0
 margin_bottom = 86.0
+mouse_filter = 2
 
 [node name="Score" type="Label" parent="Score_panel/CenterContainer"]
 margin_left = 142.0
@@ -53,9 +65,74 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
+[node name="mistake_panel" type="Panel" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 1.0
+margin_top = 93.0
+margin_right = 487.0
+margin_bottom = 173.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="mistakes_left_label" type="Label" parent="mistake_panel"]
+margin_right = 238.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 3 )
+text = "MISTAKES_LEFT:"
+
+[node name="CenterContainer" type="CenterContainer" parent="mistake_panel"]
+margin_left = 394.0
+margin_top = 1.0
+margin_right = 487.0
+margin_bottom = 90.0
+mouse_filter = 2
+
+[node name="mistakes_left" type="Label" parent="mistake_panel/CenterContainer"]
+margin_left = 29.0
+margin_right = 64.0
+margin_bottom = 89.0
+custom_fonts/font = SubResource( 2 )
+text = "5"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
 [node name="shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -15.0
 pitch_scale = 2.0
 
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 498, 302 )
+scale = Vector2( 2.75, 2.75 )
+z_index = -1
+texture = ExtResource( 4 )
+
+[node name="left_wall" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_wall"]
+position = Vector2( -97, 302 )
+shape = SubResource( 4 )
+
+[node name="right_wall" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_wall"]
+position = Vector2( 1119, 289 )
+shape = SubResource( 5 )
+
+[node name="restart_timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="area_entered" from="left_wall" to="." method="_on_left_wall_area_entered"]
+[connection signal="area_entered" from="right_wall" to="." method="_on_right_wall_area_entered"]
+[connection signal="timeout" from="restart_timer" to="." method="_on_restart_timer_timeout"]
