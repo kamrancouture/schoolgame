@@ -20,6 +20,12 @@ func _ready():
 
 func _physics_process(delta):
 	
+	if Global.gun_picked_up and gun_in_hand:
+		$CanvasLayer/Ammo.show()
+	else:
+		$CanvasLayer/Ammo.hide()
+	
+	
 	$health_bar.value = health
 	
 	if health <= 0:
@@ -59,7 +65,7 @@ func _physics_process(delta):
 		Global.player_speed *= 1.5
 		$AnimatedSprite.play("idle")
 	
-	if Input.is_action_just_pressed("reload") and not reloading and not ammo == max_ammo:
+	if Input.is_action_just_pressed("reload") and not reloading and not ammo == max_ammo and gun_in_hand:
 		reload()
 	
 	if Input.is_action_pressed("shoot") and can_shoot and gun_in_hand and ammo > 0 and not reloading:

@@ -1,5 +1,6 @@
 extends Node2D
 
+var duck_hunt_top = 570600
 var restarting = false
 var lives = 5
 var score = 0
@@ -25,7 +26,11 @@ func _physics_process(delta):
 	
 	if lives <= 0 and not restarting:
 		restarting = true
-		$restart_timer.start()
+		if score < duck_hunt_top:
+			$restart_timer.start()
+		else:
+			Global.duck_hunt_defeated = true
+			get_tree().change_scene("res://starting_room.tscn")
 	
 	$Timer.wait_time *= .999
 	
