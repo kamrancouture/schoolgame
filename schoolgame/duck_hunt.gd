@@ -27,11 +27,6 @@ func _physics_process(delta):
 	if lives <= 0 and not restarting:
 		restarting = true
 		$restart_timer.start()
-#		if score < duck_hunt_top:
-#			$restart_timer.start()
-#		else:
-#			Global.duck_hunt_defeated = true
-#			get_tree().change_scene("res://starting_room.tscn")
 	
 	$Timer.wait_time *= .999
 	
@@ -42,7 +37,7 @@ func _physics_process(delta):
 func _on_Timer_timeout():
 	if not restarting:
 		var duck = Duck.instance()
-		duck.global_position.y = rng.randf_range(30,570)
+		duck.global_position.y = rng.randf_range(200,570)
 		duck_move_right.shuffle()
 		duck.moving_right = duck_move_right.front()
 		add_child(duck)
@@ -69,5 +64,12 @@ func _on_restart_timer_timeout():
 	if score < duck_hunt_top:
 		restart()
 	else:
+		$text_popups/you_won.pop_up()
 		Global.duck_hunt_defeated = true
+
+
+func _on_TextureButton_button_down():
+	if Global.duck_hunt_defeated:
 		get_tree().change_scene("res://starting_room.tscn")
+	else:
+		$text_popups/cant_leave_yet.pop_up()

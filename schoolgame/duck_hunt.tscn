@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://duck_hunt.gd" type="Script" id=1]
 [ext_resource path="res://Azalea Font/Azalea-BF64f6fe9c7c4b6.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://sound_effects/gun_fire.wav" type="AudioStream" id=3]
 [ext_resource path="res://Assets/wargroove-landscape-wallpaper-67088-69386-hd-wallpapers-thumb.jpg" type="Texture" id=4]
+[ext_resource path="res://text_popup.gd" type="Script" id=5]
+[ext_resource path="res://Assets/last_attempt.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.141176, 0.141176, 0.141176, 0.686275 )
@@ -25,6 +27,86 @@ extents = Vector2( 78.5, 331 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 76.5, 331 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.196078, 0.196078, 0.196078, 0.686275 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer/Label:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "fade"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.95, 0.99, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.94 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "hide"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CenterContainer/Label:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.95, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="duck_hunt" type="Node2D"]
 script = ExtResource( 1 )
@@ -132,7 +214,85 @@ shape = SubResource( 5 )
 wait_time = 5.0
 one_shot = true
 
+[node name="text_popups" type="Node2D" parent="."]
+position = Vector2( 512, 400 )
+
+[node name="cant_leave_yet" type="PanelContainer" parent="text_popups"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -507.0
+margin_top = -93.0
+margin_right = 507.0
+custom_styles/panel = SubResource( 8 )
+script = ExtResource( 5 )
+
+[node name="CenterContainer" type="CenterContainer" parent="text_popups/cant_leave_yet"]
+margin_right = 1014.0
+margin_bottom = 93.0
+
+[node name="Label" type="Label" parent="text_popups/cant_leave_yet/CenterContainer"]
+margin_left = 43.0
+margin_top = 24.0
+margin_right = 971.0
+margin_bottom = 69.0
+custom_fonts/font = SubResource( 9 )
+text = "you cannot leave this game yet, you need to beat the record"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="text_popups/cant_leave_yet"]
+anims/RESET = SubResource( 10 )
+anims/fade = SubResource( 11 )
+
+[node name="time_showing" type="Timer" parent="text_popups/cant_leave_yet"]
+
+[node name="you_won" type="PanelContainer" parent="text_popups"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -408.5
+margin_top = -93.0
+margin_right = 408.5
+custom_styles/panel = SubResource( 8 )
+script = ExtResource( 5 )
+
+[node name="CenterContainer" type="CenterContainer" parent="text_popups/you_won"]
+margin_right = 817.0
+margin_bottom = 93.0
+
+[node name="Label" type="Label" parent="text_popups/you_won/CenterContainer"]
+margin_left = 30.0
+margin_right = 787.0
+margin_bottom = 93.0
+custom_fonts/font = SubResource( 9 )
+text = "Congrats, you are the new best duck hunt player 
+of all hackerspace history"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="text_popups/you_won"]
+anims/RESET = SubResource( 10 )
+anims/fade = SubResource( 11 )
+
+[node name="time_showing" type="Timer" parent="text_popups/you_won"]
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 827.0
+margin_top = 2.0
+margin_right = 1023.0
+margin_bottom = 154.0
+texture_normal = ExtResource( 6 )
+expand = true
+stretch_mode = 1
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="left_wall" to="." method="_on_left_wall_area_entered"]
 [connection signal="area_entered" from="right_wall" to="." method="_on_right_wall_area_entered"]
 [connection signal="timeout" from="restart_timer" to="." method="_on_restart_timer_timeout"]
+[connection signal="timeout" from="text_popups/cant_leave_yet/time_showing" to="text_popups/cant_leave_yet" method="_on_time_showing_timeout"]
+[connection signal="timeout" from="text_popups/you_won/time_showing" to="text_popups/you_won" method="_on_time_showing_timeout"]
+[connection signal="button_down" from="TextureButton" to="." method="_on_TextureButton_button_down"]
