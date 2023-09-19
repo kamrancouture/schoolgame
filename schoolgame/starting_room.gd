@@ -3,6 +3,11 @@ extends Node2D
 onready var player = get_node("Player")
 
 func _ready():
+	if Global.duck_hunt_defeated:
+		player.global_position = Vector2(990 , 608)
+		player.gun_in_hand = true
+		player.get_node("AnimatedSprite").play("pistol")
+	
 	Input.set_custom_mouse_cursor(null)
 	$dead_ducks.hide()
 

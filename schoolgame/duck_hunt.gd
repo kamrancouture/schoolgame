@@ -26,11 +26,12 @@ func _physics_process(delta):
 	
 	if lives <= 0 and not restarting:
 		restarting = true
-		if score < duck_hunt_top:
-			$restart_timer.start()
-		else:
-			Global.duck_hunt_defeated = true
-			get_tree().change_scene("res://starting_room.tscn")
+		$restart_timer.start()
+#		if score < duck_hunt_top:
+#			$restart_timer.start()
+#		else:
+#			Global.duck_hunt_defeated = true
+#			get_tree().change_scene("res://starting_room.tscn")
 	
 	$Timer.wait_time *= .999
 	
@@ -65,4 +66,8 @@ func _on_right_wall_area_entered(area):
 
 
 func _on_restart_timer_timeout():
-	restart()
+	if score < duck_hunt_top:
+		restart()
+	else:
+		Global.duck_hunt_defeated = true
+		get_tree().change_scene("res://starting_room.tscn")

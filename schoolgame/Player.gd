@@ -28,7 +28,7 @@ func _physics_process(delta):
 	
 	$health_bar.value = health
 	
-	if health <= 0:
+	if health <= 0 and Global.player_alive:
 		$health_bar.hide()
 		Global.player_alive = false
 		hide()
