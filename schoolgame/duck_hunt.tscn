@@ -226,12 +226,14 @@ anchor_bottom = 1.0
 margin_left = -507.0
 margin_top = -93.0
 margin_right = 507.0
+mouse_filter = 2
 custom_styles/panel = SubResource( 8 )
 script = ExtResource( 5 )
 
 [node name="CenterContainer" type="CenterContainer" parent="text_popups/cant_leave_yet"]
 margin_right = 1014.0
 margin_bottom = 93.0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="text_popups/cant_leave_yet/CenterContainer"]
 margin_left = 43.0
@@ -256,12 +258,14 @@ anchor_bottom = 1.0
 margin_left = -408.5
 margin_top = -93.0
 margin_right = 408.5
+mouse_filter = 2
 custom_styles/panel = SubResource( 8 )
 script = ExtResource( 5 )
 
 [node name="CenterContainer" type="CenterContainer" parent="text_popups/you_won"]
 margin_right = 817.0
 margin_bottom = 93.0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="text_popups/you_won/CenterContainer"]
 margin_left = 30.0
@@ -277,6 +281,7 @@ anims/RESET = SubResource( 10 )
 anims/fade = SubResource( 11 )
 
 [node name="time_showing" type="Timer" parent="text_popups/you_won"]
+wait_time = 3.0
 
 [node name="TextureButton" type="TextureButton" parent="."]
 anchor_left = 1.0

@@ -61,11 +61,12 @@ func _on_right_wall_area_entered(area):
 
 
 func _on_restart_timer_timeout():
-	if score < duck_hunt_top:
+	if score < duck_hunt_top or Global.duck_hunt_defeated:
 		restart()
 	else:
 		$text_popups/you_won.pop_up()
 		Global.duck_hunt_defeated = true
+		restart()
 
 
 func _on_TextureButton_button_down():

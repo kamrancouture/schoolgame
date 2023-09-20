@@ -20,59 +20,78 @@ func _ready():
 
 func _physics_process(delta):
 	
-	if Global.gun_picked_up and gun_in_hand:
-		$CanvasLayer/Ammo.show()
-	else:
-		$CanvasLayer/Ammo.hide()
-	
-	
-	$health_bar.value = health
-	
-	if health <= 0 and Global.player_alive:
-		$health_bar.hide()
-		Global.player_alive = false
-		hide()
-		var death_effect = Death_Effect.instance()
-		death_effect.global_position = global_position
-		death_effect.emitting = true
-		get_parent().add_child(death_effect)
-	
-	$CanvasLayer/Ammo.text = "Ammo: " + String(ammo) + "/" + String(max_ammo)
-	velocity = Input.get_vector("a_click" , "d_click" , "w_click" , "s_click") * Global.player_speed
-	
-	velocity = move_and_slide(velocity)
-	$AnimatedSprite.look_at(get_global_mouse_position())
-	
-	$health_bar.rect_rotation = -rotation
-	
-	$health_bar.set_rotation(0)
-	
-	if not velocity == Vector2.ZERO and not gun_in_hand:
-		$walking.pitch_scale = 1.5
-		$walking.stream_paused = false
-	elif not velocity == Vector2.ZERO:
-		$walking.pitch_scale = 1
-		$walking.stream_paused = false
-	else:
-		$walking.stream_paused = true
-	
-	if Input.is_action_just_pressed("gun") and not gun_in_hand and Global.gun_picked_up:
-		gun_in_hand = true
-		Global.player_speed /= 1.5
-		$AnimatedSprite.play("pistol")
-	elif Input.is_action_just_pressed("gun") and not reloading and Global.gun_picked_up:
-		gun_in_hand = false
-		Global.player_speed *= 1.5
-		$AnimatedSprite.play("idle")
-	
-	if Input.is_action_just_pressed("reload") and not reloading and not ammo == max_ammo and gun_in_hand:
-		reload()
-	
-	if Input.is_action_pressed("shoot") and can_shoot and gun_in_hand and ammo > 0 and not reloading:
-		shoot()
-	
-	elif ammo == 0 and gun_in_hand and not reloading:
-		reload()
+	if Global.player_alive:
+		if Input.is_action_just_pressed("hotbar_1"):
+			$CanvasLayer/Hotbar.select(0)
+		elif Input.is_action_just_pressed("hotbar_2"):
+			$CanvasLayer/Hotbar.select(1)
+		elif Input.is_action_just_pressed("hotbar_3"):
+			$CanvasLayer/Hotbar.select(2)
+		elif Input.is_action_just_pressed("hotbar_4"):
+			$CanvasLayer/Hotbar.select(3)
+		elif Input.is_action_just_pressed("hotbar_5"):
+			$CanvasLayer/Hotbar.select(4)
+		elif Input.is_action_just_pressed("hotbar_6"):
+			$CanvasLayer/Hotbar.select(5)
+		elif Input.is_action_just_pressed("hotbar_7"):
+			$CanvasLayer/Hotbar.select(6)
+		elif Input.is_action_just_pressed("hotbar_8"):
+			$CanvasLayer/Hotbar.select(7)
+		elif Input.is_action_just_pressed("hotbar_9"):
+			$CanvasLayer/Hotbar.select(8)
+		
+		if Global.gun_picked_up and gun_in_hand:
+			$CanvasLayer/Ammo.show()
+		else:
+			$CanvasLayer/Ammo.hide()
+		
+		$health_bar.value = health
+		
+		if health <= 0 and Global.player_alive:
+			$health_bar.hide()
+			Global.player_alive = false
+			hide()
+			var death_effect = Death_Effect.instance()
+			death_effect.global_position = global_position
+			death_effect.emitting = true
+			get_parent().add_child(death_effect)
+		
+		$CanvasLayer/Ammo.text = "Ammo: " + String(ammo) + "/" + String(max_ammo)
+		velocity = Input.get_vector("a_click" , "d_click" , "w_click" , "s_click") * Global.player_speed
+		
+		velocity = move_and_slide(velocity)
+		$AnimatedSprite.look_at(get_global_mouse_position())
+		
+		$health_bar.rect_rotation = -rotation
+		
+		$health_bar.set_rotation(0)
+		
+		if not velocity == Vector2.ZERO and not gun_in_hand:
+			$walking.pitch_scale = 1.5
+			$walking.stream_paused = false
+		elif not velocity == Vector2.ZERO:
+			$walking.pitch_scale = 1
+			$walking.stream_paused = false
+		else:
+			$walking.stream_paused = true
+		
+		if Input.is_action_just_pressed("gun") and not gun_in_hand and Global.gun_picked_up:
+			gun_in_hand = true
+			Global.player_speed /= 1.5
+			$AnimatedSprite.play("pistol")
+		elif Input.is_action_just_pressed("gun") and not reloading and Global.gun_picked_up:
+			gun_in_hand = false
+			Global.player_speed *= 1.5
+			$AnimatedSprite.play("idle")
+		
+		if Input.is_action_just_pressed("reload") and not reloading and not ammo == max_ammo and gun_in_hand:
+			reload()
+		
+		if Input.is_action_pressed("shoot") and can_shoot and gun_in_hand and ammo > 0 and not reloading:
+			shoot()
+		
+		elif ammo == 0 and gun_in_hand and not reloading:
+			reload()
 
 
 func hit():
@@ -104,3 +123,5 @@ func reload():
 
 func _on_fire_rate_timeout():
 	can_shoot = true
+
+
