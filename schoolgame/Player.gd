@@ -1,5 +1,9 @@
 extends KinematicBody2D
 
+var first_item_selected_slot = null
+var hotbar_slot_dragging : int
+var is_dragging_item = false
+var item_dragging_icon = null
 var Death_Effect = preload("res://player_death.tscn")
 var Blood_Effect = preload("res://player_blood_effect.tscn")
 var reloading = false
@@ -19,6 +23,10 @@ func _ready():
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
+	
+	if not Input.is_mouse_button_pressed(1) and not item_dragging_icon == null:
+		$CanvasLayer/Hotbar.set_item_icon(hotbar_slot_dragging , item_dragging_icon)
+		item_dragging_icon = null
 	
 	if Global.player_alive:
 		if Input.is_action_just_pressed("hotbar_1"):
@@ -123,5 +131,20 @@ func reload():
 
 func _on_fire_rate_timeout():
 	can_shoot = true
+
+
+
+
+
+
+func _on_Hotbar_item_selected(index):
+	if not $CanvasLayer/Hotbar.get_item_icon(index) == null and first_item_selected_slot == null:
+		is_dragging_item = true
+		first_item_selected_slot = index
+		
+	elif not first_item_selected_slot == null:
+		$CanvasLayer/Hotbar.move_item(first_item_selected_slot , index)
+		first_item_selected_slot = null
+		
 
 

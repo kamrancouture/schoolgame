@@ -1,5 +1,6 @@
 extends Area2D
 
+var gun_texture = preload("res://Assets/kenney_top-down-shooter/PNG/weapon_gun.png")
 var hotbar_number_checking = 1
 var player_lowest_non_selected : int
 var player_lowest_non_selected_found = false
@@ -25,5 +26,7 @@ func _physics_process(delta):
 				else:
 					hotbar_number_checking += 1
 			hotbar_number_checking = 1
+			player.get_node("CanvasLayer/Hotbar").set_item_icon(hotbar_number_checking - 1 , gun_texture)
+			player.get_node("CanvasLayer/Hotbar").set_item_text(hotbar_number_checking - 1 , "gun")
 	else:
 		$Press_E.hide()

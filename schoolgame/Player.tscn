@@ -113,6 +113,7 @@ custom_fonts/font = SubResource( 6 )
 custom_styles/selected = SubResource( 8 )
 custom_styles/bg = SubResource( 7 )
 items = [ "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false ]
+allow_reselect = true
 auto_height = true
 max_columns = 9
 same_column_width = true
@@ -139,3 +140,4 @@ stream = ExtResource( 9 )
 volume_db = -10.0
 
 [connection signal="timeout" from="fire_rate" to="." method="_on_fire_rate_timeout"]
+[connection signal="item_selected" from="CanvasLayer/Hotbar" to="." method="_on_Hotbar_item_selected"]
