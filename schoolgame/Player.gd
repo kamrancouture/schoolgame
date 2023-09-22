@@ -17,36 +17,44 @@ var velocity = Vector2.ZERO
 var rng = RandomNumberGenerator.new()
 export var max_health = 30
 export var health = 30
+var selected_item_index : int
 
 func _ready():
+	$CanvasLayer/Hotbar.select(0)
 	$health_bar.max_value = max_health
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
 	
-	if not Input.is_mouse_button_pressed(1) and not item_dragging_icon == null:
-		$CanvasLayer/Hotbar.set_item_icon(hotbar_slot_dragging , item_dragging_icon)
-		item_dragging_icon = null
-	
 	if Global.player_alive:
 		if Input.is_action_just_pressed("hotbar_1"):
+			selected_item_index = 0
 			$CanvasLayer/Hotbar.select(0)
 		elif Input.is_action_just_pressed("hotbar_2"):
+			selected_item_index = 1
 			$CanvasLayer/Hotbar.select(1)
 		elif Input.is_action_just_pressed("hotbar_3"):
+			selected_item_index = 2
 			$CanvasLayer/Hotbar.select(2)
 		elif Input.is_action_just_pressed("hotbar_4"):
+			selected_item_index = 3
 			$CanvasLayer/Hotbar.select(3)
 		elif Input.is_action_just_pressed("hotbar_5"):
+			selected_item_index = 4
 			$CanvasLayer/Hotbar.select(4)
 		elif Input.is_action_just_pressed("hotbar_6"):
+			selected_item_index = 5
 			$CanvasLayer/Hotbar.select(5)
 		elif Input.is_action_just_pressed("hotbar_7"):
+			selected_item_index = 6
 			$CanvasLayer/Hotbar.select(6)
 		elif Input.is_action_just_pressed("hotbar_8"):
+			selected_item_index = 7
 			$CanvasLayer/Hotbar.select(7)
 		elif Input.is_action_just_pressed("hotbar_9"):
+			selected_item_index = 8
 			$CanvasLayer/Hotbar.select(8)
+		
 		
 		if Global.gun_picked_up and gun_in_hand:
 			$CanvasLayer/Ammo.show()
@@ -83,11 +91,11 @@ func _physics_process(delta):
 		else:
 			$walking.stream_paused = true
 		
-		if Input.is_action_just_pressed("gun") and not gun_in_hand and Global.gun_picked_up:
+		if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "gun" and not gun_in_hand and Global.gun_picked_up:
 			gun_in_hand = true
 			Global.player_speed /= 1.5
 			$AnimatedSprite.play("pistol")
-		elif Input.is_action_just_pressed("gun") and not reloading and Global.gun_picked_up:
+		elif not $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "gun" and gun_in_hand:
 			gun_in_hand = false
 			Global.player_speed *= 1.5
 			$AnimatedSprite.play("idle")
@@ -146,5 +154,6 @@ func _on_Hotbar_item_selected(index):
 		$CanvasLayer/Hotbar.move_item(first_item_selected_slot , index)
 		first_item_selected_slot = null
 		
+	$CanvasLayer/Hotbar.select(selected_item_index)
 
 

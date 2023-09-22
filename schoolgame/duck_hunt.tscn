@@ -5,7 +5,7 @@
 [ext_resource path="res://sound_effects/gun_fire.wav" type="AudioStream" id=3]
 [ext_resource path="res://Assets/wargroove-landscape-wallpaper-67088-69386-hd-wallpapers-thumb.jpg" type="Texture" id=4]
 [ext_resource path="res://text_popup.gd" type="Script" id=5]
-[ext_resource path="res://Assets/last_attempt.png" type="Texture" id=6]
+[ext_resource path="res://Assets/critical-32.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.141176, 0.141176, 0.141176, 0.686275 )
@@ -15,11 +15,11 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [sub_resource type="DynamicFont" id=3]
-size = 64
+size = 48
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 64
+size = 48
 font_data = ExtResource( 2 )
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -116,31 +116,32 @@ wait_time = 3.0
 autostart = true
 
 [node name="Score_panel" type="Panel" parent="."]
-margin_right = 532.0
-margin_bottom = 88.0
+margin_right = 400.0
+margin_bottom = 75.0
 mouse_filter = 2
 custom_styles/panel = SubResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="score_label" type="Label" parent="Score_panel"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -33.5
 margin_right = 238.0
-margin_bottom = 96.0
+margin_bottom = 33.5
 custom_fonts/font = SubResource( 3 )
 text = "SCORE:"
 
 [node name="CenterContainer" type="CenterContainer" parent="Score_panel"]
-margin_left = 197.0
+margin_left = 149.0
 margin_top = 1.0
-margin_right = 532.0
-margin_bottom = 86.0
+margin_right = 403.0
+margin_bottom = 74.0
 mouse_filter = 2
 
 [node name="Score" type="Label" parent="Score_panel/CenterContainer"]
-margin_left = 142.0
-margin_right = 193.0
-margin_bottom = 89.0
+margin_left = 108.0
+margin_top = 3.0
+margin_right = 146.0
+margin_bottom = 70.0
 custom_fonts/font = SubResource( 2 )
 text = "0"
 __meta__ = {
@@ -150,33 +151,33 @@ __meta__ = {
 [node name="mistake_panel" type="Panel" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = 1.0
-margin_top = 93.0
-margin_right = 487.0
-margin_bottom = 173.0
+margin_top = 90.0
+margin_right = 400.0
+margin_bottom = 170.0
 mouse_filter = 2
 custom_styles/panel = SubResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="mistakes_left_label" type="Label" parent="mistake_panel"]
-margin_right = 238.0
-margin_bottom = 96.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -33.5
+margin_right = 296.0
+margin_bottom = 33.5
 custom_fonts/font = SubResource( 3 )
 text = "MISTAKES_LEFT:"
 
 [node name="CenterContainer" type="CenterContainer" parent="mistake_panel"]
-margin_left = 394.0
+margin_left = 302.0
 margin_top = 1.0
-margin_right = 487.0
-margin_bottom = 90.0
+margin_right = 399.0
+margin_bottom = 81.0
 mouse_filter = 2
 
 [node name="mistakes_left" type="Label" parent="mistake_panel/CenterContainer"]
-margin_left = 29.0
-margin_right = 64.0
-margin_bottom = 89.0
+margin_left = 35.0
+margin_top = 6.0
+margin_right = 61.0
+margin_bottom = 73.0
 custom_fonts/font = SubResource( 2 )
 text = "5"
 __meta__ = {
@@ -283,15 +284,15 @@ anims/fade = SubResource( 11 )
 [node name="time_showing" type="Timer" parent="text_popups/you_won"]
 wait_time = 3.0
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="exit" type="TextureButton" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = 827.0
-margin_top = 2.0
-margin_right = 1023.0
-margin_bottom = 154.0
+margin_left = 857.0
+margin_top = 5.0
+margin_right = 889.0
+margin_bottom = 37.0
+rect_scale = Vector2( 5, 5 )
 texture_normal = ExtResource( 6 )
-expand = true
 stretch_mode = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
@@ -300,4 +301,4 @@ stretch_mode = 1
 [connection signal="timeout" from="restart_timer" to="." method="_on_restart_timer_timeout"]
 [connection signal="timeout" from="text_popups/cant_leave_yet/time_showing" to="text_popups/cant_leave_yet" method="_on_time_showing_timeout"]
 [connection signal="timeout" from="text_popups/you_won/time_showing" to="text_popups/you_won" method="_on_time_showing_timeout"]
-[connection signal="button_down" from="TextureButton" to="." method="_on_TextureButton_button_down"]
+[connection signal="button_down" from="exit" to="." method="_on_TextureButton_button_down"]
