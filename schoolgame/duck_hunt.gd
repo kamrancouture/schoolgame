@@ -1,6 +1,6 @@
 extends Node2D
 
-var duck_hunt_top = 570600
+var dog_texture = preload("res://icon.png")
 var restarting = false
 var lives = 5
 var score = 0
@@ -15,6 +15,7 @@ var duck_move_right = [
 ]
 
 func _ready():
+	$AnimationPlayer.play("dog_laughing")
 	randomize()
 	rng.randomize()
 	Input.set_custom_mouse_cursor(crosshair , Input.CURSOR_ARROW , Vector2(72 , 72))
@@ -61,12 +62,20 @@ func _on_right_wall_area_entered(area):
 
 
 func _on_restart_timer_timeout():
-	if score < duck_hunt_top or Global.duck_hunt_defeated:
+	
+	if score > Global.duck_hunt_highscore:
+		Global.duck_hunt_highscore = score
+	
+	if score < Global.duck_hunt_highscore or Global.duck_hunt_defeated:
 		restart()
 	else:
+		recieve_dog()
 		$text_popups/you_won.pop_up()
+		$AnimationPlayer.stop()
+		$AnimationPlayer.play("dog_happy")
 		Global.duck_hunt_defeated = true
 		restart()
+		$fake_player_hotbar
 
 
 func _on_TextureButton_button_down():
@@ -74,3 +83,22 @@ func _on_TextureButton_button_down():
 		get_tree().change_scene("res://starting_room.tscn")
 	else:
 		$text_popups/cant_leave_yet.pop_up()
+
+
+func recieve_dog():
+	$fake_player_hotbar.items = Global.player_hotbar
+	var lowest_non_selected_found = false
+	var hotbar_number_checking = 1
+	var lowest_non_selected : int
+	
+	if not Global.dog_picked_up:
+		Global.dog_picked_up = true
+		while not lowest_non_selected_found:
+			if $fake_player_hotbar.get_item_icon(hotbar_number_checking-1) == null:
+				lowest_non_selected_found = true
+			else:
+				hotbar_number_checking += 1
+		$fake_player_hotbar.set_item_icon(hotbar_number_checking - 1 , dog_texture)
+		$fake_player_hotbar.set_item_text(hotbar_number_checking - 1 , "dog")
+		Global.player_hotbar = $fake_player_hotbar.items
+

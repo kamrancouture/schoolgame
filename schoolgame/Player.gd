@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+
+var dog_texture = preload("res://icon.png")
 var first_item_selected_slot = null
 var hotbar_slot_dragging : int
 var is_dragging_item = false
@@ -20,11 +22,25 @@ export var health = 30
 var selected_item_index : int
 
 func _ready():
+	
+	get_parent().player = self
+	Global.player_speed = 500
+	
+	if not Global.player_hotbar == null:
+		$CanvasLayer/Hotbar.items = Global.player_hotbar
+	
+	if not Global.player_previous_position == null:
+		global_position = Global.player_previous_position
+	
 	$CanvasLayer/Hotbar.select(0)
 	$health_bar.max_value = max_health
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
+	
+	
+	
+	Global.player_previous_position = global_position
 	
 	if Global.player_alive:
 		if Input.is_action_just_pressed("hotbar_1"):
@@ -55,6 +71,7 @@ func _physics_process(delta):
 			selected_item_index = 8
 			$CanvasLayer/Hotbar.select(8)
 		
+		Global.player_hotbar = $CanvasLayer/Hotbar.items
 		
 		if Global.gun_picked_up and gun_in_hand:
 			$CanvasLayer/Ammo.show()
@@ -91,7 +108,7 @@ func _physics_process(delta):
 		else:
 			$walking.stream_paused = true
 		
-		if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "gun" and not gun_in_hand and Global.gun_picked_up:
+		if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "gun" and not gun_in_hand:
 			gun_in_hand = true
 			Global.player_speed /= 1.5
 			$AnimatedSprite.play("pistol")
@@ -157,3 +174,18 @@ func _on_Hotbar_item_selected(index):
 	$CanvasLayer/Hotbar.select(selected_item_index)
 
 
+func pick_up_dog():
+	
+	var lowest_non_selected_found = false
+	var hotbar_number_checking = 1
+	var lowest_non_selected : int
+	
+	if not Global.dog_picked_up:
+		Global.dog_picked_up = true
+		while not lowest_non_selected_found:
+			if get_node("CanvasLayer/Hotbar").get_item_icon(hotbar_number_checking-1) == null:
+				lowest_non_selected_found = true
+			else:
+				hotbar_number_checking += 1
+		get_node("CanvasLayer/Hotbar").set_item_icon(hotbar_number_checking - 1 , dog_texture)
+		get_node("CanvasLayer/Hotbar").set_item_text(hotbar_number_checking - 1 , "dog")

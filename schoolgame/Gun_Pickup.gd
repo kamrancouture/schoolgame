@@ -22,7 +22,6 @@ func _physics_process(delta):
 			while not player_lowest_non_selected_found:
 				if player.get_node("CanvasLayer/Hotbar").get_item_icon(hotbar_number_checking-1) == null:
 					player_lowest_non_selected_found = true
-					print(hotbar_number_checking)
 				else:
 					hotbar_number_checking += 1
 			hotbar_number_checking = 1

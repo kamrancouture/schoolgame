@@ -3162,7 +3162,7 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 } ]
 131/z_index = 0
 
-[node name="Above_floor" type="TileMap"]
+[node name="Walls" type="TileMap"]
 tile_set = SubResource( 1 )
 collision_layer = 8
 collision_mask = 0

@@ -7,7 +7,6 @@ func _ready():
 		$gun_pickup_sprites.hide()
 		$Gun_Pickup.queue_free()
 	if Global.duck_hunt_defeated:
-		player.global_position = Vector2(990 , 608)
 		player.gun_in_hand = true
 		player.get_node("AnimatedSprite").play("pistol")
 	
@@ -15,6 +14,6 @@ func _ready():
 	$dead_ducks.hide()
 
 func _physics_process(delta):
-	
 	if Global.duck_hunt_defeated:
 		$dead_ducks.show()
+
