@@ -2,7 +2,15 @@ extends KinematicBody2D
 
 
 var dog_texture = preload("res://icon.png")
-var first_item_selected_slot = null
+
+var first_item_selected = false
+var first_item_selected_info = [
+	null,
+	"item",
+	null,
+]
+
+onready var hotbar = $CanvasLayer/Hotbar
 var hotbar_slot_dragging : int
 var is_dragging_item = false
 var item_dragging_icon = null
@@ -28,12 +36,12 @@ func _ready():
 	Global.player_speed = 500
 	
 	if not Global.player_hotbar == null:
-		$CanvasLayer/Hotbar.items = Global.player_hotbar
+		hotbar.items = Global.player_hotbar
 	
 	if not Global.player_previous_position == null:
 		global_position = Global.player_previous_position
 	
-	$CanvasLayer/Hotbar.select(0)
+	hotbar.select(0)
 	$health_bar.max_value = max_health
 	$AnimatedSprite.play("idle")
 
@@ -46,33 +54,33 @@ func _physics_process(delta):
 	if Global.player_alive:
 		if Input.is_action_just_pressed("hotbar_1"):
 			selected_item_index = 0
-			$CanvasLayer/Hotbar.select(0)
+			hotbar.select(0)
 		elif Input.is_action_just_pressed("hotbar_2"):
 			selected_item_index = 1
-			$CanvasLayer/Hotbar.select(1)
+			hotbar.select(1)
 		elif Input.is_action_just_pressed("hotbar_3"):
 			selected_item_index = 2
-			$CanvasLayer/Hotbar.select(2)
+			hotbar.select(2)
 		elif Input.is_action_just_pressed("hotbar_4"):
 			selected_item_index = 3
-			$CanvasLayer/Hotbar.select(3)
+			hotbar.select(3)
 		elif Input.is_action_just_pressed("hotbar_5"):
 			selected_item_index = 4
-			$CanvasLayer/Hotbar.select(4)
+			hotbar.select(4)
 		elif Input.is_action_just_pressed("hotbar_6"):
 			selected_item_index = 5
-			$CanvasLayer/Hotbar.select(5)
+			hotbar.select(5)
 		elif Input.is_action_just_pressed("hotbar_7"):
 			selected_item_index = 6
-			$CanvasLayer/Hotbar.select(6)
+			hotbar.select(6)
 		elif Input.is_action_just_pressed("hotbar_8"):
 			selected_item_index = 7
-			$CanvasLayer/Hotbar.select(7)
+			hotbar.select(7)
 		elif Input.is_action_just_pressed("hotbar_9"):
 			selected_item_index = 8
-			$CanvasLayer/Hotbar.select(8)
+			hotbar.select(8)
 		
-		Global.player_hotbar = $CanvasLayer/Hotbar.items
+		Global.player_hotbar = hotbar.items
 		
 		if Global.gun_picked_up and gun_in_hand:
 			$CanvasLayer/Ammo.show()
@@ -109,11 +117,11 @@ func _physics_process(delta):
 		else:
 			$walking.stream_paused = true
 		
-		if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "gun" and not gun_in_hand:
+		if hotbar.get_item_text(selected_item_index) == "gun" and not gun_in_hand:
 			gun_in_hand = true
 			Global.player_speed /= 1.5
 			$AnimatedSprite.play("pistol")
-		elif not $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "gun" and gun_in_hand:
+		elif not hotbar.get_item_text(selected_item_index) == "gun" and gun_in_hand:
 			gun_in_hand = false
 			Global.player_speed *= 1.5
 			$AnimatedSprite.play("idle")
@@ -164,15 +172,19 @@ func _on_fire_rate_timeout():
 
 
 func _on_Hotbar_item_selected(index):
-	if not $CanvasLayer/Hotbar.get_item_icon(index) == null and first_item_selected_slot == null:
+	if not hotbar.get_item_icon(index) == null and first_item_selected == false:
 		is_dragging_item = true
-		first_item_selected_slot = index
+		first_item_selected = true
+		first_item_selected_info = [index , hotbar.get_item_text(index) , hotbar.get_item_icon(index)]
 		
-	elif not first_item_selected_slot == null:
-		$CanvasLayer/Hotbar.move_item(first_item_selected_slot , index)
-		first_item_selected_slot = null
+	elif not first_item_selected == false:
+		hotbar.set_item_text(first_item_selected_info[0] , hotbar.get_item_text(index))
+		hotbar.set_item_icon(first_item_selected_info[0] , hotbar.get_item_icon(index))
+		hotbar.set_item_text(index , first_item_selected_info[1])
+		hotbar.set_item_icon(index , first_item_selected_info[2])
+		first_item_selected = false
 		
-	$CanvasLayer/Hotbar.select(selected_item_index)
+	hotbar.select(selected_item_index)
 
 
 func pick_up_dog():
