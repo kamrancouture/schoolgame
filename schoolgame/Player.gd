@@ -23,7 +23,8 @@ var selected_item_index : int
 
 func _ready():
 	
-	get_parent().player = self
+	if Global.world == "starting_room":
+		get_parent().player = self
 	Global.player_speed = 500
 	
 	if not Global.player_hotbar == null:

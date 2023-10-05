@@ -567,6 +567,9 @@ margin_left = 4.0
 margin_top = -155.0
 margin_right = 44.0
 margin_bottom = -115.0
+allow_reselect = true
+auto_height = true
+icon_mode = 0
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="left_wall" to="." method="_on_left_wall_area_entered"]

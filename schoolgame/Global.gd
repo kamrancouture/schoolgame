@@ -9,3 +9,6 @@ var player_previous_position = null
 
 var dog_picked_up = false
 var player_hotbar = null
+
+
+var world = "starting_room"

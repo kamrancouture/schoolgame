@@ -1,6 +1,6 @@
 extends Area2D
 
-var gun_texture = preload("res://Assets/kenney_top-down-shooter/PNG/weapon_gun.png")
+var gun_texture = preload("res://Assets/kenney_top-down-shooter/PNG/weapon_machine_icon_bigger.png")
 var hotbar_number_checking = 1
 var player_lowest_non_selected : int
 var player_lowest_non_selected_found = false
