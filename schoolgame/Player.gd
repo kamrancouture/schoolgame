@@ -22,6 +22,8 @@ var max_ammo = 30
 export var fire_rate = 0.2
 var Player_Bullet = preload("res://player_bullet.tscn")
 var can_shoot = true
+var riding_dog = false
+var dog_in_hand = false
 var gun_in_hand = false
 var velocity = Vector2.ZERO
 var rng = RandomNumberGenerator.new()
@@ -33,8 +35,9 @@ func _ready():
 	
 	if Global.world == "starting_room":
 		get_parent().player = self
-	Global.player_speed = 500
-	
+		Global.player_speed = 150
+	elif Global.world == "main_world":
+		Global.player_speed = 300
 	if not Global.player_hotbar == null:
 		hotbar.items = Global.player_hotbar
 	
@@ -42,12 +45,12 @@ func _ready():
 		global_position = Global.player_previous_position
 	
 	hotbar.select(0)
+	selected_item_index = 0
 	$health_bar.max_value = max_health
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
-	
-	
+	print(Global.player_speed)
 	
 	Global.player_previous_position = global_position
 	
@@ -104,10 +107,6 @@ func _physics_process(delta):
 		velocity = move_and_slide(velocity)
 		$AnimatedSprite.look_at(get_global_mouse_position())
 		
-		$health_bar.rect_rotation = -rotation
-		
-		$health_bar.set_rotation(0)
-		
 		if not velocity == Vector2.ZERO and not gun_in_hand:
 			$walking.pitch_scale = 1.5
 			$walking.stream_paused = false
@@ -116,8 +115,10 @@ func _physics_process(delta):
 			$walking.stream_paused = false
 		else:
 			$walking.stream_paused = true
-		
+		print(hotbar.get_item_text(selected_item_index))
+		print(gun_in_hand)
 		if hotbar.get_item_text(selected_item_index) == "gun" and not gun_in_hand:
+			print("hello")
 			gun_in_hand = true
 			Global.player_speed /= 1.5
 			$AnimatedSprite.play("pistol")
@@ -129,8 +130,14 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("reload") and not reloading and not ammo == max_ammo and gun_in_hand:
 			reload()
 		
-		if Input.is_action_pressed("shoot") and can_shoot and gun_in_hand and ammo > 0 and not reloading:
-			shoot()
+		if Input.is_action_pressed("shoot"):
+			if can_shoot and gun_in_hand and ammo > 0 and not reloading:
+				shoot()
+		if dog_in_hand and not riding_dog:
+			riding_dog = true
+			Global.player_speed *= 1.5
+			
+		
 		
 		elif ammo == 0 and gun_in_hand and not reloading:
 			reload()
