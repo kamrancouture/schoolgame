@@ -49,6 +49,7 @@ func _ready():
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
+	$CanvasLayer/XP_bar.value = Global.XP
 	
 	Global.player_previous_position = global_position
 	
