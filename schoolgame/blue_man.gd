@@ -12,6 +12,8 @@ func _ready():
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
+	
+	
 	if Global.player_alive:
 		if health <= 0:
 			var death_blood = Death_Blood.instance()
@@ -20,11 +22,12 @@ func _physics_process(delta):
 			get_parent().add_child(death_blood)
 			queue_free()
 		
-		look_at(player.global_position)
+		$AnimatedSprite.look_at(player.global_position)
 		
 		if kill_player == true and not aggrivated:
 			aggrivated = true
 			$shoot_timer.start()
+		$Label.rect_rotation = -rotation
 	
 
 

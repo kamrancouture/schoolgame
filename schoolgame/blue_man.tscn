@@ -53,5 +53,12 @@ animation = "idle"
 stream = ExtResource( 4 )
 volume_db = -21.0
 
+[node name="Label" type="Label" parent="."]
+margin_left = -16.0
+margin_top = -40.0
+margin_right = 24.0
+margin_bottom = -26.0
+text = "student"
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
