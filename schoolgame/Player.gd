@@ -17,7 +17,7 @@ var item_dragging_icon = null
 var Death_Effect = preload("res://player_death.tscn")
 var Blood_Effect = preload("res://player_blood_effect.tscn")
 var reloading = false
-var ammo = 31
+var ammo = 30
 var max_ammo = 30
 export var fire_rate = 0.2
 var Player_Bullet = preload("res://player_bullet.tscn")
@@ -32,7 +32,6 @@ export var health = 30
 var selected_item_index : int
 
 func _ready():
-	
 	if Global.world == "starting_room":
 		get_parent().player = self
 		Global.player_speed = 150
@@ -50,7 +49,6 @@ func _ready():
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
-	print(Global.player_speed)
 	
 	Global.player_previous_position = global_position
 	
@@ -115,10 +113,7 @@ func _physics_process(delta):
 			$walking.stream_paused = false
 		else:
 			$walking.stream_paused = true
-		print(hotbar.get_item_text(selected_item_index))
-		print(gun_in_hand)
 		if hotbar.get_item_text(selected_item_index) == "gun" and not gun_in_hand:
-			print("hello")
 			gun_in_hand = true
 			Global.player_speed /= 1.5
 			$AnimatedSprite.play("pistol")
@@ -167,8 +162,10 @@ func reload():
 	$AnimatedSprite.play("reload")
 	yield($AnimatedSprite , "animation_finished")
 	reloading = false
-	$AnimatedSprite.play("pistol")
-	ammo = max_ammo
+	if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "gun":
+		$AnimatedSprite.play("pistol")
+		ammo = max_ammo
+
 
 func _on_fire_rate_timeout():
 	can_shoot = true
