@@ -72,5 +72,3 @@ func _on_hit_timer_timeout():
 
 
 
-func _on_stop_go_timer_timeout():
-	rotate_amount = rng.randi_range(deg2rad(0),deg2rad(360))
