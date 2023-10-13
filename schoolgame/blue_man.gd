@@ -41,8 +41,8 @@ func hit():
 func shoot():
 	if Global.player_alive:
 		var bullet = Bullet.instance()
-		bullet.global_position = $Position2D.global_position
-		bullet.rotation = global_rotation
+		bullet.global_position = $AnimatedSprite/Position2D.global_position
+		bullet.rotation = $AnimatedSprite.global_rotation
 		get_parent().add_child(bullet)
 		$shoot.play()
 

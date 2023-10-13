@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/PngItem_2330591.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 43.0465
+radius = 52.0096
 
 [sub_resource type="Animation" id=3]
 length = 0.001
