@@ -70,6 +70,7 @@ func _on_restart_timer_timeout():
 		restart()
 	else:
 		recieve_dog()
+		Global.XP += 90
 		$text_popups/you_won.pop_up()
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("dog_happy")

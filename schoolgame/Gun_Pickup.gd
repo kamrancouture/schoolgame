@@ -15,6 +15,7 @@ func _physics_process(delta):
 		$Press_E.show()
 		$Press_E.global_position = player.global_position + Vector2(7 , -40)
 		if Input.is_action_just_pressed("interact"):
+			Global.XP += 10
 			item_picked_up = true
 			$Press_E.hide()
 			Global.gun_picked_up = true
