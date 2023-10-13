@@ -21,6 +21,7 @@ func _ready():
 func _physics_process(delta):
 	
 	if Global.player_alive:
+		$name_teg.rect_rotation = -rotation
 		if not aggro:
 			velocity = Vector2(wander_speed , 0).rotated(rotation)
 			if rotate_amount > 0:
@@ -41,8 +42,9 @@ func _physics_process(delta):
 			queue_free()
 		
 		if aggro:
-			velocity = Vector2(speed, 0).rotated(rotation)
-			look_at(player.global_position)
+			velocity = Vector2(speed, 0).rotated($AnimatedSprite.rotation)
+			$AnimatedSprite.look_at(player.global_position)
+		
 		
 		if not rotating:
 			move_and_slide(velocity)

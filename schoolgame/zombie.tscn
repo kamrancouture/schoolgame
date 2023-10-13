@@ -59,6 +59,13 @@ one_shot = true
 wait_time = 5.0
 autostart = true
 
+[node name="name_teg" type="Label" parent="."]
+margin_left = -58.0
+margin_top = -40.0
+margin_right = 58.0
+margin_bottom = -26.0
+text = "graduated student"
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="timeout" from="hit_timer" to="." method="_on_hit_timer_timeout"]

@@ -13,3 +13,7 @@ var player_hotbar = null
 
 
 var world = "starting_room"
+
+func _physics_process(delta):
+	if Input.is_action_just_pressed("f2"):
+		get_tree().change_scene("res://world.tscn")
