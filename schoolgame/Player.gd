@@ -34,9 +34,9 @@ var selected_item_index : int
 func _ready():
 	if Global.world == "starting_room":
 		get_parent().player = self
-		Global.player_speed = 150
+		Global.player_speed = 800
 	elif Global.world == "computer_class":
-		Global.player_speed = 300
+		Global.player_speed = 800
 	if not Global.player_hotbar == null:
 		hotbar.items = Global.player_hotbar
 	
