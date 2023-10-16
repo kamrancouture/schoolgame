@@ -11,7 +11,7 @@ height = 22.0
 
 [node name="kill_order" type="KinematicBody2D"]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 13
 script = ExtResource( 2 )
 
 [node name="Robot1Machine" type="Sprite" parent="."]
@@ -22,16 +22,12 @@ position = Vector2( -10, 0 )
 shape = SubResource( 1 )
 
 [node name="run_timer" type="Timer" parent="."]
-autostart = true
 
-[node name="stop_running" type="Timer" parent="."]
-wait_time = 1.2
-
-[node name="Position2D" type="Position2D" parent="."]
+[node name="right_shooter" type="Position2D" parent="."]
 position = Vector2( -27, 17 )
 rotation = 2.44346
 
-[node name="Position2D2" type="Position2D" parent="."]
+[node name="left_shooter" type="Position2D" parent="."]
 position = Vector2( -28, -19 )
 rotation = 4.01426
 
@@ -39,14 +35,17 @@ rotation = 4.01426
 wait_time = 0.25
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2( -1, 0 )
 collision_layer = 0
-collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -9, 0 )
 shape = SubResource( 2 )
 
+[node name="middle_shooter" type="Position2D" parent="."]
+position = Vector2( -34, 0 )
+rotation = 3.14159
+
 [connection signal="timeout" from="run_timer" to="." method="_on_run_timer_timeout"]
-[connection signal="timeout" from="stop_running" to="." method="_on_stop_running_timeout"]
 [connection signal="timeout" from="fire_running" to="." method="_on_fire_running_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

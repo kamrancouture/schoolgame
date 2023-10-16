@@ -33,7 +33,6 @@ func _physics_process(delta):
 				can_hit = false
 				$hit_timer.start()
 				player.hit()
-		print(rotate_amount)
 		if health <= 0:
 			var death_blood = Death_Blood.instance()
 			death_blood.global_position = global_position

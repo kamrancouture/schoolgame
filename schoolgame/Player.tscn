@@ -85,15 +85,14 @@ collision_mask = 8
 script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 7, 0 )
+position = Vector2( 1, 0 )
 frames = SubResource( 1 )
 animation = "idle"
 
 [node name="bullet_spawn" type="Position2D" parent="AnimatedSprite"]
-position = Vector2( 30, 9 )
+position = Vector2( 27, 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 6, 0 )
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -144,9 +143,9 @@ icon_mode = 0
 [node name="XP_bar" type="ProgressBar" parent="CanvasLayer"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -503.5
-margin_right = 503.5
-margin_bottom = 22.0
+margin_left = -508.0
+margin_right = 499.0
+margin_bottom = 36.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 11 )
 custom_styles/fg = SubResource( 10 )
