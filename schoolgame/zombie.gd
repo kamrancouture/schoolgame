@@ -14,11 +14,17 @@ var wander_speed = 1
 var rotate_amount : float
 var rotate_speed = 3
 var rotating = false
+onready var navigation_agent = $NavigationAgent2D
+
 func _ready():
 	$AnimatedSprite.play("idle")
 	rng.randomize()
 
 func _physics_process(delta):
+	
+	if Global.world == "computer_class":
+		$AnimatedSprite.play("aggro")
+		aggro = true
 	
 	if Global.player_alive:
 		$name_teg.rect_rotation = -rotation
@@ -41,12 +47,13 @@ func _physics_process(delta):
 			queue_free()
 		
 		if aggro:
-			velocity = Vector2(speed, 0).rotated($AnimatedSprite.rotation)
-			$AnimatedSprite.look_at(player.global_position)
+			navigation_agent.set_target_location(player.global_position)
+			velocity = global_position.direction_to(navigation_agent.get_next_location()) * speed
+			navigation_agent.set_velocity(velocity)
+			$AnimatedSprite.look_at(navigation_agent.get_next_location())
 		
 		
-		if not rotating:
-			move_and_slide(velocity)
+		move_and_slide(velocity)
 
 
 func hit():

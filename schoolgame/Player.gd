@@ -40,7 +40,7 @@ func _ready():
 	if not Global.player_hotbar == null:
 		hotbar.items = Global.player_hotbar
 	
-	if not Global.player_previous_position == null:
+	if not Global.player_previous_position == null and Global.player_previous_world == Global.world:
 		global_position = Global.player_previous_position
 	
 	hotbar.select(0)
@@ -49,8 +49,10 @@ func _ready():
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
+	
 	$CanvasLayer/XP_bar.value = Global.XP
 	
+	Global.player_previous_world = Global.world
 	Global.player_previous_position = global_position
 	
 	if Global.player_alive:

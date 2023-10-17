@@ -11,7 +11,7 @@ func _physics_process(delta):
 		$Press_E.global_position = player.global_position + Vector2(7 , -40)
 		if Input.is_action_just_pressed("interact") and Global.duck_hunt_defeated:
 			Global.player_speed *= 2.5
-			get_tree().change_scene("res://world.tscn")
+			get_tree().change_scene("res://computer_class.tscn")
 			Global.world = "computer_class"
 		elif Input.is_action_just_pressed("interact"):
 			get_parent().get_node("CanvasLayer/text_popups/cant_open_door").pop_up()
