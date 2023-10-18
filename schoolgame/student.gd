@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
 var can_hit = true
-var Death_Blood = preload("res://zombie_death_effect.tscn")
-var Blood_Effect = preload("res://zombie_blood_effect.tscn")
+var Death_Blood = preload("res://death_blood.tscn")
+var Blood_Effect = preload("res://blood_effect.tscn")
 onready var player = get_parent().get_node("Player")
 var aggro = false
 var rng = RandomNumberGenerator.new()

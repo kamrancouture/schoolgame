@@ -54,7 +54,7 @@ margin_left = -58.0
 margin_top = -40.0
 margin_right = 58.0
 margin_bottom = -26.0
-text = "graduated student"
+text = "student"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
