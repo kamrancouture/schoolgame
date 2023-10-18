@@ -12,8 +12,9 @@ var XP = 0
 var dog_picked_up = false
 var player_hotbar = null
 
-
 var world = "starting_room"
+
+var students_alive = 0
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("f2"):

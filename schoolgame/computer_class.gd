@@ -51,3 +51,11 @@ func wave_one():
 	spawn_points.shuffle()
 	student.global_position = spawn_points.front().global_position
 	add_child(student)
+
+func wave_two():
+	for i in 3:
+		var student = Student.instance()
+		spawn_points.shuffle()
+		student.global_position = spawn_points.front().global_position
+		add_child(student)
+
