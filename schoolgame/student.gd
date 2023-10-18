@@ -61,6 +61,7 @@ func _physics_process(delta):
 			death_blood.global_position = global_position
 			death_blood.emitting = true
 			get_parent().add_child(death_blood)
+			Global.students_alive -= 1
 			queue_free()
 		
 		if aggro:
