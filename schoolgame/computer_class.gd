@@ -23,19 +23,24 @@ onready var no_gun_human =[
 ]
 
 
-
+var wave_going = false
 var wave = 0
 
 func _ready():
 	rng.randomize()
 	randomize()
 func _physics_process(delta):
-	pass
+	if wave_going and Global.students_alive == 0:
+		wave_going = false
+		wave += 1
+		$wave_timer.start()
 
 
 func _on_wave_timer_timeout():
 	if wave == 0:
 		wave_one()
+	elif wave == 1:
+		wave_two()
 
 
 
@@ -47,6 +52,8 @@ func _on_wave_timer_timeout():
 
 
 func wave_one():
+	Global.students_alive = 1
+	wave_going = true
 	var student = Student.instance()
 	spawn_points.shuffle()
 	student.global_position = spawn_points.front().global_position
