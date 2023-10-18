@@ -1,5 +1,11 @@
 extends KinematicBody2D
 
+
+var girl = preload("res://Assets/kenney_top-down-shooter/PNG/Woman Green/womanGreen_hold.png")
+var brown_man = preload("res://Assets/kenney_top-down-shooter/PNG/Man Brown/manBrown_hold.png")
+var blue_man = preload("res://Assets/kenney_top-down-shooter/PNG/Man Blue/manBlue_hold.png")
+var survivor = preload("res://Assets/kenney_top-down-shooter/PNG/Survivor 1/survivor1_hold.png")
+
 var can_hit = true
 var Death_Blood = preload("res://death_blood.tscn")
 var Blood_Effect = preload("res://blood_effect.tscn")
@@ -16,14 +22,25 @@ var rotate_speed = 3
 var rotating = false
 onready var navigation_agent = $NavigationAgent2D
 
+onready var looks = [
+	blue_man,
+	survivor,
+	girl,
+	brown_man
+]
+
+
+
 func _ready():
-	$AnimatedSprite.play("idle")
+	randomize()
+	looks.shuffle()
+	$Sprite.texture = looks.front()
+	
 	rng.randomize()
 
 func _physics_process(delta):
 	
 	if Global.world == "computer_class":
-		$AnimatedSprite.play("aggro")
 		aggro = true
 	
 	if Global.player_alive:
@@ -50,7 +67,7 @@ func _physics_process(delta):
 			navigation_agent.set_target_location(player.global_position)
 			velocity = global_position.direction_to(navigation_agent.get_next_location()) * speed
 			navigation_agent.set_velocity(velocity)
-			$AnimatedSprite.look_at(navigation_agent.get_next_location())
+			$Sprite.look_at(navigation_agent.get_next_location())
 		
 		
 		move_and_slide(velocity)
@@ -64,12 +81,10 @@ func hit():
 	get_parent().add_child(blood_effect)
 
 func _on_Area2D_body_entered(body):
-	$AnimatedSprite.play("aggro")
 	aggro = true
 
 
 func _on_Area2D_body_exited(body):
-	$AnimatedSprite.play("idle")
 	aggro = false
 
 
