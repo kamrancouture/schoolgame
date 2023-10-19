@@ -445,7 +445,7 @@ pitch_scale = 2.0
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 494, 301 )
 scale = Vector2( 2.75, 2.75 )
-z_index = -1
+z_index = -5
 texture = ExtResource( 4 )
 
 [node name="left_wall" type="Area2D" parent="."]

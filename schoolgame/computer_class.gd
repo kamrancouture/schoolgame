@@ -1,6 +1,5 @@
 extends Node2D
 
-var Student_Gun = preload("res://blue_man.tscn")
 var Grad = preload("res://zombie.tscn")
 var Student = preload("res://student.tscn")
 onready var player = get_node("Player")

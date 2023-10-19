@@ -36,7 +36,7 @@ func _ready():
 		get_parent().player = self
 		Global.player_speed = 225
 	elif Global.world == "computer_class":
-		Global.player_speed = 100
+		Global.player_speed = 300
 	if not Global.player_hotbar == null:
 		hotbar.items = Global.player_hotbar
 	
