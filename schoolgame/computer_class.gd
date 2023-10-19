@@ -24,7 +24,7 @@ onready var no_gun_human =[
 
 
 var wave_going = false
-var wave = 0
+var wave = 1
 
 func _ready():
 	rng.randomize()
@@ -37,12 +37,16 @@ func _physics_process(delta):
 
 
 func _on_wave_timer_timeout():
-	if wave == 0:
+	if wave == 1:
 		wave_one()
-	elif wave == 1:
+	elif wave == 2:
 		wave_two()
-
-
+	elif wave == 3:
+		wave_three()
+	elif wave == 4:
+		wave_four()
+	elif wave == 5:
+		wave_five()
 
 
 
@@ -60,9 +64,53 @@ func wave_one():
 	add_child(student)
 
 func wave_two():
+	Global.students_alive = 3
+	wave_going = true
 	for i in 3:
+		$delay_spawn_timer.start()
+		yield($delay_spawn_timer , "timeout")
 		var student = Student.instance()
 		spawn_points.shuffle()
 		student.global_position = spawn_points.front().global_position
 		add_child(student)
 
+func wave_three():
+	Global.students_alive = 3
+	wave_going = true
+	for i in 3:
+		$delay_spawn_timer.start()
+		yield($delay_spawn_timer , "timeout")
+		var grad = Grad.instance()
+		spawn_points.shuffle()
+		grad.global_position = spawn_points.front().global_position
+		add_child(grad)
+
+func wave_four():
+	Global.students_alive = 6
+	wave_going = true
+	for i in 3:
+		$delay_spawn_timer.start()
+		yield($delay_spawn_timer , "timeout")
+		var grad = Grad.instance()
+		spawn_points.shuffle()
+		grad.global_position = spawn_points.front().global_position
+		add_child(grad)
+		
+	for i in 3:
+		$delay_spawn_timer.start()
+		yield($delay_spawn_timer , "timeout")
+		var student = Student.instance()
+		spawn_points.shuffle()
+		student.global_position = spawn_points.front().global_position
+		add_child(student)
+
+func wave_five():
+	Global.students_alive = 50
+	wave_going = true
+	for i in 50:
+		$delay_spawn_timer.start()
+		yield($delay_spawn_timer , "timeout")
+		var student = Student.instance()
+		spawn_points.shuffle()
+		student.global_position = spawn_points.front().global_position
+		add_child(student)
