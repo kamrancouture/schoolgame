@@ -1,6 +1,7 @@
 [gd_scene format=2]
 
 [node name="duck_blood_splatter" type="CPUParticles2D"]
+z_index = -2
 emitting = false
 amount = 100
 lifetime = 5.0

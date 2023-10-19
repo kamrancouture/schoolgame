@@ -5,6 +5,7 @@ offsets = PoolRealArray( 0, 0.75419, 1 )
 colors = PoolColorArray( 0.686275, 0, 0, 1, 0.784314, 0, 0, 1, 0.784314, 0, 0, 1 )
 
 [node name="blood_effect" type="CPUParticles2D"]
+z_index = -2
 emitting = false
 amount = 25
 lifetime = 3.0

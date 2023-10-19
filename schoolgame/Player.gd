@@ -34,9 +34,9 @@ var selected_item_index : int
 func _ready():
 	if Global.world == "starting_room":
 		get_parent().player = self
-		Global.player_speed = 800
+		Global.player_speed = 225
 	elif Global.world == "computer_class":
-		Global.player_speed = 800
+		Global.player_speed = 100
 	if not Global.player_hotbar == null:
 		hotbar.items = Global.player_hotbar
 	
@@ -49,6 +49,7 @@ func _ready():
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
+	
 	
 	$CanvasLayer/XP_bar.value = Global.XP
 	
@@ -134,8 +135,26 @@ func _physics_process(delta):
 		if dog_in_hand and not riding_dog:
 			riding_dog = true
 			Global.player_speed *= 1.5
-			
 		
+		if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "dog" and not dog_in_hand:
+			
+			$AnimatedSprite/dog.show()
+			dog_in_hand = true
+			Global.player_speed *= 2
+			
+		elif dog_in_hand and not $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "dog":
+			dog_in_hand = false
+			$AnimationPlayer.play("idle")
+			$AnimatedSprite/dog.hide()
+			Global.player_speed /= 2
+		if velocity == Vector2.ZERO and dog_in_hand:
+			print("hi")
+			$AnimationPlayer.play("idle")
+		elif dog_in_hand:
+			print("hello")
+			$AnimationPlayer.play("dog_running")
+		
+
 		
 		elif ammo == 0 and gun_in_hand and not reloading:
 			reload()

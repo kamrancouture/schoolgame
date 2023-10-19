@@ -4,6 +4,7 @@
 colors = PoolColorArray( 0.784314, 0, 0, 1, 0.784314, 0, 0, 0 )
 
 [node name="death_blood" type="CPUParticles2D"]
+z_index = -2
 emitting = false
 amount = 2500
 lifetime = 15.0
