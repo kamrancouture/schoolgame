@@ -7,6 +7,7 @@ var Bullet = preload("res://enemy_bullet.tscn")
 var aggrivated = false
 var kill_player = false
 var health = 15
+var velocity = Vector2.ZERO
 
 func _ready():
 	$AnimatedSprite.play("idle")
@@ -22,13 +23,17 @@ func _physics_process(delta):
 			get_parent().add_child(death_blood)
 			queue_free()
 		
-		$AnimatedSprite.look_at(player.global_position)
+		look_at(player.global_position)
+		
 		
 		if kill_player == true and not aggrivated:
 			aggrivated = true
 			$shoot_timer.start()
 		$Label.rect_rotation = -rotation
 	
+	velocity = $AnimatedSprite
+	
+	move_and_slide(velocity)
 
 
 func hit():
