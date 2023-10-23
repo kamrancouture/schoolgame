@@ -1,6 +1,6 @@
 extends Node2D
 
-var dog_texture = preload("res://icon.png")
+var dog_texture = preload("res://Assets/dog_icon_fixed.png")
 var restarting = false
 var lives = 5
 var score = 0

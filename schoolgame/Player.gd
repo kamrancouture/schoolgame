@@ -1,8 +1,6 @@
 extends KinematicBody2D
 
 
-var dog_texture = preload("res://icon.png")
-
 var first_item_selected = false
 var first_item_selected_info = [
 	null,
@@ -50,6 +48,7 @@ func _ready():
 
 func _physics_process(delta):
 	
+	print(Global.player_speed)
 	
 	$CanvasLayer/XP_bar.value = Global.XP
 	
@@ -84,6 +83,14 @@ func _physics_process(delta):
 		elif Input.is_action_just_pressed("hotbar_9"):
 			selected_item_index = 8
 			hotbar.select(8)
+		
+		if Input.is_action_just_released("scroll_down"):
+			selected_item_index += 1
+			hotbar.select(selected_item_index)
+		
+		if Input.is_action_just_released("scroll_up"):
+			selected_item_index -= 1
+			hotbar.select(selected_item_index)
 		
 		Global.player_hotbar = hotbar.items
 		
@@ -122,6 +129,7 @@ func _physics_process(delta):
 			Global.player_speed /= 1.5
 			$AnimatedSprite.play("pistol")
 		elif not hotbar.get_item_text(selected_item_index) == "gun" and gun_in_hand:
+			print("hi")
 			gun_in_hand = false
 			Global.player_speed *= 1.5
 			$AnimatedSprite.play("idle")
@@ -213,18 +221,18 @@ func _on_Hotbar_item_selected(index):
 	hotbar.select(selected_item_index)
 
 
-func pick_up_dog():
-	
-	var lowest_non_selected_found = false
-	var hotbar_number_checking = 1
-	var lowest_non_selected : int
-	
-	if not Global.dog_picked_up:
-		Global.dog_picked_up = true
-		while not lowest_non_selected_found:
-			if get_node("CanvasLayer/Hotbar").get_item_icon(hotbar_number_checking-1) == null:
-				lowest_non_selected_found = true
-			else:
-				hotbar_number_checking += 1
-		get_node("CanvasLayer/Hotbar").set_item_icon(hotbar_number_checking - 1 , dog_texture)
-		get_node("CanvasLayer/Hotbar").set_item_text(hotbar_number_checking - 1 , "dog")
+#func pick_up_dog():
+#
+#	var lowest_non_selected_found = false
+#	var hotbar_number_checking = 1
+#	var lowest_non_selected : int
+#
+#	if not Global.dog_picked_up:
+#		Global.dog_picked_up = true
+#		while not lowest_non_selected_found:
+#			if get_node("CanvasLayer/Hotbar").get_item_icon(hotbar_number_checking-1) == null:
+#				lowest_non_selected_found = true
+#			else:
+#				hotbar_number_checking += 1
+#		get_node("CanvasLayer/Hotbar").set_item_icon(hotbar_number_checking - 1 , dog_texture)
+#		get_node("CanvasLayer/Hotbar").set_item_text(hotbar_number_checking - 1 , "dog")
