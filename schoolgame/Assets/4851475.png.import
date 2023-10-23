@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/png-transparent-wikia-grenade-dauntless-yungas-road-grenade-angle-rectangle-canada.png-778eee360e1d06ed7b291b70070f2fde.stex"
+path="res://.import/4851475.png-9b8cf469427aa6f7c0b1e5e282136b06.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/png-transparent-wikia-grenade-dauntless-yungas-road-grenade-angle-rectangle-canada.png"
-dest_files=[ "res://.import/png-transparent-wikia-grenade-dauntless-yungas-road-grenade-angle-rectangle-canada.png-778eee360e1d06ed7b291b70070f2fde.stex" ]
+source_file="res://Assets/4851475.png"
+dest_files=[ "res://.import/4851475.png-9b8cf469427aa6f7c0b1e5e282136b06.stex" ]
 
 [params]
 
