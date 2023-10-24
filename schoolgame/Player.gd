@@ -48,8 +48,6 @@ func _ready():
 
 func _physics_process(delta):
 	
-	print(Global.player_speed)
-	
 	$CanvasLayer/XP_bar.value = Global.XP
 	
 	Global.player_previous_world = Global.world
@@ -129,7 +127,6 @@ func _physics_process(delta):
 			Global.player_speed /= 1.5
 			$AnimatedSprite.play("pistol")
 		elif not hotbar.get_item_text(selected_item_index) == "gun" and gun_in_hand:
-			print("hi")
 			gun_in_hand = false
 			Global.player_speed *= 1.5
 			$AnimatedSprite.play("idle")
@@ -140,9 +137,6 @@ func _physics_process(delta):
 		if Input.is_action_pressed("shoot"):
 			if can_shoot and gun_in_hand and ammo > 0 and not reloading:
 				shoot()
-		if dog_in_hand and not riding_dog:
-			riding_dog = true
-			Global.player_speed *= 1.5
 		
 		if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "dog" and not dog_in_hand:
 			
@@ -156,10 +150,8 @@ func _physics_process(delta):
 			$AnimatedSprite/dog.hide()
 			Global.player_speed /= 2
 		if velocity == Vector2.ZERO and dog_in_hand:
-			print("hi")
 			$AnimationPlayer.play("idle")
 		elif dog_in_hand:
-			print("hello")
 			$AnimationPlayer.play("dog_running")
 		
 
