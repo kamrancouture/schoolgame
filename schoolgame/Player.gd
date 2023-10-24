@@ -7,7 +7,7 @@ var first_item_selected_info = [
 	"item",
 	null,
 ]
-
+var Grenade = preload("res://grenade.tscn")
 onready var hotbar = $CanvasLayer/Hotbar
 var hotbar_slot_dragging : int
 var is_dragging_item = false
@@ -192,7 +192,11 @@ func reload():
 func _on_fire_rate_timeout():
 	can_shoot = true
 
-
+func throw_grenade():
+	var grenade = Grenade.instance()
+	$AnimatedSprite.play("hold")
+	
+	
 
 
 

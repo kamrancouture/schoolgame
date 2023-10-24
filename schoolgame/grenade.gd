@@ -26,4 +26,11 @@ func _on_Timer_timeout():
 
 
 func _on_grenade_body_entered(body):
-	pass
+	if "health" in body:
+		body.hit()
+		body.health -= 5
+		set_physics_process(false)
+		hide()
+		$hit_enemy.play()
+		yield($hit_enemy , "finished")
+	queue_free()
