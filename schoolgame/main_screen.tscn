@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Azalea Font/Azalea-BF64f6fe9c7c4b6.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://main_screen.gd" type="Script" id=2]
+[ext_resource path="res://sound_effects/doodle.mp3" type="AudioStream" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 84
@@ -110,6 +111,9 @@ custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 4 )
 text = "CREDITS"
 flat = true
+
+[node name="menu_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="button_down" from="settings_button" to="." method="_on_settings_button_button_down"]
 [connection signal="button_down" from="play_button" to="." method="_on_play_button_button_down"]
