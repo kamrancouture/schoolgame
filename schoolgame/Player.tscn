@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/kenney_top-down-shooter/PNG/Hitman 1/hitman1_reload.png" type="Texture" id=1]
 [ext_resource path="res://Assets/kenney_top-down-shooter/PNG/Hitman 1/hitman1_machine.png" type="Texture" id=2]
@@ -6,12 +6,14 @@
 [ext_resource path="res://Player.gd" type="Script" id=4]
 [ext_resource path="res://Azalea Font/Azalea-BF64f6fe9c7c4b6.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://sound_effects/Rifle-Reload-Foley-B-www.fesliyanstudios.com.mp3" type="AudioStream" id=6]
-[ext_resource path="res://sound_effects/mixkit-footsteps-in-the-forest-ground-1230.wav" type="AudioStream" id=7]
+[ext_resource path="res://sound_effects/dog_running.mp3" type="AudioStream" id=7]
 [ext_resource path="res://sound_effects/gun_fire.wav" type="AudioStream" id=8]
 [ext_resource path="res://sound_effects/bfh1_hit_08.ogg" type="AudioStream" id=9]
 [ext_resource path="res://hypersuper/HyperSuperItalic.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://Assets/wolfsheet1.png" type="Texture" id=11]
 [ext_resource path="res://Assets/kenney_top-down-shooter/PNG/Hitman 1/hitman1_hold.png" type="Texture" id=12]
+[ext_resource path="res://sound_effects/walking_gun.mp3" type="AudioStream" id=13]
+[ext_resource path="res://sound_effects/walking.mp3" type="AudioStream" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -271,13 +273,6 @@ value = 460.0
 [node name="reload" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 
-[node name="walking" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
-volume_db = -2.0
-pitch_scale = 1.5
-autoplay = true
-stream_paused = true
-
 [node name="gunshot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -15.0
@@ -294,6 +289,22 @@ anims/idle = SubResource( 14 )
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 21, 12 )
+
+[node name="walking" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+autoplay = true
+stream_paused = true
+
+[node name="walking_gun" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -5.0
+autoplay = true
+stream_paused = true
+
+[node name="dog_running" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
+stream_paused = true
 
 [connection signal="timeout" from="fire_rate" to="." method="_on_fire_rate_timeout"]
 [connection signal="item_selected" from="CanvasLayer/Hotbar" to="." method="_on_Hotbar_item_selected"]

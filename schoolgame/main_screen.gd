@@ -1,7 +1,8 @@
 extends Control
 
 
-
+func _ready():
+	$menu_music.play()
 
 func _on_play_button_button_down():
 	get_tree().change_scene("res://starting_room.tscn")

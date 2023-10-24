@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/walking_gun.mp3-52081b291c802ee55d468821fe9f7d33.mp3str"
+
+[deps]
+
+source_file="res://sound_effects/walking_gun.mp3"
+dest_files=[ "res://.import/walking_gun.mp3-52081b291c802ee55d468821fe9f7d33.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

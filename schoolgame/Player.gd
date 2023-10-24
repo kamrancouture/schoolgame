@@ -114,14 +114,24 @@ func _physics_process(delta):
 		velocity = move_and_slide(velocity)
 		$AnimatedSprite.look_at(get_global_mouse_position())
 		
-		if not velocity == Vector2.ZERO and not gun_in_hand:
-			$walking.pitch_scale = 1.5
-			$walking.stream_paused = false
-		elif not velocity == Vector2.ZERO:
-			$walking.pitch_scale = 1
-			$walking.stream_paused = false
+		if not velocity == Vector2.ZERO:
+			if dog_in_hand:
+				$dog_running.stream_paused = false
+				$walking.stream_paused = true
+				$walking_gun.stream_paused = true
+			elif gun_in_hand:
+				$dog_running.stream_paused = true
+				$walking.stream_paused = true
+				$walking_gun.stream_paused = false
+			else:
+				$dog_running.stream_paused = true
+				$walking_gun.stream_paused = true
+				$walking.stream_paused = false
 		else:
+			$dog_running.stream_paused = true
+			$walking_gun.stream_paused = true
 			$walking.stream_paused = true
+
 		if hotbar.get_item_text(selected_item_index) == "gun" and not gun_in_hand:
 			gun_in_hand = true
 			Global.player_speed /= 1.5
@@ -138,8 +148,8 @@ func _physics_process(delta):
 			if can_shoot and gun_in_hand and ammo > 0 and not reloading:
 				shoot()
 		
+		
 		if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "dog" and not dog_in_hand:
-			
 			$AnimatedSprite/dog.show()
 			dog_in_hand = true
 			Global.player_speed *= 2
@@ -215,20 +225,3 @@ func _on_Hotbar_item_selected(index):
 		first_item_selected = false
 		
 	hotbar.select(selected_item_index)
-
-
-#func pick_up_dog():
-#
-#	var lowest_non_selected_found = false
-#	var hotbar_number_checking = 1
-#	var lowest_non_selected : int
-#
-#	if not Global.dog_picked_up:
-#		Global.dog_picked_up = true
-#		while not lowest_non_selected_found:
-#			if get_node("CanvasLayer/Hotbar").get_item_icon(hotbar_number_checking-1) == null:
-#				lowest_non_selected_found = true
-#			else:
-#				hotbar_number_checking += 1
-#		get_node("CanvasLayer/Hotbar").set_item_icon(hotbar_number_checking - 1 , dog_texture)
-#		get_node("CanvasLayer/Hotbar").set_item_text(hotbar_number_checking - 1 , "dog")
