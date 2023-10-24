@@ -1,6 +1,6 @@
 extends Area2D
 
-var Explosion = preload("res://grenade_explosion.tscn")
+onready var explosion = get_node("grenade_explosion")
 
 func _ready():
 	$Timer.start()
@@ -12,7 +12,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	
 	
 func explode():
-	var explosion = Explosion.instance()
+
 	explosion.global_position = global_position
 	explosion.emitting = true
 	add_child(explosion)
@@ -20,3 +20,10 @@ func explode():
 
 func _on_Timer_timeout():
 	$AnimationPlayer.play("grenade_throw")
+
+
+
+
+
+func _on_grenade_body_entered(body):
+	pass
