@@ -20,6 +20,7 @@ func _ready():
 	$AnimatedSprite.play("idle")
 	rng.randomize()
 
+
 func _physics_process(delta):
 	
 	if Global.world == "computer_class":

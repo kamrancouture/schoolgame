@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/4851475.png" type="Texture" id=1]
 [ext_resource path="res://grenade.gd" type="Script" id=2]
 [ext_resource path="res://grenade_explosion.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sound_effects/NenadSimic - Muffled Distant Explosion.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 196.092
@@ -64,6 +65,8 @@ tracks/1/keys = {
 }
 
 [node name="grenade" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -82,10 +85,17 @@ anims/RESET = SubResource( 2 )
 anims/grenade_throw = SubResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
 one_shot = true
 
 [node name="grenade_explosion" parent="." instance=ExtResource( 3 )]
 
+[node name="explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 24.0
+pitch_scale = 1.5
+
 [connection signal="body_entered" from="." to="." method="_on_grenade_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="finished" from="explosion" to="." method="_on_explosion_finished"]
