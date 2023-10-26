@@ -32,6 +32,7 @@ func _physics_process(delta):
 	if wave_going and Global.students_alive == 0:
 		wave_going = false
 		wave += 1
+		Global.XP += 10 * wave
 		$wave_timer.start()
 
 
@@ -46,12 +47,14 @@ func _on_wave_timer_timeout():
 		wave_four()
 	elif wave == 5:
 		wave_five()
+	elif wave == 6:
+		grenade_spawn()
 
 
 
 
-
-
+func grenade_spawn():
+	pass
 
 
 func wave_one():
@@ -104,12 +107,16 @@ func wave_four():
 		add_child(student)
 
 func wave_five():
-	Global.students_alive = 50
+	Global.students_alive = 30
 	wave_going = true
-	for i in 50:
+	for i in 30:
 		$delay_spawn_timer.start()
 		yield($delay_spawn_timer , "timeout")
 		var student = Student.instance()
 		spawn_points.shuffle()
 		student.global_position = spawn_points.front().global_position
 		add_child(student)
+
+
+
+
