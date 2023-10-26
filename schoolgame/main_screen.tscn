@@ -33,6 +33,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 
+[node name="title1" type="Label" parent="."]
+margin_left = 56.0
+margin_top = 64.0
+margin_right = 975.0
+margin_bottom = 180.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "HACKERSPACE SIMULATOR!"
+
 [node name="title2" type="Label" parent="."]
 margin_left = 59.0
 margin_top = 67.0
@@ -91,15 +100,6 @@ custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "PLAY!"
 flat = true
-
-[node name="title1" type="Label" parent="."]
-margin_left = 56.0
-margin_top = 64.0
-margin_right = 975.0
-margin_bottom = 180.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "HACKERSPACE SIMULATOR!"
 
 [node name="credits" type="Button" parent="."]
 margin_left = 720.0

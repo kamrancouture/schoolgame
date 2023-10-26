@@ -1,6 +1,11 @@
 extends Area2D
 
 onready var player = get_parent().get_node("Player")
+var get_out_texture = preload("res://icon.png")
+var hotbar_number_checking = 1
+var player_lowest_non_selected : int
+var player_lowest_non_selected_found = false
+var item_picked_up = false
 
 func _physics_process(delta):
 	

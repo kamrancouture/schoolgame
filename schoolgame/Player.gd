@@ -21,6 +21,8 @@ export var fire_rate = 0.2
 var Player_Bullet = preload("res://player_bullet.tscn")
 var can_shoot = true
 var riding_dog = false
+var get_out_in_hand = false
+var grenade_speed = 100
 var dog_in_hand = false
 var gun_in_hand = false
 var velocity = Vector2.ZERO
@@ -131,7 +133,15 @@ func _physics_process(delta):
 			$dog_running.stream_paused = true
 			$walking_gun.stream_paused = true
 			$walking.stream_paused = true
-
+		
+		
+		if hotbar.get_item_text(selected_item_index) == "get_out" and not get_out_in_hand:
+			get_out_in_hand = true
+			Global.player_speed /= 1.5
+		elif not hotbar.get_item_text(selected_item_index) == "get_out" and get_out_in_hand:
+			get_out_in_hand = false
+			Global.player_speed *= 1.5
+			
 		if hotbar.get_item_text(selected_item_index) == "gun" and not gun_in_hand:
 			gun_in_hand = true
 			Global.player_speed /= 1.5
@@ -147,7 +157,8 @@ func _physics_process(delta):
 		if Input.is_action_pressed("shoot"):
 			if can_shoot and gun_in_hand and ammo > 0 and not reloading:
 				shoot()
-		
+			elif get_out_in_hand:
+				shoot_grenade()
 		
 		if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "dog" and not dog_in_hand:
 			$AnimatedSprite/dog.show()
@@ -188,6 +199,11 @@ func shoot():
 	$gunshot.play()
 	$fire_rate.start(fire_rate)
 
+func shoot_grenade():
+	var grenade = Grenade.instance()
+#	grenade.velocity = Vector2(grenade_speed , 0)
+	grenade.global_position = global_position
+	get_parent().add_child(grenade)
 func reload():
 	reloading = true
 	$reload.play()
