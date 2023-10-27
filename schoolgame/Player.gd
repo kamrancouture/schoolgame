@@ -139,12 +139,11 @@ func _physics_process(delta):
 			get_out_in_hand = true
 			Global.player_speed /= 1.5
 			$AnimatedSprite.play("hold")
-			$get_out_sprite.show()
+			$AnimatedSprite/get_out_sprite.show()
 		elif not hotbar.get_item_text(selected_item_index) == "get_out" and get_out_in_hand:
-			$get_out_sprite.hide()
+			$AnimatedSprite/get_out_sprite.hide()
 			get_out_in_hand = false
 			Global.player_speed *= 1.5
-			$AnimatedSprite.play("idle")
 			
 		if hotbar.get_item_text(selected_item_index) == "gun" and not gun_in_hand:
 			gun_in_hand = true
@@ -153,8 +152,9 @@ func _physics_process(delta):
 		elif not hotbar.get_item_text(selected_item_index) == "gun" and gun_in_hand:
 			gun_in_hand = false
 			Global.player_speed *= 1.5
-			$AnimatedSprite.play("idle")
 		
+		if hotbar.get_item_text(selected_item_index) == null:
+			$AnimatedSprite.play("idle")
 		
 		if Input.is_action_just_pressed("reload") and not reloading and not ammo == max_ammo and gun_in_hand:
 			reload()
