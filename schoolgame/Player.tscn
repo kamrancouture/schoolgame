@@ -14,7 +14,7 @@
 [ext_resource path="res://Assets/kenney_top-down-shooter/PNG/Hitman 1/hitman1_hold.png" type="Texture" id=12]
 [ext_resource path="res://sound_effects/walking_gun.mp3" type="AudioStream" id=13]
 [ext_resource path="res://sound_effects/walking.mp3" type="AudioStream" id=14]
-[ext_resource path="res://icon.png" type="Texture" id=15]
+[ext_resource path="res://Assets/get_out.png.png" type="Texture" id=15]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -211,12 +211,12 @@ region_rect = Rect2( 155, 195, 40, 65 )
 [node name="get_out_sprite" type="Sprite" parent="AnimatedSprite"]
 visible = false
 position = Vector2( 38, 13 )
-scale = Vector2( 0.703125, 0.3125 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
 texture = ExtResource( 15 )
 
 [node name="get_out_grenade_spawn" type="Position2D" parent="AnimatedSprite/get_out_sprite"]
-position = Vector2( 40, 0 )
-scale = Vector2( 1.42222, 3.2 )
+position = Vector2( 0, 25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

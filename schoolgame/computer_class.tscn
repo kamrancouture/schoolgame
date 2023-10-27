@@ -8,7 +8,7 @@
 [ext_resource path="res://computer_class.gd" type="Script" id=6]
 [ext_resource path="res://Assets/kenney_input-prompts-pixel-16/Tiles/tile_0087.png" type="Texture" id=7]
 [ext_resource path="res://get_out_Pickup.gd" type="Script" id=8]
-[ext_resource path="res://icon.png" type="Texture" id=9]
+[ext_resource path="res://Assets/get_out_icon.png" type="Texture" id=9]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 258, 768, 258, 712, 322, 712, 322, 768, 386, 768, 386, 712, 450, 712, 450, 768, 442, 824, 514, 768, 514, 712, 578, 712, 578, 768, 642, 768, 642, 712, 706, 712, 706, 768, 770, 768, 770, 712, 834, 712, 834, 768, 906, 72, 1146, 72, 1146, 248, 1090, 248, 1026, 256, 906, 704, 1026, 320, 1082, 320, 1082, 384, 1026, 384, 1026, 448, 1082, 448, 1082, 512, 1026, 512, 1026, 576, 1082, 576, 1082, 640, 1026, 640, 1026, 704, 1082, 704, 1082, 768, 1026, 768, 898, 768, 1026, 832, 906, 952, 762, 952, 1090, 840, 1146, 840, 1146, 1016, 906, 1016, 714, 824, 762, 1016, 714, 1016, 442, 904, 578, 904, 578, 960, 74, 1016, 634, 960, 634, 1016, 74, 192, 130, 192, 186, 256, 186, 704, 130, 136, 186, 136, 194, 768 )
@@ -124,7 +124,8 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
 [node name="get_out_pickup_sprite" type="Sprite" parent="."]
-position = Vector2( 525, 868 )
+position = Vector2( 492, 865 )
+scale = Vector2( 0.025, 0.025 )
 z_index = 2
 texture = ExtResource( 9 )
 
