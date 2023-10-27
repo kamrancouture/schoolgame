@@ -138,9 +138,13 @@ func _physics_process(delta):
 		if hotbar.get_item_text(selected_item_index) == "get_out" and not get_out_in_hand:
 			get_out_in_hand = true
 			Global.player_speed /= 1.5
+			$AnimatedSprite.play("hold")
+			$get_out_sprite.show()
 		elif not hotbar.get_item_text(selected_item_index) == "get_out" and get_out_in_hand:
+			$get_out_sprite.hide()
 			get_out_in_hand = false
 			Global.player_speed *= 1.5
+			$AnimatedSprite.play("idle")
 			
 		if hotbar.get_item_text(selected_item_index) == "gun" and not gun_in_hand:
 			gun_in_hand = true
@@ -150,6 +154,7 @@ func _physics_process(delta):
 			gun_in_hand = false
 			Global.player_speed *= 1.5
 			$AnimatedSprite.play("idle")
+		
 		
 		if Input.is_action_just_pressed("reload") and not reloading and not ammo == max_ammo and gun_in_hand:
 			reload()
@@ -201,9 +206,10 @@ func shoot():
 
 func shoot_grenade():
 	var grenade = Grenade.instance()
-#	grenade.velocity = Vector2(grenade_speed , 0)
+	grenade.global_rotation = global_rotation
 	grenade.global_position = global_position
 	get_parent().add_child(grenade)
+
 func reload():
 	reloading = true
 	$reload.play()
