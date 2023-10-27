@@ -323,3 +323,4 @@ one_shot = true
 
 [connection signal="timeout" from="fire_rate" to="." method="_on_fire_rate_timeout"]
 [connection signal="item_selected" from="CanvasLayer/Hotbar" to="." method="_on_Hotbar_item_selected"]
+[connection signal="timeout" from="get_out_fire_rate" to="." method="_on_get_out_fire_rate_timeout"]

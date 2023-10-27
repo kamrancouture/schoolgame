@@ -154,7 +154,7 @@ func _physics_process(delta):
 			gun_in_hand = false
 			Global.player_speed *= 1.5
 		
-		if hotbar.get_item_text(selected_item_index) == null:
+		if hotbar.get_item_icon(selected_item_index) == null:
 			$AnimatedSprite.play("idle")
 		
 		if Input.is_action_just_pressed("reload") and not reloading and not ammo == max_ammo and gun_in_hand:
@@ -250,3 +250,7 @@ func _on_Hotbar_item_selected(index):
 		first_item_selected = false
 		
 	hotbar.select(selected_item_index)
+
+
+func _on_get_out_fire_rate_timeout():
+	can_shoot_grenade = true
