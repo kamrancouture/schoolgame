@@ -73,9 +73,6 @@ limit_top = 2
 limit_right = 1214
 limit_bottom = 1086
 
-[node name="Hotbar" parent="Player/CanvasLayer" index="1"]
-items = [ "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false ]
-
 [node name="wave_timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
