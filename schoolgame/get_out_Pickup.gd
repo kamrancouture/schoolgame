@@ -25,5 +25,6 @@ func _physics_process(delta):
 					hotbar_number_checking += 1
 			player.get_node("CanvasLayer/Hotbar").set_item_icon(hotbar_number_checking - 1 , get_out_texture)
 			player.get_node("CanvasLayer/Hotbar").set_item_text(hotbar_number_checking - 1 , "get_out")
+			queue_free()
 	else:
 		$Press_E.hide()
