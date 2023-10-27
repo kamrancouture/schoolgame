@@ -124,8 +124,8 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
 [node name="get_out_pickup_sprite" type="Sprite" parent="."]
-position = Vector2( 492, 865 )
-scale = Vector2( 0.025, 0.025 )
+position = Vector2( 496, 864 )
+scale = Vector2( 0.04, 0.04 )
 z_index = 2
 texture = ExtResource( 9 )
 
