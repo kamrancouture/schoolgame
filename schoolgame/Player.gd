@@ -21,6 +21,7 @@ export var fire_rate = 0.2
 var Player_Bullet = preload("res://player_bullet.tscn")
 var can_shoot = true
 var riding_dog = false
+var can_shoot_grenade = true
 var get_out_in_hand = false
 var grenade_speed = 100
 var dog_in_hand = false
@@ -162,7 +163,9 @@ func _physics_process(delta):
 		if Input.is_action_pressed("shoot"):
 			if can_shoot and gun_in_hand and ammo > 0 and not reloading:
 				shoot()
-			elif get_out_in_hand:
+			elif get_out_in_hand and can_shoot_grenade:
+				can_shoot_grenade = false
+				$get_out_fire_rate.start()
 				shoot_grenade()
 		
 		if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "dog" and not dog_in_hand:
@@ -207,7 +210,7 @@ func shoot():
 func shoot_grenade():
 	var grenade = Grenade.instance()
 	grenade.global_rotation = $AnimatedSprite.global_rotation
-	grenade.global_position = global_position
+	grenade.global_position = $AnimatedSprite/get_out_sprite/get_out_grenade_spawn.global_position
 	get_parent().add_child(grenade)
 
 func reload():

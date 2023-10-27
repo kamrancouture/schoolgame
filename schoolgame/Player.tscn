@@ -209,6 +209,7 @@ region_enabled = true
 region_rect = Rect2( 155, 195, 40, 65 )
 
 [node name="get_out_sprite" type="Sprite" parent="AnimatedSprite"]
+visible = false
 position = Vector2( 38, 13 )
 scale = Vector2( 0.703125, 0.3125 )
 texture = ExtResource( 15 )
@@ -315,6 +316,10 @@ stream_paused = true
 stream = ExtResource( 7 )
 autoplay = true
 stream_paused = true
+
+[node name="get_out_fire_rate" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="timeout" from="fire_rate" to="." method="_on_fire_rate_timeout"]
 [connection signal="item_selected" from="CanvasLayer/Hotbar" to="." method="_on_Hotbar_item_selected"]
