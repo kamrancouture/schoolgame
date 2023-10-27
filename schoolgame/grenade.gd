@@ -4,7 +4,7 @@ onready var explosion = get_node("grenade_explosion")
 var rng = RandomNumberGenerator.new()
 var rotation_speed
 var velocity = Vector2.ZERO
-var speed = 2
+var speed = 3
 func _ready():
 	rng.randomize()
 	rotation_speed = rng.randf_range(1,5)
@@ -24,7 +24,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	$CollisionShape2D.disabled = false
 	explode()
 	velocity = Vector2.ZERO
-	
+	$timer.start()
 	
 func explode():
 
@@ -48,3 +48,7 @@ func _on_grenade_body_entered(body):
 
 func _on_explosion_finished():
 	queue_free()
+
+
+func _on_timer_timeout():
+	$CollisionShape2D.disabled = true
