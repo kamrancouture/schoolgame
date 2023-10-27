@@ -209,10 +209,13 @@ region_enabled = true
 region_rect = Rect2( 155, 195, 40, 65 )
 
 [node name="get_out_sprite" type="Sprite" parent="AnimatedSprite"]
-visible = false
 position = Vector2( 38, 13 )
 scale = Vector2( 0.703125, 0.3125 )
 texture = ExtResource( 15 )
+
+[node name="get_out_grenade_spawn" type="Position2D" parent="AnimatedSprite/get_out_sprite"]
+position = Vector2( 40, 0 )
+scale = Vector2( 1.42222, 3.2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

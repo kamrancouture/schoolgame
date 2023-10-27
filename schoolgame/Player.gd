@@ -206,7 +206,7 @@ func shoot():
 
 func shoot_grenade():
 	var grenade = Grenade.instance()
-	grenade.global_rotation = global_rotation
+	grenade.global_rotation = $AnimatedSprite.global_rotation
 	grenade.global_position = global_position
 	get_parent().add_child(grenade)
 
