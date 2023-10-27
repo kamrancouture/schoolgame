@@ -6,7 +6,7 @@
 [ext_resource path="res://sound_effects/NenadSimic - Muffled Distant Explosion.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 196.092
+radius = 124.459
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -49,7 +49,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.65, 1.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.1, 0.1 ), Vector2( 0.175, 0.175 ), Vector2( 0.1, 0.1 ) ]
+"values": [ Vector2( 0.025, 0.025 ), Vector2( 0.05, 0.05 ), Vector2( 0.025, 0.025 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CollisionShape2D:disabled")
@@ -84,10 +84,6 @@ disabled = true
 anims/RESET = SubResource( 2 )
 anims/grenade_throw = SubResource( 3 )
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
 [node name="grenade_explosion" parent="." instance=ExtResource( 3 )]
 
 [node name="explosion" type="AudioStreamPlayer" parent="."]
@@ -97,5 +93,4 @@ pitch_scale = 1.5
 
 [connection signal="body_entered" from="." to="." method="_on_grenade_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="finished" from="explosion" to="." method="_on_explosion_finished"]
