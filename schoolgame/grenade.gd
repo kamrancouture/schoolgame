@@ -14,7 +14,7 @@ func _ready():
 
 func _physics_process(delta):
 	$sprite.global_rotation_degrees += rotation_speed
-	global_position += velocity
+	global_position += velocity.rotated(rotation)
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
