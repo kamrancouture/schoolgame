@@ -45,16 +45,17 @@ func _on_wave_timer_timeout():
 		wave_three()
 	elif wave == 4:
 		wave_four()
+		grenade_spawn()
 	elif wave == 5:
 		wave_five()
-	elif wave == 6:
-		grenade_spawn()
+
 
 
 
 
 func grenade_spawn():
-	pass
+	$get_out_Pickup.enabled = true
+	$get_out_pickup_sprite.show()
 
 
 func wave_one():

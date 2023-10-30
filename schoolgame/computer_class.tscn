@@ -73,6 +73,9 @@ limit_top = 2
 limit_right = 1214
 limit_bottom = 1086
 
+[node name="Hotbar" parent="Player/CanvasLayer" index="1"]
+items = [ "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false ]
+
 [node name="wave_timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
@@ -124,6 +127,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
 [node name="get_out_pickup_sprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 496, 864 )
 scale = Vector2( 0.04, 0.04 )
 z_index = 2
