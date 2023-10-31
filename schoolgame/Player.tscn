@@ -321,6 +321,11 @@ stream_paused = true
 wait_time = 5.0
 one_shot = true
 
+[node name="you_lose_timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="timeout" from="fire_rate" to="." method="_on_fire_rate_timeout"]
 [connection signal="item_selected" from="CanvasLayer/Hotbar" to="." method="_on_Hotbar_item_selected"]
 [connection signal="timeout" from="get_out_fire_rate" to="." method="_on_get_out_fire_rate_timeout"]
+[connection signal="timeout" from="you_lose_timer" to="." method="_on_you_lose_timer_timeout"]
