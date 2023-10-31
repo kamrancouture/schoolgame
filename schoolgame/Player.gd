@@ -169,6 +169,7 @@ func _physics_process(delta):
 				shoot_grenade()
 		
 		if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "dog" and not dog_in_hand:
+			$AnimatedSprite. play("idle")
 			$AnimatedSprite/dog.show()
 			dog_in_hand = true
 			Global.player_speed *= 2

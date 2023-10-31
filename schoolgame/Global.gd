@@ -3,7 +3,7 @@ extends Node
 var player_alive = true
 var player_speed = 0
 var duck_hunt_defeated = false
-var duck_hunt_highscore = 5706
+var duck_hunt_highscore = 570600
 var player_previous_position = null
 var player_previous_world = null
 var XP = 0

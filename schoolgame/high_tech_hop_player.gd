@@ -8,6 +8,12 @@ var jumpforce = 500
 var gravity = 35
 onready var gun = $high_tech_hop_gun
 
+func _ready():
+	if not Global.player_hotbar == null:
+		$hotbar.items = Global.player_hotbar
+	
+	
+
 func _physics_process(delta):
 	if is_on_floor():
 		velocity.x = Input.get_axis("a_click" , "d_click") * speed

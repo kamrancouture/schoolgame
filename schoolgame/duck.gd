@@ -46,7 +46,7 @@ func _physics_process(delta):
 		blood_splatter.global_position = get_global_mouse_position()
 		blood_splatter.emitting = true
 		get_parent().add_child(blood_splatter)
-		get_parent().score += rng.randi_range(7500 , 25000)
+		get_parent().score += rng.randi_range(12500 , 30000)
 		queue_free()
 	else:
 		pass
