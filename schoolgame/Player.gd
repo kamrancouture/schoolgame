@@ -103,6 +103,7 @@ func _physics_process(delta):
 			$health_bar.hide()
 			Global.player_alive = false
 			hide()
+			$you_lose_timer.start()
 			var death_effect = Death_Effect.instance()
 			death_effect.global_position = global_position
 			death_effect.emitting = true
@@ -252,3 +253,7 @@ func _on_Hotbar_item_selected(index):
 
 func _on_get_out_fire_rate_timeout():
 	can_shoot_grenade = true
+
+
+func _on_you_lose_timer_timeout():
+	get_tree().change_scene("res://you_lose_menu.tscn")
