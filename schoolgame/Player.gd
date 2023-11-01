@@ -9,9 +9,7 @@ var first_item_selected_info = [
 ]
 var Grenade = preload("res://grenade.tscn")
 onready var hotbar = $CanvasLayer/Hotbar
-var hotbar_slot_dragging : int
 var is_dragging_item = false
-var item_dragging_icon = null
 var Death_Effect = preload("res://player_death.tscn")
 var Blood_Effect = preload("res://player_blood_effect.tscn")
 var reloading = false
@@ -50,7 +48,6 @@ func _ready():
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta):
-	
 	$CanvasLayer/XP_bar.value = Global.XP
 	
 	Global.player_previous_world = Global.world
