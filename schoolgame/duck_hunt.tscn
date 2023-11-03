@@ -471,7 +471,7 @@ one_shot = true
 [node name="text_popups" type="Node2D" parent="."]
 position = Vector2( 512, 400 )
 
-[node name="cant_leave_yet" type="PanelContainer" parent="text_popups"]
+[node name="cant_leave_yet" type="PanelContainer" parent="text_popups" groups=["text_popups"]]
 visible = false
 anchor_left = 0.5
 anchor_top = 1.0
@@ -503,7 +503,7 @@ anims/fade = SubResource( 11 )
 
 [node name="time_showing" type="Timer" parent="text_popups/cant_leave_yet"]
 
-[node name="you_won" type="PanelContainer" parent="text_popups"]
+[node name="you_won" type="PanelContainer" parent="text_popups" groups=["text_popups"]]
 visible = false
 anchor_left = 0.5
 anchor_top = 1.0

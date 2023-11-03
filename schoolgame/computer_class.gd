@@ -48,6 +48,8 @@ func _on_wave_timer_timeout():
 		grenade_spawn()
 	elif wave == 5:
 		wave_five()
+	elif wave == 6:
+		$high_tech_hop_portal.enabled = true
 
 
 
