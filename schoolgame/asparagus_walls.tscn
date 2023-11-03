@@ -1,0 +1,4 @@
+[gd_scene format=2]
+
+[node name="asparagus_walls" type="TileMap"]
+format = 1
