@@ -36,6 +36,8 @@ func _ready():
 		Global.player_speed = 225
 	elif Global.world == "computer_class":
 		Global.player_speed = 300
+	elif Global.world == "asparagus_world":
+		Global.player_speed = 375
 	if not Global.player_hotbar == null:
 		hotbar.items = Global.player_hotbar
 	
@@ -46,6 +48,13 @@ func _ready():
 	selected_item_index = 0
 	$health_bar.max_value = max_health
 	$AnimatedSprite.play("idle")
+	
+	if not Global.player_hotbar == null:
+		hotbar.items = Global.player_hotbar
+	else:
+		hotbar.items = Global.player_items_cheat
+
+
 
 func _physics_process(delta):
 	$CanvasLayer/XP_bar.value = Global.XP

@@ -7,7 +7,7 @@ var get_out = preload("res://Assets/get_out_icon_proper_size2.png")
 var player_alive = true
 var player_speed = 0
 var duck_hunt_defeated = false
-var duck_hunt_highscore = 570600
+var duck_hunt_highscore = 57060
 var player_previous_position = null
 var player_previous_world = null
 var XP = 0
@@ -34,3 +34,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("f3"):
 		get_tree().change_scene("res://high_tech_hop.tscn")
 		world = "high_tech_hop"
+	if Input.is_action_just_pressed("f4"):
+		get_tree().change_scene("res://asparagus_world.tscn")
+		world = "asparagus_world"
