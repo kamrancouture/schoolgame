@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 onready var player = get_parent().get_node("high_tech_hop_player")
-var shotpower = 1000
+var shotpower = 100000
 onready var explosion = get_node("grenade_explosion")
 var velocity = Vector2.ZERO
 var gravity = 35

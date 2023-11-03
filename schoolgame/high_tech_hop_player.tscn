@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://high_tech_hop_player.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Azalea Font/more fonts/KiriFont.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Azalea Font/Azalea-BF64f6fe9c7c4b6.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://high_tech_hop_get_out.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/PngItem_2330591.png" type="Texture" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 14.0
@@ -72,5 +73,11 @@ max_columns = 9
 same_column_width = true
 fixed_column_width = 100
 icon_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="dog" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 7 )
 
 [connection signal="item_selected" from="CanvasLayer/hotbar" to="." method="_on_hotbar_item_selected"]

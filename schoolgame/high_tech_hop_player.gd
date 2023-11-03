@@ -7,6 +7,8 @@ var speed = 50
 var jumpforce = 500
 var gravity = 35
 
+var dog_selected = false
+
 onready var get_out = $high_tech_hop_get_out
 onready var gun = $high_tech_hop_gun
 
@@ -83,7 +85,7 @@ func _physics_process(delta):
 	
 	get_out.global_position = global_position + (get_global_mouse_position() - global_position).normalized() * 50
 	gun.global_position = global_position + (get_global_mouse_position() - global_position).normalized() * 50
-	velocity += (global_position - shot_position) / 100 * shot_power
+	velocity += shot_power / (global_position.distance_to(shot_position)) * (global_position - shot_position).normalized()
 	shot_power = 0
 	shot_position = Vector2.ZERO
 	
@@ -100,6 +102,16 @@ func _physics_process(delta):
 		get_out.selected = true
 	else:
 		get_out.selected = false
+	if hotbar.get_item_text(selected_item_index) == "dog" and not dog_selected:
+		dog_selected = true
+		speed *= 5
+		jumpforce *= 1.5
+	elif dog_selected and not hotbar.get_item_text(selected_item_index) == "dog":
+		dog_selected = false
+		speed /= 5
+		jumpforce /=1.5
+
+
 
 func _on_hotbar_item_selected(index):
 	if not hotbar.get_item_icon(index) == null and first_item_selected == false:

@@ -1,7 +1,7 @@
 extends Sprite
 
 var selected = false
-var shotpower = 1000
+var shotpower = 50000
 var can_shoot = true
 var max_ammo = 3
 var ammo = 0
