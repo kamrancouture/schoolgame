@@ -24,6 +24,7 @@ var get_out_in_hand = false
 var grenade_speed = 100
 var dog_in_hand = false
 var gun_in_hand = false
+var is_in_asparagus = false
 var velocity = Vector2.ZERO
 var rng = RandomNumberGenerator.new()
 export var max_health = 30
@@ -57,6 +58,16 @@ func _ready():
 
 
 func _physics_process(delta):
+	
+	if $Area2D.overlaps_body(get_parent().get_node("asparagus_walls")):
+		health -= 0.05
+	if $Area2D.overlaps_body(get_parent().get_node("asparagus_walls")) and not is_in_asparagus:
+		is_in_asparagus = true
+		Global.player_speed /=  5
+	elif not $Area2D.overlaps_body(get_parent().get_node("asparagus_walls")) and is_in_asparagus:
+		is_in_asparagus = false
+		Global.player_speed *= 5
+	
 	$CanvasLayer/XP_bar.value = Global.XP
 	
 	Global.player_previous_world = Global.world
@@ -266,3 +277,6 @@ func _on_get_out_fire_rate_timeout():
 
 func _on_you_lose_timer_timeout():
 	get_tree().change_scene("res://you_lose_menu.tscn")
+
+
+
