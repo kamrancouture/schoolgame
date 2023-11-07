@@ -1,8 +1,9 @@
 extends KinematicBody2D
 
+var shot_direction = Vector2.ZERO
 var shot_power = 0
-var shot_position = Vector2.ZERO
-var velocity = Vector2(0,0)
+var grenade_shot_position = Vector2(10000,10000)
+var velocity = Vector2.ZERO
 var speed = 50
 var jumpforce = 500
 var gravity = 35
@@ -84,11 +85,11 @@ func _physics_process(delta):
 	velocity.y += gravity
 	
 	get_out.global_position = global_position + (get_global_mouse_position() - global_position).normalized() * 50
-	gun.global_position = global_position + (get_global_mouse_position() - global_position).normalized() * 50
-	velocity += shot_power / (global_position.distance_to(shot_position)) * (global_position - shot_position).normalized()
+	gun.global_position = $gun_position.global_position
+	velocity += shot_power * shot_direction
+	velocity += shot_power / (global_position.distance_to(grenade_shot_position)) * (global_position - grenade_shot_position).normalized()
 	shot_power = 0
-	shot_position = Vector2.ZERO
-	
+	grenade_shot_position = Vector2(10000,10000)
 	
 	velocity = move_and_slide(velocity , Vector2.UP)
 	

@@ -1,7 +1,7 @@
-extends Sprite
+extends Node2D
 
 var selected = false
-var shotpower = 50000
+var shotpower = 500
 var can_shoot = true
 var max_ammo = 3
 var ammo = 0
@@ -10,6 +10,7 @@ func _physics_process(delta):
 	
 	if selected:
 		show()
+		
 		
 		get_parent().get_node("CanvasLayer/ammo").text = "Ammo: " + String(ammo) 
 		
@@ -21,8 +22,10 @@ func _physics_process(delta):
 		if Input.is_action_pressed("shoot") and can_shoot and ammo > 0:
 			ammo -= 1
 			can_shoot = false
+			print((global_position - $high_tech_hop_gun/Position2D.global_position).normalized())
+			get_parent().shot_direction = (global_position - $high_tech_hop_gun/Position2D.global_position).normalized()
 			get_parent().shot_power = shotpower
-			get_parent().shot_position = $Position2D.global_position
+#			get_parent().shot_position = $high_tech_hop_gun/Position2D.global_position
 			$fire_rate.start()
 	else:
 		hide()

@@ -16,7 +16,7 @@ func _physics_process(delta):
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	player.shot_power = shotpower
-	player.shot_position = global_position
+	player.grenade_shot_position = global_position
 	$disappear_timer.start()
 	$Sprite.hide()
 	$CollisionShape2D.disabled = true
