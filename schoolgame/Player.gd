@@ -24,6 +24,9 @@ var get_out_in_hand = false
 var grenade_speed = 100
 var dog_in_hand = false
 var gun_in_hand = false
+var hat_in_hand = false
+var wearing_hat = false
+var can_wear_hat = true
 var is_in_asparagus = false
 var velocity = Vector2.ZERO
 var rng = RandomNumberGenerator.new()
@@ -171,7 +174,15 @@ func _physics_process(delta):
 		elif not hotbar.get_item_text(selected_item_index) == "gun" and gun_in_hand:
 			gun_in_hand = false
 			Global.player_speed *= 1.5
-		
+			
+		if hotbar.get_item_text(selected_item_index) == "hat" and not hat_in_hand:
+			hat_in_hand = true
+			Global.player_speed /= 1.5
+			$AnimatedSprite.play("hold")
+		elif not hotbar.get_item_text(selected_item_index) == "hat" and hat_in_hand:
+			hat_in_hand = false
+			Global.player_speed *= 1.5
+			
 		if hotbar.get_item_icon(selected_item_index) == null:
 			$AnimatedSprite.play("idle")
 		
@@ -185,7 +196,9 @@ func _physics_process(delta):
 				can_shoot_grenade = false
 				$get_out_fire_rate.start()
 				shoot_grenade()
-		
+			elif hat_in_hand and can_wear_hat:
+				Global.OP_mode = true
+				
 		if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "dog" and not dog_in_hand:
 			$AnimatedSprite. play("idle")
 			$AnimatedSprite/dog.show()
@@ -224,7 +237,10 @@ func shoot():
 	player_bullet.global_rotation = $AnimatedSprite.global_rotation
 	get_parent().add_child(player_bullet)
 	$gunshot.play()
-	$fire_rate.start(fire_rate)
+	if Global.OP_mode:
+		$fire_rate.start(fire_rate / 2)
+	else:
+		$fire_rate.start(fire_rate)
 
 func shoot_grenade():
 	var grenade = Grenade.instance()
@@ -280,3 +296,7 @@ func _on_you_lose_timer_timeout():
 
 
 
+
+
+func _on_OP_time_timeout():
+	Global.OP_mode = false
