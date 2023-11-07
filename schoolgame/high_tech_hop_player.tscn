@@ -65,13 +65,14 @@ scale = Vector2( 2, 2 )
 frames = SubResource( 6 )
 animation = "gun_idle"
 playing = true
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1 )
 shape = SubResource( 1 )
 
 [node name="high_tech_hop_gun" parent="." instance=ExtResource( 3 )]
-position = Vector2( 24, -13 )
+position = Vector2( -9, -11 )
 
 [node name="high_tech_hop_get_out" parent="." instance=ExtResource( 6 )]
 visible = false

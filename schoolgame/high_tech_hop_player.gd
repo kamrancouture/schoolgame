@@ -37,6 +37,13 @@ func _ready():
 func _physics_process(delta):
 	
 	
+	if (global_position - get_global_mouse_position()).x < 0:
+		$player_sprites.flip_h = false
+		$gun_position.global_position = Vector2(11 , -12)
+	else:
+		$gun_position.global_position = Vector2(-11 , -12)
+		$player_sprites.flip_h = true
+	
 	
 	if Input.is_action_just_pressed("hotbar_1"):
 		selected_item_index = 0

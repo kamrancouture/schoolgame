@@ -1,7 +1,7 @@
 extends Node2D
 
 var selected = false
-var shotpower = 500
+var shotpower = 400
 var can_shoot = true
 var max_ammo = 3
 var ammo = 0
@@ -22,10 +22,8 @@ func _physics_process(delta):
 		if Input.is_action_pressed("shoot") and can_shoot and ammo > 0:
 			ammo -= 1
 			can_shoot = false
-			print((global_position - $high_tech_hop_gun/Position2D.global_position).normalized())
 			get_parent().shot_direction = (global_position - $high_tech_hop_gun/Position2D.global_position).normalized()
-			get_parent().shot_power = shotpower
-#			get_parent().shot_position = $high_tech_hop_gun/Position2D.global_position
+			get_parent().shot_power = shotpower + ((4-ammo) * 150)
 			$fire_rate.start()
 	else:
 		hide()
