@@ -90,10 +90,11 @@ position = Vector2( 522, 271 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="star_sky" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 1200, 800 )
+motion_scale = Vector2( 0.2, 0.2 )
+motion_mirroring = Vector2( 1800, 1350 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/star_sky"]
 position = Vector2( 534, 253 )
-scale = Vector2( 2, 2 )
+scale = Vector2( 3, 3 )
 z_index = -10
 texture = ExtResource( 3 )
