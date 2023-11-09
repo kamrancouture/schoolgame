@@ -7,7 +7,6 @@ var max_ammo = 3
 var ammo = 0
 
 func _physics_process(delta):
-	
 	if selected:
 		show()
 		

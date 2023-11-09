@@ -13,6 +13,9 @@ var dog_selected = false
 onready var get_out = $high_tech_hop_get_out
 onready var gun = $high_tech_hop_gun
 
+var gun_in_hand = false
+var get_out_in_hand = false
+
 onready var hotbar = $CanvasLayer/hotbar
 var selected_item_index : int
 var is_dragging_item = false
@@ -27,22 +30,32 @@ func _ready():
 	
 	
 	
-	
 	if not Global.player_hotbar == null:
 		hotbar.items = Global.player_hotbar
 	else:
 		hotbar.items = Global.player_items_cheat
 	
+	hotbar.select(0)
+	selected_item_index = 0
 
 func _physics_process(delta):
 	
+#	if $player_sprites.animation == "idle":
+#		if velocity.x > 0:
+#			 $dog.flip_h = false
+#		elif velocity.x < 0:
+#			$dog.flip_h = true
 	
 	if (global_position - get_global_mouse_position()).x < 0:
 		$player_sprites.flip_h = false
-		$gun_position.global_position = Vector2(11 , -12)
+		$gun_position.position = Vector2(11 , -12)
+		$high_tech_hop_gun/high_tech_hop_gun.flip_v = false
+		$high_tech_hop_gun/high_tech_hop_gun/Position2D.position = Vector2(20 , -3)
 	else:
-		$gun_position.global_position = Vector2(-11 , -12)
+		$gun_position.position = Vector2(-10 , -13)
 		$player_sprites.flip_h = true
+		$high_tech_hop_gun/high_tech_hop_gun.flip_v = true
+		$high_tech_hop_gun/high_tech_hop_gun/Position2D.position = Vector2(20 , 3)
 	
 	
 	if Input.is_action_just_pressed("hotbar_1"):
@@ -103,23 +116,33 @@ func _physics_process(delta):
 	
 	
 	if hotbar.get_item_text(selected_item_index) == "gun":
+		gun_in_hand = true
 		gun.selected = true
 	else:
+		gun_in_hand = false
 		gun.selected = false
 	if hotbar.get_item_text(selected_item_index) == "get_out":
+		get_out_in_hand = true
 		get_out.selected = true
 	else:
+		get_out_in_hand = false
 		get_out.selected = false
 	if hotbar.get_item_text(selected_item_index) == "dog" and not dog_selected:
+		$dog.show()
 		dog_selected = true
 		speed *= 5
 		jumpforce *= 1.5
 	elif dog_selected and not hotbar.get_item_text(selected_item_index) == "dog":
+		$dog.hide()
 		dog_selected = false
 		speed /= 5
 		jumpforce /=1.5
 
-
+	if gun_in_hand or get_out_in_hand:
+		if not velocity == Vector2.ZERO and is_on_floor():
+			$player_sprites.play("gun_walking")
+		else:
+			$player_sprites.play("gun_idle")
 
 func _on_hotbar_item_selected(index):
 	if not hotbar.get_item_icon(index) == null and first_item_selected == false:
