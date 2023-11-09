@@ -40,11 +40,11 @@ func _ready():
 
 func _physics_process(delta):
 	
-#	if $player_sprites.animation == "idle":
-#		if velocity.x > 0:
-#			 $dog.flip_h = false
-#		elif velocity.x < 0:
-#			$dog.flip_h = true
+	if $player_sprites.animation == "idle":
+		if velocity.x > 0:
+			 $dog.flip_h = false
+		elif velocity.x < 0:
+			$dog.flip_h = true
 	
 	if (global_position - get_global_mouse_position()).x < 0:
 		$player_sprites.flip_h = false
@@ -130,19 +130,36 @@ func _physics_process(delta):
 	if hotbar.get_item_text(selected_item_index) == "dog" and not dog_selected:
 		$dog.show()
 		dog_selected = true
-		speed *= 5
-		jumpforce *= 1.5
+		speed *= 10
+		jumpforce *= 3
 	elif dog_selected and not hotbar.get_item_text(selected_item_index) == "dog":
 		$dog.hide()
 		dog_selected = false
-		speed /= 5
-		jumpforce /=1.5
-
-	if gun_in_hand or get_out_in_hand:
+		speed /= 10
+		jumpforce /= 3
+	
+	
+	if dog_selected:
+		$player_sprites.position = Vector2(1,-10)
+		$player_sprites.play("idle")
 		if not velocity == Vector2.ZERO and is_on_floor():
-			$player_sprites.play("gun_walking")
+			$player_sprites.play("idle")
+			$AnimationPlayer.play("dog_moving")
 		else:
-			$player_sprites.play("gun_idle")
+			$AnimationPlayer.stop()
+	
+	else:
+		$AnimationPlayer.stop()
+		$player_sprites.position = Vector2(1,0)
+		if gun_in_hand or get_out_in_hand:
+			if not velocity == Vector2.ZERO and is_on_floor():
+				$player_sprites.play("gun_walking")
+			else:
+				$player_sprites.play("gun_idle")
+		elif not velocity == Vector2.ZERO and is_on_floor():
+			$player_sprites.play("walking")
+		else:
+			$player_sprites.play("idle")
 
 func _on_hotbar_item_selected(index):
 	if not hotbar.get_item_icon(index) == null and first_item_selected == false:
