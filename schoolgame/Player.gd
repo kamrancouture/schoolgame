@@ -311,5 +311,6 @@ func _on_OP_time_timeout():
 	Global.player_speed /= 2
 	$AnimatedSprite/hat_wearing.hide()
 	if hat_in_hand:
+		$AnimatedSprite.play("hold")
 		$AnimatedSprite/hat_holding.show()
 	Global.OP_mode = false
