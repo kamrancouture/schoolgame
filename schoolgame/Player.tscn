@@ -222,7 +222,13 @@ texture = ExtResource( 15 )
 [node name="get_out_grenade_spawn" type="Position2D" parent="AnimatedSprite/get_out_sprite"]
 position = Vector2( 0, 25 )
 
-[node name="hat" type="Sprite" parent="AnimatedSprite"]
+[node name="hat_wearing" type="Sprite" parent="AnimatedSprite"]
+visible = false
+texture = ExtResource( 16 )
+
+[node name="hat_holding" type="Sprite" parent="AnimatedSprite"]
+visible = false
+position = Vector2( 21, 13 )
 texture = ExtResource( 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

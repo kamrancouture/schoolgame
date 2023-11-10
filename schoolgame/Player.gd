@@ -55,13 +55,13 @@ func _ready():
 	
 	if not Global.player_hotbar == null:
 		hotbar.items = Global.player_hotbar
-	else:
+	elif not Global.world == "starting_room":
 		hotbar.items = Global.player_items_cheat
 
 
 
 func _physics_process(delta):
-	
+	print(Global.player_speed)
 	if $Area2D.overlaps_body(get_parent().get_node("asparagus_walls")):
 		health -= 0.05
 	if $Area2D.overlaps_body(get_parent().get_node("asparagus_walls")) and not is_in_asparagus:
@@ -176,12 +176,15 @@ func _physics_process(delta):
 			Global.player_speed *= 1.5
 			
 		if hotbar.get_item_text(selected_item_index) == "hat" and not hat_in_hand:
-			hat_in_hand = true
-			Global.player_speed /= 1.5
-			$AnimatedSprite.play("hold")
+			if not Global.OP_mode:
+				$AnimatedSprite/hat_holding.show()
+				hat_in_hand = true
+				$AnimatedSprite.play("hold")
+			else:
+				$AnimatedSprite.play("idle")
 		elif not hotbar.get_item_text(selected_item_index) == "hat" and hat_in_hand:
+			$AnimatedSprite/hat_holding.hide()
 			hat_in_hand = false
-			Global.player_speed *= 1.5
 			
 		if hotbar.get_item_icon(selected_item_index) == null:
 			$AnimatedSprite.play("idle")
@@ -197,7 +200,13 @@ func _physics_process(delta):
 				$get_out_fire_rate.start()
 				shoot_grenade()
 			elif hat_in_hand and can_wear_hat:
+				can_wear_hat = false
+				Global.player_speed *= 2
+				$AnimatedSprite/hat_holding.hide()
+				$AnimatedSprite/hat_wearing.show()
+				$AnimatedSprite.play("idle")
 				Global.OP_mode = true
+				$OP_time.start()
 				
 		if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "dog" and not dog_in_hand:
 			$AnimatedSprite. play("idle")
@@ -299,4 +308,8 @@ func _on_you_lose_timer_timeout():
 
 
 func _on_OP_time_timeout():
+	Global.player_speed /= 2
+	$AnimatedSprite/hat_wearing.hide()
+	if hat_in_hand:
+		$AnimatedSprite/hat_holding.show()
 	Global.OP_mode = false
