@@ -22,6 +22,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	set_physics_process(false)
 	$sprite.hide()
 	$CollisionShape2D.disabled = false
+	if Global.OP_mode:
+		$CollisionShape2D.scale *= 2
 	explode()
 	velocity = Vector2.ZERO
 	$timer.start()
@@ -30,8 +32,11 @@ func explode():
 
 	explosion.global_position = global_position
 	explosion.emitting = true
+	if Global.OP_mode:
+		explosion.scale_amount *= 2
 	add_child(explosion)
 	$explosion.play()
+	
 
 
 
@@ -41,7 +46,10 @@ func _on_grenade_body_entered(body):
 	if "health" in body:
 		body.hit()
 		body.health -= 5
+		if Global.OP_mode:
+			body.health -= 15
 		set_physics_process(false)
+		
 		
 
 
