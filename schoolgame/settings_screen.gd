@@ -1,9 +1,10 @@
 extends Control
 
-
+func _ready():
+	$HScrollBar.value = Global.volume
 func _physics_process(delta):
 	Global.volume = $HScrollBar.value
-	print(Global.volume)
+
 
 
 
