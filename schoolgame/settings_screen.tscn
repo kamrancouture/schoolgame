@@ -1,13 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Azalea Font/Azalea-BF64f6fe9c7c4b6.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://settings_screen.gd" type="Script" id=2]
+[ext_resource path="res://hypersuper/HyperSuperRegular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://sound_effects/doodle.mp3" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
 outline_size = 2
 outline_color = Color( 0.0313726, 0.776471, 0.443137, 1 )
 font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+outline_size = 2
+outline_color = Color( 0.0313726, 0.776471, 0.443137, 1 )
+font_data = ExtResource( 3 )
 
 [node name="settings_screen" type="Control"]
 anchor_right = 1.0
@@ -31,5 +39,17 @@ margin_bottom = 160.0
 min_value = -80.0
 max_value = 6.0
 step = 0.01
+
+[node name="Label" type="Label" parent="."]
+margin_left = 216.0
+margin_top = 88.0
+margin_right = 384.0
+margin_bottom = 160.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "%%%"
+
+[node name="settings_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="button_down" from="back_to_main_screen_button" to="." method="_on_Button_button_down"]
