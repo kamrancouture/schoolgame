@@ -28,6 +28,9 @@ var player_items_cheat = ["gun", gun, false, "dog", dog, false, "item", null, fa
 var OP_mode = false
 
 func _physics_process(delta):
+	print(volume)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master") , volume)
+	
 	if Input.is_action_just_pressed("f2"):
 		get_tree().change_scene("res://computer_class.tscn")
 		world = "computer_class"
