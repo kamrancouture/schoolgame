@@ -21,14 +21,14 @@ var player_hotbar = null
 var world = "starting_room"
 
 var students_alive = 0
-var volume = 1
+var volume = -37
 
 var player_items_cheat = ["gun", gun, false, "dog", dog, false, "item", null, false, "get_out", get_out, false, "hat", hat, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false]
 
 var OP_mode = false
 
 func _physics_process(delta):
-	print(volume)
+	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master") , volume)
 	
 	if Input.is_action_just_pressed("f2"):
