@@ -114,6 +114,7 @@ flat = true
 
 [node name="menu_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = 24.0
 
 [connection signal="button_down" from="settings_button" to="." method="_on_settings_button_button_down"]
 [connection signal="button_down" from="play_button" to="." method="_on_play_button_button_down"]
