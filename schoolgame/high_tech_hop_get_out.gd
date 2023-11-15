@@ -1,4 +1,4 @@
-extends Sprite
+extends Node2D
 
 var Grenade = preload("res://high_tech_hop_grenade.tscn")
 var selected = false
@@ -19,11 +19,11 @@ func _physics_process(delta):
 		
 		if Input.is_action_pressed("shoot") and can_shoot and ammo > 0:
 			ammo -= 1
-			can_shoot = false
+			can_shoot = false 
 			var grenade = Grenade.instance()
-			grenade.global_position = $grenade_spawn.global_position
+			grenade.global_position = $high_tech_hop_get_out/grenade_spawn.global_position
 			get_parent().get_parent().add_child(grenade)
-			$fire_rate.start()
+			$high_tech_hop_get_out/fire_rate.start()
 	else:
 		hide()
 

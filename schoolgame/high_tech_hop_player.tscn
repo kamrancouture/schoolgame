@@ -105,18 +105,6 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( 4, 11 ) ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("player_sprites:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 0 ) ]
-}
 
 [sub_resource type="Animation" id=8]
 resource_name = "dog_moving"

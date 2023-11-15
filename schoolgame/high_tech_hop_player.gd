@@ -104,7 +104,7 @@ func _physics_process(delta):
 	
 	velocity.y += gravity
 	
-	get_out.global_position = global_position + (get_global_mouse_position() - global_position).normalized() * 50
+	get_out.global_position = $gun_position.global_position
 	gun.global_position = $gun_position.global_position
 	velocity += shot_power * shot_direction
 	velocity += shot_power / (global_position.distance_to(grenade_shot_position)) * (global_position - grenade_shot_position).normalized()
@@ -146,10 +146,10 @@ func _physics_process(delta):
 			$player_sprites.play("idle")
 			$AnimationPlayer.play("dog_moving")
 		else:
-			$AnimationPlayer.stop()
+			$AnimationPlayer.play("RESET")
 	
 	else:
-		$AnimationPlayer.stop()
+		$AnimationPlayer.play("RESET")
 		$player_sprites.position = Vector2(1,0)
 		if gun_in_hand or get_out_in_hand:
 			if not velocity == Vector2.ZERO and is_on_floor():
