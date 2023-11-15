@@ -1,7 +1,9 @@
 extends Control
 
 
-
+func _physics_process(delta):
+	Global.volume = $HScrollBar.value
+	print(Global.volume)
 
 
 

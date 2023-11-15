@@ -21,7 +21,7 @@ var player_hotbar = null
 var world = "starting_room"
 
 var students_alive = 0
-
+var volume = 1
 
 var player_items_cheat = ["gun", gun, false, "dog", dog, false, "item", null, false, "get_out", get_out, false, "hat", hat, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false]
 
