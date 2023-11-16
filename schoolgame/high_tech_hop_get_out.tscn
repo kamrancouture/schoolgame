@@ -17,4 +17,4 @@ one_shot = true
 [node name="grenade_spawn" type="Position2D" parent="high_tech_hop_get_out"]
 position = Vector2( 38.7879, 0 )
 
-[connection signal="timeout" from="high_tech_hop_get_out/fire_rate" to="high_tech_hop_get_out" method="_on_fire_rate_timeout"]
+[connection signal="timeout" from="high_tech_hop_get_out/fire_rate" to="." method="_on_fire_rate_timeout"]
