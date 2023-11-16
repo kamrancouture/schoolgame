@@ -296,10 +296,11 @@ value = 460.0
 
 [node name="reload" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = 5.0
 
 [node name="gunshot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = -15.0
+volume_db = 5.0
 pitch_scale = 2.0
 
 [node name="hit" type="AudioStreamPlayer" parent="."]
@@ -316,17 +317,19 @@ position = Vector2( 21, 12 )
 
 [node name="walking" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
+volume_db = 24.0
 autoplay = true
 stream_paused = true
 
 [node name="walking_gun" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
-volume_db = -5.0
+volume_db = 20.0
 autoplay = true
 stream_paused = true
 
 [node name="dog_running" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+volume_db = 24.0
 autoplay = true
 stream_paused = true
 

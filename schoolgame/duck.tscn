@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://duck.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PngItem_2330591.png" type="Texture" id=2]
+[ext_resource path="res://sound_effects/075176_duck-quack-40345.mp3" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 52.0096
@@ -297,6 +298,9 @@ anims/RESET = SubResource( 3 )
 anims/black_duck = SubResource( 4 )
 anims/blue_duck = SubResource( 2 )
 anims/red_duck = SubResource( 5 )
+
+[node name="death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="mouse_entered" from="." to="." method="_on_duck_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_duck_mouse_exited"]

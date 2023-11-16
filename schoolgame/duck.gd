@@ -47,6 +47,9 @@ func _physics_process(delta):
 		blood_splatter.emitting = true
 		get_parent().add_child(blood_splatter)
 		get_parent().score += rng.randi_range(12500 , 30000)
+		$death.play()
+		hide()
+		yield($death , "finished")
 		queue_free()
 	else:
 		pass

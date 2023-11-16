@@ -5,7 +5,7 @@ func _ready():
 	$settings_music.play()
 func _physics_process(delta):
 	Global.volume = $HScrollBar.value
-	$Label.text = String(int((Global.volume + 80) / 86 * 100)) + "%"
+	$Label.text = String(int((Global.volume + 65) / 65 * 100)) + "%"
 
 
 
