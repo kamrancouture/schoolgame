@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://asparagus_floor.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Assets/asparegus_paper5.png" type="Texture" id=9]
 [ext_resource path="res://Assets/asparegus_paper.png" type="Texture" id=10]
 [ext_resource path="res://Assets/asparegus_paper4.png" type="Texture" id=11]
+[ext_resource path="res://hypersuper/HyperSuperRegular.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://asparagus_world.gd" type="Script" id=13]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 128, 128, -128, 128, -128, -224, -32, -224, -608, -384, -608, -224, -672, -224, -672, -384, -1024, -384, -1024, -160, -1088, -160, -1088, -888, -1632, -1856, -1632, -2432, -1568, -2432, -1568, -2368, 1024, -1184, 1024, -2176, 1088, -2176, 1088, -1120, 256, -1120, 320, -1184, 256, -2368, 320, -2432, -1568, -1800, -1568, -1792, -1696, -1792, -1760, -1856, -1760, -1472, -1696, -1536, -1248, -1472, -1216, -1536, -1216, -1504, -1184, -1504, -1184, -960, -1248, -896, -1088, -896, -1088, -960, -1024, -960, -1024, -896, -1024, -448, -672, -448, -32, -448, -32, -384, 32, -448, 32, -224, 128, -224 )
@@ -77,10 +79,20 @@ vertices = PoolVector2Array( -672, -128, -672, -192, -352, -192, -608, -128, -35
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 2, 4, 5, 6 ), PoolIntArray( 7, 8, 9, 3 ), PoolIntArray( 7, 3, 2 ), PoolIntArray( 7, 2, 6 ) ]
 outlines = [ PoolVector2Array( -672, -192, -352, -192, -352, 32, -416, 32, -416, -128, -544, -128, -544, 128, -608, 128, -608, -128, -672, -128 ) ]
 
+[sub_resource type="NavigationPolygon" id=16]
+vertices = PoolVector2Array( 2368, -2656, 2624, -2656, 2624, -2304, 2368, -2304 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 2368, -2656, 2624, -2656, 2624, -2304, 2368, -2304 ) ]
+
 [sub_resource type="CircleShape2D" id=14]
 radius = 26.3059
 
+[sub_resource type="DynamicFont" id=15]
+size = 64
+font_data = ExtResource( 12 )
+
 [node name="asparagus_world" type="Node2D"]
+script = ExtResource( 13 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
@@ -133,55 +145,57 @@ navpoly = SubResource( 11 )
 navpoly = SubResource( 12 )
 
 [node name="NavigationPolygonInstance13" type="NavigationPolygonInstance" parent="navigation"]
-visible = false
 navpoly = SubResource( 13 )
 
+[node name="NavigationPolygonInstance14" type="NavigationPolygonInstance" parent="navigation"]
+navpoly = SubResource( 16 )
+
 [node name="asparagus_minion" parent="." instance=ExtResource( 4 )]
-position = Vector2( -8, -528 )
+position = Vector2( 4016, -408 )
 
 [node name="asparagus_minion2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 0, -592 )
+position = Vector2( 4184, -400 )
 
 [node name="asparagus_minion3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 256, -512 )
+position = Vector2( 4168, 8 )
 
 [node name="asparagus_minion4" parent="." instance=ExtResource( 4 )]
-position = Vector2( -336, -416 )
+position = Vector2( -1664, -1824 )
 
 [node name="asparagus_minion5" parent="." instance=ExtResource( 4 )]
-position = Vector2( 8, -432 )
+position = Vector2( 2520, -2368 )
 
 [node name="asparagus_minion6" parent="." instance=ExtResource( 4 )]
-position = Vector2( -144, -664 )
+position = Vector2( -424, -1976 )
 
 [node name="asparagus_minion7" parent="." instance=ExtResource( 4 )]
-position = Vector2( 216, -672 )
+position = Vector2( 2408, -2464 )
 
 [node name="asparagus_minion8" parent="." instance=ExtResource( 4 )]
-position = Vector2( 168, -512 )
+position = Vector2( -440, -2080 )
 
 [node name="asparagus_minion9" parent="." instance=ExtResource( 4 )]
-position = Vector2( -248, -416 )
+position = Vector2( 2552, -2568 )
 
 [node name="asparagus_minion10" parent="." instance=ExtResource( 4 )]
-position = Vector2( -16, -648 )
+position = Vector2( -312, -2104 )
 
 [node name="asparagus_minion11" parent="." instance=ExtResource( 4 )]
-position = Vector2( 200, -424 )
+position = Vector2( 2424, -2416 )
 
 [node name="asparagus_minion12" parent="." instance=ExtResource( 4 )]
-position = Vector2( 56, -504 )
+position = Vector2( -400, -2112 )
 
 [node name="asparagus_minion13" parent="." instance=ExtResource( 4 )]
-position = Vector2( -96, -400 )
+position = Vector2( -280, -2056 )
 
 [node name="asparagus_minion14" parent="." instance=ExtResource( 4 )]
-position = Vector2( 16, -336 )
+position = Vector2( 2416, -2600 )
 
 [node name="papers" type="Node2D" parent="."]
 
 [node name="paper1" type="Area2D" parent="papers"]
-position = Vector2( 2494, -2486 )
+position = Vector2( 2488, -4328 )
 z_index = 3
 collision_layer = 0
 script = ExtResource( 5 )
@@ -202,7 +216,7 @@ z_index = -5
 texture = ExtResource( 7 )
 
 [node name="paper2" type="Area2D" parent="papers"]
-position = Vector2( 4, -89 )
+position = Vector2( 2496, -4414 )
 z_index = 3
 collision_layer = 0
 script = ExtResource( 5 )
@@ -223,7 +237,7 @@ z_index = -5
 texture = ExtResource( 8 )
 
 [node name="paper3" type="Area2D" parent="papers"]
-position = Vector2( 2379, -894 )
+position = Vector2( -380, -148 )
 z_index = 3
 collision_layer = 0
 script = ExtResource( 5 )
@@ -284,3 +298,13 @@ texture = ExtResource( 6 )
 scale = Vector2( 0.5, 0.5 )
 z_index = -5
 texture = ExtResource( 10 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 17.0
+margin_top = 421.0
+margin_right = 241.0
+margin_bottom = 536.0
+custom_fonts/font = SubResource( 15 )
+text = "%%%%"

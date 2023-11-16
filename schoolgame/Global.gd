@@ -27,6 +27,8 @@ var player_items_cheat = ["gun", gun, false, "dog", dog, false, "item", null, fa
 
 var OP_mode = false
 
+var paper_number = 0
+
 func _physics_process(delta):
 	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master") , volume)
