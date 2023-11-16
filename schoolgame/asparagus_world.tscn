@@ -1,9 +1,16 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://asparagus_floor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://asparagus_walls.tscn" type="PackedScene" id=3]
 [ext_resource path="res://asparagus_minion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://paper1.gd" type="Script" id=5]
+[ext_resource path="res://Assets/kenney_input-prompts-pixel-16/Tiles/tile_0087.png" type="Texture" id=6]
+[ext_resource path="res://Assets/asparegus_paper2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/asparegus_paper3.png" type="Texture" id=8]
+[ext_resource path="res://Assets/asparegus_paper5.png" type="Texture" id=9]
+[ext_resource path="res://Assets/asparegus_paper.png" type="Texture" id=10]
+[ext_resource path="res://Assets/asparegus_paper4.png" type="Texture" id=11]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 128, 128, -128, 128, -128, -224, -32, -224, -608, -384, -608, -224, -672, -224, -672, -384, -1024, -384, -1024, -160, -1088, -160, -1088, -888, -1632, -1856, -1632, -2432, -1568, -2432, -1568, -2368, 1024, -1184, 1024, -2176, 1088, -2176, 1088, -1120, 256, -1120, 320, -1184, 256, -2368, 320, -2432, -1568, -1800, -1568, -1792, -1696, -1792, -1760, -1856, -1760, -1472, -1696, -1536, -1248, -1472, -1216, -1536, -1216, -1504, -1184, -1504, -1184, -960, -1248, -896, -1088, -896, -1088, -960, -1024, -960, -1024, -896, -1024, -448, -672, -448, -32, -448, -32, -384, 32, -448, 32, -224, 128, -224 )
@@ -65,6 +72,14 @@ vertices = PoolVector2Array( 1088, -1856, 1088, -1920, 1696, -1920, 1568, -1856,
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 2, 4, 5 ), PoolIntArray( 3, 2, 5 ), PoolIntArray( 3, 5, 6, 7 ), PoolIntArray( 6, 8, 9, 10 ), PoolIntArray( 7, 6, 10 ), PoolIntArray( 7, 10, 11 ), PoolIntArray( 7, 11, 12, 13 ) ]
 outlines = [ PoolVector2Array( 1088, -1920, 1696, -1920, 1696, -1856, 1632, -1856, 1632, -1664, 2208, -1664, 2208, -1600, 1632, -1600, 1632, -1120, 1088, -1120, 1088, -1184, 1568, -1184, 1568, -1856, 1088, -1856 ) ]
 
+[sub_resource type="NavigationPolygon" id=13]
+vertices = PoolVector2Array( -672, -128, -672, -192, -352, -192, -608, -128, -352, 32, -416, 32, -416, -128, -544, -128, -544, 128, -608, 128 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 2, 4, 5, 6 ), PoolIntArray( 7, 8, 9, 3 ), PoolIntArray( 7, 3, 2 ), PoolIntArray( 7, 2, 6 ) ]
+outlines = [ PoolVector2Array( -672, -192, -352, -192, -352, 32, -416, 32, -416, -128, -544, -128, -544, 128, -608, 128, -608, -128, -672, -128 ) ]
+
+[sub_resource type="CircleShape2D" id=14]
+radius = 26.3059
+
 [node name="asparagus_world" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
@@ -117,6 +132,10 @@ navpoly = SubResource( 11 )
 [node name="NavigationPolygonInstance12" type="NavigationPolygonInstance" parent="navigation"]
 navpoly = SubResource( 12 )
 
+[node name="NavigationPolygonInstance13" type="NavigationPolygonInstance" parent="navigation"]
+visible = false
+navpoly = SubResource( 13 )
+
 [node name="asparagus_minion" parent="." instance=ExtResource( 4 )]
 position = Vector2( -8, -528 )
 
@@ -158,3 +177,110 @@ position = Vector2( -96, -400 )
 
 [node name="asparagus_minion14" parent="." instance=ExtResource( 4 )]
 position = Vector2( 16, -336 )
+
+[node name="papers" type="Node2D" parent="."]
+
+[node name="paper1" type="Area2D" parent="papers"]
+position = Vector2( 2494, -2486 )
+z_index = 3
+collision_layer = 0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="papers/paper1"]
+shape = SubResource( 14 )
+
+[node name="Press_E" type="Sprite" parent="papers/paper1"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="papers/paper1"]
+scale = Vector2( 0.5, 0.5 )
+z_index = -5
+texture = ExtResource( 7 )
+
+[node name="paper2" type="Area2D" parent="papers"]
+position = Vector2( 4, -89 )
+z_index = 3
+collision_layer = 0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="papers/paper2"]
+shape = SubResource( 14 )
+
+[node name="Press_E" type="Sprite" parent="papers/paper2"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="papers/paper2"]
+scale = Vector2( 0.5, 0.5 )
+z_index = -5
+texture = ExtResource( 8 )
+
+[node name="paper3" type="Area2D" parent="papers"]
+position = Vector2( -71, -125 )
+z_index = 3
+collision_layer = 0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="papers/paper3"]
+shape = SubResource( 14 )
+
+[node name="Press_E" type="Sprite" parent="papers/paper3"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="papers/paper3"]
+scale = Vector2( 0.5, 0.5 )
+z_index = -5
+texture = ExtResource( 11 )
+
+[node name="paper4" type="Area2D" parent="papers"]
+position = Vector2( 2335, 1879 )
+z_index = 3
+collision_layer = 0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="papers/paper4"]
+shape = SubResource( 14 )
+
+[node name="Press_E" type="Sprite" parent="papers/paper4"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="papers/paper4"]
+scale = Vector2( 0.5, 0.5 )
+z_index = -5
+texture = ExtResource( 9 )
+
+[node name="paper5" type="Area2D" parent="papers"]
+position = Vector2( -343, -2012 )
+z_index = 3
+collision_layer = 0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="papers/paper5"]
+shape = SubResource( 14 )
+
+[node name="Press_E" type="Sprite" parent="papers/paper5"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="papers/paper5"]
+scale = Vector2( 0.5, 0.5 )
+z_index = -5
+texture = ExtResource( 10 )

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://asparagus_minion.gd" type="Script" id=1]
-[ext_resource path="res://Assets/asparagus_man.png" type="Texture" id=2]
+[ext_resource path="res://Assets/asparagus_man.png (2).png" type="Texture" id=2]
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -12,13 +12,13 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 4.0
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 2169.41
+radius = 1424.42
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 5.0
+radius = 9.05539
 
 [node name="asparagus_minion" type="KinematicBody2D"]
 z_index = 1
@@ -30,7 +30,7 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0.5, -1.5 )
+scale = Vector2( 2, 2 )
 frames = SubResource( 5 )
 animation = "aggro"
 
@@ -42,6 +42,7 @@ collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = -11
 shape = SubResource( 3 )
 
 [node name="attack_box" type="Area2D" parent="."]
