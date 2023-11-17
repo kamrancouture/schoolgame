@@ -1,5 +1,7 @@
 extends Node
 
+
+
 var gun = preload("res://Assets/kenney_top-down-shooter/PNG/weapon_machine_icon_bigger.png")
 var dog = preload("res://Assets/dog_icon_fixed.png")
 var get_out = preload("res://Assets/get_out_icon_proper_size2.png")
@@ -28,6 +30,20 @@ var player_items_cheat = ["gun", gun, false, "dog", dog, false, "item", null, fa
 var OP_mode = false
 var numbers_of_death_high_hop = 0
 var paper_number = 0
+
+func restart():
+	numbers_of_death_high_hop = 0
+	player_alive = true
+	world = "starting_room"
+	player_previous_world = null
+	player_previous_position = null
+	gun_picked_up = false
+	paper_number = 0
+	XP = 0
+	get_out_picked_up = false
+	dog_picked_up = false
+	player_hotbar = null
+
 
 func _physics_process(delta):
 	
