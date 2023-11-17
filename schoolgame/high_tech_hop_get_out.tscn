@@ -3,7 +3,7 @@
 [ext_resource path="res://Assets/get_out_icon_proper_size2.png" type="Texture" id=1]
 [ext_resource path="res://high_tech_hop_get_out.gd" type="Script" id=2]
 
-[node name="high_tech_hop_gun" type="Node2D"]
+[node name="high_tech_hop_get_out" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="high_tech_hop_get_out" type="Sprite" parent="."]

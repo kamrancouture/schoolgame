@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var shot_direction = Vector2.ZERO
 var shot_power = 0
-var grenade_shot_position = Vector2(10000,10000)
+var grenade_shot_position = Vector2(1000000,1000000)
 var velocity = Vector2.ZERO
 var speed = 50
 var jumpforce = 500
@@ -107,9 +107,11 @@ func _physics_process(delta):
 	get_out.global_position = $gun_position.global_position
 	gun.global_position = $gun_position.global_position
 	velocity += shot_power * shot_direction
-	velocity += shot_power / (global_position.distance_to(grenade_shot_position)) * (global_position - grenade_shot_position).normalized()
+	print(shot_power)
+	velocity += (((500 - global_position.distance_to(grenade_shot_position)) + abs(500 - global_position.distance_to(grenade_shot_position))) * (global_position - grenade_shot_position).normalized()) * shot_power
 	shot_power = 0
-	grenade_shot_position = Vector2(10000,10000)
+	shot_direction = Vector2.ZERO
+	grenade_shot_position = Vector2(10000000,10000000)
 	
 	velocity = move_and_slide(velocity , Vector2.UP)
 	
@@ -160,6 +162,7 @@ func _physics_process(delta):
 			$player_sprites.play("walking")
 		else:
 			$player_sprites.play("idle")
+
 
 func _on_hotbar_item_selected(index):
 	if not hotbar.get_item_icon(index) == null and first_item_selected == false:
