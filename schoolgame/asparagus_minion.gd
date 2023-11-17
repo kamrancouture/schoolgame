@@ -20,8 +20,10 @@ onready var navigation_agent = $NavigationAgent2D
 func _ready():
 	$AnimatedSprite.play("idle")
 	rng.randomize()
-
-
+	$AnimatedSprite.hide()
+	$name_teg.hide()
+	$attack_box/CollisionShape2D.hide()
+	$CollisionShape2D.hide()
 func _physics_process(delta):
 	
 	if Global.world == "computer_class":
@@ -61,6 +63,8 @@ func _physics_process(delta):
 
 func hit():
 	aggro = true
+	$AnimatedSprite.show()
+	$name_teg.show()
 	var blood_effect = Blood_Effect.instance()
 	blood_effect.global_position = global_position
 	blood_effect.emitting = true
@@ -69,11 +73,10 @@ func hit():
 func _on_Area2D_body_entered(body):
 	$AnimatedSprite.play("aggro")
 	aggro = true
-
-
-func _on_Area2D_body_exited(body):
-	$AnimatedSprite.play("idle")
-	aggro = false
+	$AnimatedSprite.show()
+	$name_teg.show()
+	$attack_box/CollisionShape2D.show()
+	$CollisionShape2D.show()
 
 
 func _on_hit_timer_timeout():
