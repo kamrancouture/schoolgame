@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://hypersuper/HyperSuperRegular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://high_tec_hop_you_suck_manu.gd" type="Script" id=2]
+[ext_resource path="res://high_tech_hop_you_suck_menu.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -15,7 +15,7 @@ outline_size = 2
 outline_color = Color( 0.0313726, 0.776471, 0.443137, 1 )
 font_data = ExtResource( 1 )
 
-[node name="high_tec_hop_you_suck_manu" type="Node2D"]
+[node name="high_tech_hop_lose_menu" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
@@ -34,7 +34,7 @@ margin_right = 600.0
 margin_bottom = 400.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
-text = "try agein?"
+text = "try again?"
 flat = true
 
 [connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]
