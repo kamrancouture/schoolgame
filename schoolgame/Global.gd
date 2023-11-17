@@ -26,7 +26,7 @@ var volume = -37
 var player_items_cheat = ["gun", gun, false, "dog", dog, false, "item", null, false, "get_out", get_out, false, "hat", hat, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false]
 
 var OP_mode = false
-
+var numbers_of_death_high_hop = 0
 var paper_number = 0
 
 func _physics_process(delta):
