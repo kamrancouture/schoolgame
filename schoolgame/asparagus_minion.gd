@@ -22,9 +22,10 @@ func _ready():
 	rng.randomize()
 	$AnimatedSprite.hide()
 	$name_teg.hide()
-	$attack_box/CollisionShape2D.hide()
-	$CollisionShape2D.hide()
+	
 func _physics_process(delta):
+	if not aggro:
+		Global.can_hit_asparagus_minion = false
 	
 	if Global.world == "computer_class":
 		$AnimatedSprite.play("aggro")
@@ -75,8 +76,8 @@ func _on_Area2D_body_entered(body):
 	aggro = true
 	$AnimatedSprite.show()
 	$name_teg.show()
-	$attack_box/CollisionShape2D.show()
-	$CollisionShape2D.show()
+	Global.can_hit_asparagus_minion == true
+	
 
 
 func _on_hit_timer_timeout():

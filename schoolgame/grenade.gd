@@ -43,7 +43,7 @@ func explode():
 
 
 func _on_grenade_body_entered(body):
-	if "health" in body:
+	if "health" in body and Global.can_hit_asparagus_minion:
 		body.hit()
 		body.health -= 5
 		if Global.OP_mode:
