@@ -14,6 +14,7 @@ var player_previous_position = null
 var player_previous_world = null
 var XP = 0
 
+var hat_picked_up = false
 var gun_picked_up = false
 var get_out_picked_up = false
 var dog_picked_up = false
@@ -23,7 +24,7 @@ var player_hotbar = null
 var world = "starting_room"
 
 var students_alive = 0
-var volume = -37
+var volume = -32.5
 var player_items_cheat = ["gun", gun, false, "dog", dog, false, "item", null, false, "get_out", get_out, false, "hat", hat, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false]
 
 var OP_mode = false
