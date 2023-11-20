@@ -9,7 +9,7 @@ var aggro = false
 var rng = RandomNumberGenerator.new()
 var health = 10
 var velocity = Vector2.ZERO
-var speed = 300
+var speed = 250
 var damage = 0.005
 var wander_speed = 1
 var rotate_amount : float
