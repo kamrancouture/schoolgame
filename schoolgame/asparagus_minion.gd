@@ -11,7 +11,7 @@ var health = 10
 var velocity = Vector2.ZERO
 var speed = 250
 var damage = 0.005
-var wander_speed = 1
+var wander_speed = 0
 var rotate_amount : float
 var rotate_speed = 3
 var rotating = false
