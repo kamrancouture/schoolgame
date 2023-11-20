@@ -205,7 +205,7 @@ margin_bottom = 45.0
 custom_fonts/font = SubResource( 2 )
 text = "Ammo: 3/3"
 
-[node name="hotbar" type="ItemList" parent="CanvasLayer"]
+[node name="Hotbar" type="ItemList" parent="CanvasLayer"]
 margin_left = 37.0
 margin_top = 505.0
 margin_right = 994.0
@@ -238,4 +238,4 @@ region_rect = Rect2( 0, 0, 480, 100 )
 [node name="gun_position" type="Position2D" parent="."]
 position = Vector2( -11, -12 )
 
-[connection signal="item_selected" from="CanvasLayer/hotbar" to="." method="_on_hotbar_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/Hotbar" to="." method="_on_hotbar_item_selected"]

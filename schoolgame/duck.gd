@@ -49,10 +49,9 @@ func _physics_process(delta):
 		get_parent().score += rng.randi_range(12500 , 30000)
 		$death.play()
 		hide()
+		set_physics_process(false)
 		yield($death , "finished")
 		queue_free()
-	else:
-		pass
 
 func _on_duck_mouse_entered():
 	can_die = true

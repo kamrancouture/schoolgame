@@ -16,7 +16,7 @@ onready var gun = $high_tech_hop_gun
 var gun_in_hand = false
 var get_out_in_hand = false
 
-onready var hotbar = $CanvasLayer/hotbar
+onready var hotbar = $CanvasLayer/Hotbar
 var selected_item_index : int
 var is_dragging_item = false
 var first_item_selected = false
