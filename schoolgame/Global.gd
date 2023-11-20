@@ -24,7 +24,6 @@ var world = "starting_room"
 
 var students_alive = 0
 var volume = -37
-var can_hit_asparagus_minion = false
 var player_items_cheat = ["gun", gun, false, "dog", dog, false, "item", null, false, "get_out", get_out, false, "hat", hat, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false]
 
 var OP_mode = false

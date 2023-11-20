@@ -8,7 +8,7 @@ func _physics_process(delta):
 
 
 func _on_player_bullet_body_entered(body):
-	if "health" in body and Global.can_hit_asparagus_minion:
+	if "health" in body:
 		body.hit()
 		body.health -= 1
 		set_physics_process(false)
