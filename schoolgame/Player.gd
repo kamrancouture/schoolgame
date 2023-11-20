@@ -63,7 +63,7 @@ func _ready():
 func _physics_process(delta):
 	
 	if $Area2D.overlaps_body(get_parent().get_node("asparagus_walls")):
-		health -= 0.05
+		health -= 0.025
 	if $Area2D.overlaps_body(get_parent().get_node("asparagus_walls")) and not is_in_asparagus:
 		is_in_asparagus = true
 		Global.player_speed /=  5
