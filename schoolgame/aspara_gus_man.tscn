@@ -2,12 +2,12 @@
 
 [ext_resource path="res://Assets/aspara_gus_man (2).png" type="Texture" id=1]
 [ext_resource path="res://Assets/aspara_gus_man (3).png" type="Texture" id=2]
-[ext_resource path="res://zombie.gd" type="Script" id=3]
-[ext_resource path="res://Assets/aspara_gus_man.png" type="Texture" id=4]
+[ext_resource path="res://Assets/aspara_gus_man.png" type="Texture" id=3]
+[ext_resource path="res://aspara_gus_man.gd" type="Script" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
@@ -26,15 +26,15 @@ radius = 2169.41
 
 [sub_resource type="CircleShape2D" id=4]
 
-[node name="zombie" type="KinematicBody2D"]
+[node name="aspara_gus_man" type="KinematicBody2D"]
 z_index = 1
 collision_layer = 2
 collision_mask = 11
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "aggro"
+animation = "walking"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
@@ -57,11 +57,11 @@ shape = SubResource( 4 )
 one_shot = true
 
 [node name="name_teg" type="Label" parent="."]
-margin_left = -58.0
+margin_left = -32.0
 margin_top = -40.0
-margin_right = 58.0
+margin_right = 37.0
 margin_bottom = -26.0
-text = "graduated student"
+text = "aspara_gus"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 

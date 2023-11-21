@@ -58,3 +58,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("f4"):
 		get_tree().change_scene("res://asparagus_world.tscn")
 		world = "asparagus_world"
+	if Input.is_action_just_pressed("f5"):
+		get_tree().change_scene("res://aspara-gus_world.tscn")
+		world = "aspara_gus_world"

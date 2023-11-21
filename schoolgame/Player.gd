@@ -42,6 +42,8 @@ func _ready():
 		Global.player_speed = 300
 	elif Global.world == "asparagus_world":
 		Global.player_speed = 375
+	elif Global.world == "aspara_gus_world":
+		Global.player_speed = 375
 	if not Global.player_hotbar == null:
 		hotbar.items = Global.player_hotbar
 	
