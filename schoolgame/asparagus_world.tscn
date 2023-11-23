@@ -87,7 +87,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( 2368, -2656, 2624, -2656, 2624, -2304, 2368, -2304 ) ]
 
 [sub_resource type="CircleShape2D" id=14]
-radius = 26.3059
+radius = 443.137
 
 [sub_resource type="DynamicFont" id=15]
 size = 64
@@ -333,3 +333,9 @@ texture = ExtResource( 6 )
 [node name="Sprite" type="Sprite" parent="aspara_gus_teleporter"]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
+
+[connection signal="paper_collected" from="papers/paper1" to="Player" method="_on_paper1_paper_collected"]
+[connection signal="paper_collected" from="papers/paper2" to="Player" method="_on_paper2_paper_collected"]
+[connection signal="paper_collected" from="papers/paper3" to="Player" method="_on_paper3_paper_collected"]
+[connection signal="paper_collected" from="papers/paper4" to="Player" method="_on_paper4_paper_collected"]
+[connection signal="paper_collected" from="papers/paper5" to="Player" method="_on_paper5_paper_collected"]

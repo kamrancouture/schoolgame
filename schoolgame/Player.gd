@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+signal paper_collected
 
 var first_item_selected = false
 var first_item_selected_info = [
@@ -7,6 +8,8 @@ var first_item_selected_info = [
 	"item",
 	null,
 ]
+var paper = null
+var paper_moving = false
 var Grenade = preload("res://grenade.tscn")
 onready var hotbar = $CanvasLayer/Hotbar
 var is_dragging_item = false
@@ -63,6 +66,10 @@ func _ready():
 
 
 func _physics_process(delta):
+	
+	if paper_moving:
+		move_paper_animation(paper)
+	
 	
 	if $Area2D.overlaps_body(get_parent().get_node("asparagus_walls")):
 		health -= 0.025
@@ -316,3 +323,50 @@ func _on_OP_time_timeout():
 		$AnimatedSprite.play("hold")
 		$AnimatedSprite/hat_holding.show()
 	Global.OP_mode = false
+
+
+
+
+func _on_paper1_paper_collected():
+	paper_moving = true
+	get_parent().get_node("papers/paper1/Sprite").z_index = 100
+	paper = get_parent().get_node("papers/paper1/Sprite")
+
+
+func _on_paper2_paper_collected():
+	paper_moving = true
+	get_parent().get_node("papers/paper2/Sprite").z_index = 100
+	paper = get_parent().get_node("papers/paper2/Sprite")
+
+
+func _on_paper3_paper_collected():
+	paper_moving = true
+	get_parent().get_node("papers/paper3/Sprite").z_index = 100
+	paper = get_parent().get_node("papers/paper3/Sprite")
+
+
+func _on_paper4_paper_collected():
+	paper_moving = true
+	get_parent().get_node("papers/paper4/Sprite").z_index = 100
+	paper = get_parent().get_node("papers/paper4/Sprite")
+
+
+func _on_paper5_paper_collected():
+	paper_moving = true
+	get_parent().get_node("papers/paper5/Sprite").z_index = 100
+	paper = get_parent().get_node("papers/paper5/Sprite")
+
+
+
+func move_paper_animation(paper):
+	var paper_position = paper.global_position
+	var camera_center_position = $Camera2D.global_position
+	camera_center_position = $Camera2D.global_position
+	if paper_position.distance_to(camera_center_position) < 1:
+		paper.scale = Vector2(10,10)
+		paper_moving = false
+		paper_position = camera_center_position
+	else:
+		paper.scale += (Vector2(10,10) - Vector2(paper.scale.x , paper.scale.y)) / 25
+		paper_position += (camera_center_position - paper_position) / 25
+	paper.global_position = paper_position

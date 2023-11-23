@@ -1,5 +1,11 @@
 extends Area2D
 
+#var paper_sprite_1 = preload("res://Assets/asparagus_paper_1.png")
+#var paper_sprite_2 = preload()
+#var paper_sprite_3 = preload()
+#var paper_sprite_4 = preload()
+#var paper_sprite_5 = preload()
+signal paper_collected
 
 onready var player = get_parent().get_parent().get_node("Player")
 var get_out_texture = preload("res://icon.png")
@@ -12,8 +18,12 @@ func _physics_process(delta):
 		$Press_E.show()
 		$Press_E.global_position = player.global_position + Vector2(7 , -40)
 		if Input.is_action_just_pressed("interact"):
+			emit_signal("paper_collected")
 			Global.XP += 20
 			Global.paper_number += 1
-			queue_free()
+#			if Global.paper_number == 1:
+#				$paper.texture = paper_sprite_1
+			$Press_E.hide()
+			set_physics_process(false)
 	else:
 		$Press_E.hide()
