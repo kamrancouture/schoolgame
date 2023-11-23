@@ -21,12 +21,11 @@ onready var navigation_agent = $NavigationAgent2D
 func _ready():
 	$AnimatedSprite.play("idle")
 	rng.randomize()
-
-
 func _physics_process(delta):
 	
 	if Global.world == "computer_class":
 		$AnimatedSprite.play("aggro")
+		
 		aggro = true
 	
 	if Global.player_alive:

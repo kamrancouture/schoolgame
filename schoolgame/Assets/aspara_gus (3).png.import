@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/aspara_gus_man (3).png-85a09bc23a4e4608fd76375eb76730ca.stex"
+path="res://.import/aspara_gus (3).png-04a78458029f6dd47276ccbb5c0614ec.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/aspara_gus_man (3).png"
-dest_files=[ "res://.import/aspara_gus_man (3).png-85a09bc23a4e4608fd76375eb76730ca.stex" ]
+source_file="res://Assets/aspara_gus (3).png"
+dest_files=[ "res://.import/aspara_gus (3).png-04a78458029f6dd47276ccbb5c0614ec.stex" ]
 
 [params]
 
