@@ -15,7 +15,10 @@ func _physics_process(delta):
 			$Press_E.show()
 			$Press_E.global_position = player.global_position + Vector2(7 , -40)
 			if Input.is_action_just_pressed("interact"):
+				Global.world = "high_tech_hop"
 				get_tree().change_scene("res://high_tech_hop.tscn")
+		else:
+			$Press_E.hide()
 	else:
 		$Press_E.hide()
 

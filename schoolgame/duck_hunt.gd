@@ -22,8 +22,6 @@ func _ready():
 
 func _physics_process(delta):
 	
-	print(get_tree().get_nodes_in_group("text_popups"))
-	
 	if not restarting:
 		$mistake_panel/CenterContainer/mistakes_left.text = String(lives)
 	
