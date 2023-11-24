@@ -167,6 +167,7 @@ f5={
 2d_physics/layer_4="World"
 2d_physics/layer_5="Enemy_weapon"
 2d_physics/layer_6="asparagus_spike"
+2d_physics/layer_7="high_hop_obstacle"
 
 [physics]
 
