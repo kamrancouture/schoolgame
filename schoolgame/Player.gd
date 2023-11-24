@@ -8,6 +8,7 @@ var first_item_selected_info = [
 	"item",
 	null,
 ]
+var paper_on_screen = false
 var asparagus_image = null
 var paper = null
 var paper_moving = false
@@ -70,6 +71,10 @@ func _physics_process(delta):
 	
 	if paper_moving:
 		move_paper_animation(paper , asparagus_image)
+	elif paper_on_screen and Input.is_action_just_pressed("shoot"):
+		paper_on_screen = false
+		Global.paper_pause = false
+		paper.get_parent().queue_free()
 	
 	if not Global.paper_pause:
 		if $Area2D.overlaps_body(get_parent().get_node("asparagus_walls")):
@@ -329,6 +334,7 @@ func _on_OP_time_timeout():
 
 
 func _on_paper1_paper_collected():
+	paper_on_screen = true
 	Global.paper_pause = true
 	paper_moving = true
 	get_parent().get_node("papers/paper1/paper").z_index = 100
@@ -337,6 +343,7 @@ func _on_paper1_paper_collected():
 
 
 func _on_paper2_paper_collected():
+	paper_on_screen = true
 	Global.paper_pause = true
 	paper_moving = true
 	get_parent().get_node("papers/paper2/paper").z_index = 100
@@ -345,6 +352,7 @@ func _on_paper2_paper_collected():
 
 
 func _on_paper3_paper_collected():
+	paper_on_screen = true
 	Global.paper_pause = true
 	paper_moving = true
 	get_parent().get_node("papers/paper3/paper").z_index = 100
@@ -353,6 +361,7 @@ func _on_paper3_paper_collected():
 
 
 func _on_paper4_paper_collected():
+	paper_on_screen = true
 	Global.paper_pause = true
 	paper_moving = true
 	get_parent().get_node("papers/paper4/paper").z_index = 100
@@ -361,6 +370,7 @@ func _on_paper4_paper_collected():
 
 
 func _on_paper5_paper_collected():
+	paper_on_screen = true
 	Global.paper_pause = true
 	paper_moving = true
 	get_parent().get_node("papers/paper5/paper").z_index = 100

@@ -22,8 +22,9 @@ func _physics_process(delta):
 			Global.XP += 20
 			Global.paper_number += 1
 			if Global.paper_number == 1:
-#				var paper_texture = paper_sprite_1.instance()
 				$asparagus_image.texture = paper_sprite_1
+			elif Global.paper_number == 2:
+				$asparagus_image.texture = paper_sprite_2
 			$Press_E.hide()
 			set_physics_process(false)
 	else:
