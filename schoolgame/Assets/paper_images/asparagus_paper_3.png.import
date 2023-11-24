@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/asparagus_paper_1.png-fd787ac258333017ad45a5bf638ebaa1.stex"
+path="res://.import/asparagus_paper_3.png-2712d22e37842485a7699b25ca21344a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/asparagus_paper_1.png"
-dest_files=[ "res://.import/asparagus_paper_1.png-fd787ac258333017ad45a5bf638ebaa1.stex" ]
+source_file="res://Assets/paper_images/asparagus_paper_3.png"
+dest_files=[ "res://.import/asparagus_paper_3.png-2712d22e37842485a7699b25ca21344a.stex" ]
 
 [params]
 

@@ -6,11 +6,11 @@
 [ext_resource path="res://asparagus_minion.tscn" type="PackedScene" id=4]
 [ext_resource path="res://paper.gd" type="Script" id=5]
 [ext_resource path="res://Assets/kenney_input-prompts-pixel-16/Tiles/tile_0087.png" type="Texture" id=6]
-[ext_resource path="res://Assets/asparegus_paper2.png" type="Texture" id=7]
-[ext_resource path="res://Assets/asparegus_paper3.png" type="Texture" id=8]
-[ext_resource path="res://Assets/asparegus_paper5.png" type="Texture" id=9]
-[ext_resource path="res://Assets/asparegus_paper.png" type="Texture" id=10]
-[ext_resource path="res://Assets/asparegus_paper4.png" type="Texture" id=11]
+[ext_resource path="res://Assets/paper_images/asparegus_paper2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/paper_images/asparegus_paper3.png" type="Texture" id=8]
+[ext_resource path="res://Assets/paper_images/asparegus_paper5.png" type="Texture" id=9]
+[ext_resource path="res://Assets/paper_images/asparegus_paper.png" type="Texture" id=10]
+[ext_resource path="res://Assets/paper_images/asparegus_paper4.png" type="Texture" id=11]
 [ext_resource path="res://hypersuper/HyperSuperRegular.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://asparagus_world.gd" type="Script" id=13]
 [ext_resource path="res://Assets/teleporter_for_aspara-gus.png" type="Texture" id=14]
@@ -155,47 +155,212 @@ navpoly = SubResource( 13 )
 [node name="NavigationPolygonInstance14" type="NavigationPolygonInstance" parent="navigation"]
 navpoly = SubResource( 16 )
 
-[node name="asparagus_minion" parent="." instance=ExtResource( 4 )]
-position = Vector2( 4016, -408 )
+[node name="enemies" type="Node2D" parent="."]
 
-[node name="asparagus_minion2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 4184, -400 )
+[node name="asparagus_minion" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 4258, -398 )
 
-[node name="asparagus_minion3" parent="." instance=ExtResource( 4 )]
+[node name="asparagus_minion64" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 4345, -416 )
+
+[node name="asparagus_minion65" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 4119, -408 )
+
+[node name="asparagus_minion66" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 4168, -413 )
+
+[node name="asparagus_minion67" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 4224, -418 )
+
+[node name="asparagus_minion68" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 4282, -423 )
+
+[node name="asparagus_minion61" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 3552, 4 )
+
+[node name="asparagus_minion2" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 4388, -425 )
+
+[node name="asparagus_minion3" parent="enemies" instance=ExtResource( 4 )]
 position = Vector2( 4168, 8 )
 
-[node name="asparagus_minion4" parent="." instance=ExtResource( 4 )]
-position = Vector2( -1664, -1824 )
+[node name="asparagus_minion4" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -1565, -1666 )
 
-[node name="asparagus_minion5" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2520, -2368 )
+[node name="asparagus_minion16" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -1453, -2194 )
 
-[node name="asparagus_minion6" parent="." instance=ExtResource( 4 )]
-position = Vector2( -424, -1976 )
+[node name="asparagus_minion17" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -1040, -2389 )
 
-[node name="asparagus_minion7" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2408, -2464 )
+[node name="asparagus_minion18" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -619, -2393 )
 
-[node name="asparagus_minion8" parent="." instance=ExtResource( 4 )]
-position = Vector2( -440, -2080 )
+[node name="asparagus_minion19" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 278, -2403 )
 
-[node name="asparagus_minion9" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2552, -2568 )
+[node name="asparagus_minion20" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 121, -1538 )
 
-[node name="asparagus_minion10" parent="." instance=ExtResource( 4 )]
-position = Vector2( -312, -2104 )
+[node name="asparagus_minion28" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -438, -1686 )
 
-[node name="asparagus_minion11" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2424, -2416 )
+[node name="asparagus_minion29" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -916, -782 )
 
-[node name="asparagus_minion12" parent="." instance=ExtResource( 4 )]
-position = Vector2( -400, -2112 )
+[node name="asparagus_minion30" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -1057, -207 )
 
-[node name="asparagus_minion13" parent="." instance=ExtResource( 4 )]
-position = Vector2( -280, -2056 )
+[node name="asparagus_minion31" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -644, -268 )
 
-[node name="asparagus_minion14" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2416, -2600 )
+[node name="asparagus_minion32" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -22, -425 )
+
+[node name="asparagus_minion35" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 222, -398 )
+
+[node name="asparagus_minion36" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 695, -405 )
+
+[node name="asparagus_minion37" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 223, -70 )
+
+[node name="asparagus_minion38" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1276, 61 )
+
+[node name="asparagus_minion39" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1770, 599 )
+
+[node name="asparagus_minion40" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2074, 736 )
+
+[node name="asparagus_minion60" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 3000, 69 )
+
+[node name="asparagus_minion62" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2001, -900 )
+
+[node name="asparagus_minion63" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1063, -1152 )
+
+[node name="asparagus_minion41" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1452, 889 )
+
+[node name="asparagus_minion42" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1350, 1174 )
+
+[node name="asparagus_minion43" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1553, 1473 )
+
+[node name="asparagus_minion44" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1190, 1708 )
+
+[node name="asparagus_minion45" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1181, 1646 )
+
+[node name="asparagus_minion46" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1179, 1601 )
+
+[node name="asparagus_minion47" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1184, 1562 )
+
+[node name="asparagus_minion48" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1180, 1519 )
+
+[node name="asparagus_minion49" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1180, 1498 )
+
+[node name="asparagus_minion50" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1244, 1468 )
+
+[node name="asparagus_minion51" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1306, 1468 )
+
+[node name="asparagus_minion52" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1358, 1479 )
+
+[node name="asparagus_minion53" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1424, 1474 )
+
+[node name="asparagus_minion54" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1470, 1469 )
+
+[node name="asparagus_minion55" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2459, 1190 )
+
+[node name="asparagus_minion58" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2630, 974 )
+
+[node name="asparagus_minion59" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 1876, 994 )
+rotation = -0.913408
+
+[node name="asparagus_minion56" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2457, 1507 )
+
+[node name="asparagus_minion57" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2473, 1336 )
+
+[node name="asparagus_minion33" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -576, 89 )
+
+[node name="asparagus_minion34" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -648, -169 )
+
+[node name="asparagus_minion21" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -100, -1535 )
+
+[node name="asparagus_minion15" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -1209, -1482 )
+
+[node name="asparagus_minion5" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2602, -2322 )
+
+[node name="asparagus_minion6" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -424, -1967 )
+
+[node name="asparagus_minion7" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2386, -2430 )
+
+[node name="asparagus_minion8" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -429, -2043 )
+
+[node name="asparagus_minion10" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -290, -2044 )
+
+[node name="asparagus_minion9" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2601, -2632 )
+
+[node name="asparagus_minion11" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2384, -2324 )
+
+[node name="asparagus_minion22" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2046, -2918 )
+
+[node name="asparagus_minion23" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2478, -3242 )
+
+[node name="asparagus_minion24" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2484, -3464 )
+
+[node name="asparagus_minion25" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2484, -3719 )
+
+[node name="asparagus_minion26" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2484, -3959 )
+
+[node name="asparagus_minion27" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2482, -4220 )
+
+[node name="asparagus_minion12" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -360, -2098 )
+
+[node name="asparagus_minion13" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( -286, -1954 )
+
+[node name="asparagus_minion14" parent="enemies" instance=ExtResource( 4 )]
+position = Vector2( 2380, -2640 )
 
 [node name="papers" type="Node2D" parent="."]
 
@@ -215,13 +380,17 @@ shape = SubResource( 14 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
-[node name="Sprite" type="Sprite" parent="papers/paper1"]
+[node name="paper" type="Sprite" parent="papers/paper1"]
 scale = Vector2( 0.5, 0.5 )
 z_index = -5
 texture = ExtResource( 7 )
 
+[node name="asparagus_image" type="Sprite" parent="papers/paper1"]
+scale = Vector2( 0.25, 0.25 )
+z_index = 101
+
 [node name="paper2" type="Area2D" parent="papers"]
-position = Vector2( 2496, -4414 )
+position = Vector2( 4427, 8 )
 z_index = 3
 collision_layer = 0
 script = ExtResource( 5 )
@@ -236,10 +405,14 @@ shape = SubResource( 14 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
-[node name="Sprite" type="Sprite" parent="papers/paper2"]
+[node name="paper" type="Sprite" parent="papers/paper2"]
 scale = Vector2( 0.5, 0.5 )
 z_index = -5
 texture = ExtResource( 8 )
+
+[node name="asparagus_image" type="Sprite" parent="papers/paper2"]
+scale = Vector2( 0.25, 0.25 )
+z_index = 101
 
 [node name="paper3" type="Area2D" parent="papers"]
 position = Vector2( -380, -148 )
@@ -257,10 +430,14 @@ shape = SubResource( 14 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
-[node name="Sprite" type="Sprite" parent="papers/paper3"]
+[node name="paper" type="Sprite" parent="papers/paper3"]
 scale = Vector2( 0.5, 0.5 )
 z_index = -5
 texture = ExtResource( 11 )
+
+[node name="asparagus_image" type="Sprite" parent="papers/paper3"]
+scale = Vector2( 0.01, 0.01 )
+z_index = 101
 
 [node name="paper4" type="Area2D" parent="papers"]
 position = Vector2( 2335, 1879 )
@@ -278,10 +455,14 @@ shape = SubResource( 14 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
-[node name="Sprite" type="Sprite" parent="papers/paper4"]
+[node name="paper" type="Sprite" parent="papers/paper4"]
 scale = Vector2( 0.5, 0.5 )
 z_index = -5
 texture = ExtResource( 9 )
+
+[node name="asparagus_image" type="Sprite" parent="papers/paper4"]
+scale = Vector2( 0.5, 0.5 )
+z_index = 101
 
 [node name="paper5" type="Area2D" parent="papers"]
 position = Vector2( -343, -2012 )
@@ -299,10 +480,14 @@ shape = SubResource( 14 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
-[node name="Sprite" type="Sprite" parent="papers/paper5"]
+[node name="paper" type="Sprite" parent="papers/paper5"]
 scale = Vector2( 0.5, 0.5 )
 z_index = -5
 texture = ExtResource( 10 )
+
+[node name="asparagus_image" type="Sprite" parent="papers/paper5"]
+scale = Vector2( 0.5, 0.5 )
+z_index = 101
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -30,6 +30,7 @@ var player_items_cheat = ["gun", gun, false, "dog", dog, false, "item", null, fa
 var OP_mode = false
 var numbers_of_death_high_hop = 0
 var paper_number = 0
+var paper_pause = false
 
 func restart():
 	numbers_of_death_high_hop = 0

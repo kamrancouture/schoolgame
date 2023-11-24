@@ -1,10 +1,10 @@
 extends Area2D
 
-#var paper_sprite_1 = preload("res://Assets/asparagus_paper_1.png")
-#var paper_sprite_2 = preload()
-#var paper_sprite_3 = preload()
-#var paper_sprite_4 = preload()
-#var paper_sprite_5 = preload()
+var paper_sprite_1 = preload("res://Assets/paper_images/asparagus_paper_1.png")
+var paper_sprite_2 = preload("res://Assets/paper_images/asparagus_paper_2.png")
+var paper_sprite_3 = preload("res://Assets/paper_images/asparagus_paper_3.png")
+var paper_sprite_4 = preload("res://Assets/paper_images/asparagus_paper_4.png")
+var paper_sprite_5 = preload("res://Assets/paper_images/asparagus_paper_5.png")
 signal paper_collected
 
 onready var player = get_parent().get_parent().get_node("Player")
@@ -21,8 +21,9 @@ func _physics_process(delta):
 			emit_signal("paper_collected")
 			Global.XP += 20
 			Global.paper_number += 1
-#			if Global.paper_number == 1:
-#				$paper.texture = paper_sprite_1
+			if Global.paper_number == 1:
+#				var paper_texture = paper_sprite_1.instance()
+				$asparagus_image.texture = paper_sprite_1
 			$Press_E.hide()
 			set_physics_process(false)
 	else:
