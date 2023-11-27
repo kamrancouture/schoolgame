@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/asparagus_tilemap.png-f804fe06b25e2689c741b4ff58adcc84.stex"
+path="res://.import/asparagus_walls_spritesheet.png-ac6900fcb8c89cd9e8c98449f8986068.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/asparagus_tilemap.png"
-dest_files=[ "res://.import/asparagus_tilemap.png-f804fe06b25e2689c741b4ff58adcc84.stex" ]
+source_file="res://Assets/asparagus_walls_spritesheet.png"
+dest_files=[ "res://.import/asparagus_walls_spritesheet.png-ac6900fcb8c89cd9e8c98449f8986068.stex" ]
 
 [params]
 
