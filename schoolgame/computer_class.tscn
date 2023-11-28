@@ -78,9 +78,6 @@ limit_top = 2
 limit_right = 1214
 limit_bottom = 1086
 
-[node name="Hotbar" parent="Player/CanvasLayer" index="1"]
-items = [ "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false ]
-
 [node name="wave_timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
@@ -153,6 +150,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
 [node name="cole" type="Sprite" parent="high_tech_hop_portal"]
+visible = false
 position = Vector2( 1, -7 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 11 )

@@ -49,6 +49,7 @@ func _on_wave_timer_timeout():
 	elif wave == 5:
 		wave_five()
 	elif wave == 6:
+		$high_tech_hop_portal/cole.show()
 		$high_tech_hop_portal.enabled = true
 
 

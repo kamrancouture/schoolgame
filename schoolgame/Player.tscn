@@ -280,7 +280,6 @@ fixed_column_width = 100
 icon_mode = 0
 
 [node name="XP_bar" type="ProgressBar" parent="CanvasLayer"]
-visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -504.0
