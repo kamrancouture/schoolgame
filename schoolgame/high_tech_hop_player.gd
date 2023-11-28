@@ -86,11 +86,11 @@ func _physics_process(delta):
 		selected_item_index = 8
 		hotbar.select(8)
 		
-	if Input.is_action_just_released("scroll_down"):
+	if Input.is_action_just_released("scroll_down") and selected_item_index < 8:
 		selected_item_index += 1
 		hotbar.select(selected_item_index)
-		
-	if Input.is_action_just_released("scroll_up"):
+	
+	if Input.is_action_just_released("scroll_up") and selected_item_index > 0:
 		selected_item_index -= 1
 		hotbar.select(selected_item_index)
 	
