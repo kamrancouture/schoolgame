@@ -1,10 +1,10 @@
 extends Area2D
 
-var paper_sprite_1 = preload("res://Assets/paper_images/asparagus_paper_1.png")
-var paper_sprite_2 = preload("res://Assets/paper_images/asparagus_paper_2.png")
-var paper_sprite_3 = preload("res://Assets/paper_images/asparagus_paper_3.png")
-var paper_sprite_4 = preload("res://Assets/paper_images/asparagus_paper_4.png")
-var paper_sprite_5 = preload("res://Assets/paper_images/asparagus_paper_5.png")
+var paper_sprite_1 = preload("res://Assets/paper_images/asparagus_paper_4.png")
+var paper_sprite_2 = preload("res://Assets/paper_images/asparagus_paper_5.png")
+var paper_sprite_3 = preload("res://Assets/paper_images/asparagus_paper_1.png")
+var paper_sprite_4 = preload("res://Assets/paper_images/asparagus_paper_3.png")
+var paper_sprite_5 = preload("res://Assets/paper_images/asparagus_paper_2.png")
 signal paper_collected
 
 onready var player = get_parent().get_parent().get_node("Player")
@@ -25,6 +25,12 @@ func _physics_process(delta):
 				$asparagus_image.texture = paper_sprite_1
 			elif Global.paper_number == 2:
 				$asparagus_image.texture = paper_sprite_2
+			elif Global.paper_number == 3:
+				$asparagus_image.texture = paper_sprite_3
+			elif Global.paper_number == 4:
+				$asparagus_image.texture = paper_sprite_4
+			elif Global.paper_number == 5:
+				$asparagus_image.texture = paper_sprite_5
 			$Press_E.hide()
 			set_physics_process(false)
 	else:
