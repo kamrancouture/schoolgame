@@ -2,7 +2,7 @@ extends Node
 
 
 
-var gun = preload("res://Assets/kenney_top-down-shooter/PNG/weapon_machine_icon_bigger.png")
+var gun = preload("res://Assets/gun_icon_fixed_fixed.png")
 var dog = preload("res://Assets/dog_icon_fixed.png")
 var get_out = preload("res://Assets/get_out_icon_proper_size2.png")
 var hat = preload("res://Assets/high_hop_hat_icon.png")

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hitman1_stand.png-b8356aa8a0e1880706fc6cb092457ef3.stex"
+path="res://.import/gun_icon_fixed_fixed.png-9fd829b6b2eec1f9e7de5564b6a014ba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/kenney_top-down-shooter/PNG/Hitman 1/hitman1_stand.png"
-dest_files=[ "res://.import/hitman1_stand.png-b8356aa8a0e1880706fc6cb092457ef3.stex" ]
+source_file="res://Assets/gun_icon_fixed_fixed.png"
+dest_files=[ "res://.import/gun_icon_fixed_fixed.png-9fd829b6b2eec1f9e7de5564b6a014ba.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
