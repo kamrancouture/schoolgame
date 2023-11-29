@@ -396,3 +396,26 @@ func move_paper_animation(paper , asparagus_image):
 	
 	
 	asparagus_image.global_position = paper.global_position
+
+
+
+	
+
+
+
+
+
+
+
+	
+
+
+#func _on_Area2D_area_entered(area):
+#	print(area.get_node())
+##	area.get_node("AnimatedSprite").show()
+#
+#
+#func _on_Area2D_area_exited(area):
+#	pass
+##	if not area.aggro:
+##		area.get_node("AnimatedSprite").hide()

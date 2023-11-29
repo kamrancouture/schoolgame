@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://asparagus_minion.gd" type="Script" id=1]
 [ext_resource path="res://Assets/asparagus_man.png (2).png" type="Texture" id=2]
@@ -19,6 +19,8 @@ radius = 153.003
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 9.05539
+
+[sub_resource type="CircleShape2D" id=6]
 
 [node name="asparagus_minion" type="KinematicBody2D"]
 z_index = 1
@@ -64,6 +66,13 @@ margin_bottom = -11.0
 text = "asparagus"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="gun_detect" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gun_detect"]
+shape = SubResource( 6 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
