@@ -42,6 +42,8 @@ func restart():
 	paper_number = 0
 	XP = 0
 	get_out_picked_up = false
+	duck_hunt_defeated = false
+	duck_hunt_highscore = 0
 	dog_picked_up = false
 	player_hotbar = null
 
