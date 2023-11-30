@@ -115,21 +115,26 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity , Vector2.UP)
 	
-	
+	if hotbar.get_item_text(selected_item_index) == "item":
+		$CanvasLayer/ammo.hide()
+
 	
 	if hotbar.get_item_text(selected_item_index) == "gun":
+		$CanvasLayer/ammo.show()
 		gun_in_hand = true
 		gun.selected = true
 	else:
 		gun_in_hand = false
 		gun.selected = false
 	if hotbar.get_item_text(selected_item_index) == "get_out":
+		$CanvasLayer/ammo.show()
 		get_out_in_hand = true
 		get_out.selected = true
 	else:
 		get_out_in_hand = false
 		get_out.selected = false
 	if hotbar.get_item_text(selected_item_index) == "dog" and not dog_selected:
+		$CanvasLayer/ammo.hide()
 		$dog.show()
 		dog_selected = true
 		speed *= 10

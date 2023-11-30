@@ -15,6 +15,7 @@ func _physics_process(delta):
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
+	$explosion_sound.play()
 	player.shot_power = shotpower
 	player.grenade_shot_position = global_position
 	$disappear_timer.start()
@@ -24,5 +25,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	set_physics_process(false)
 
 
-func _on_disappear_timer_timeout():
+
+
+func _on_explosion_sound_finished():
 	queue_free()

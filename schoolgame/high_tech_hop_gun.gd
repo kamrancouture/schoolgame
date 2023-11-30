@@ -7,6 +7,11 @@ var max_ammo = 3
 var ammo = 0
 
 func _physics_process(delta):
+	
+	if get_parent().is_on_floor():
+		ammo = max_ammo
+	
+	
 	if selected:
 		show()
 		
@@ -15,10 +20,9 @@ func _physics_process(delta):
 		
 		global_rotation = (get_global_mouse_position() - get_parent().global_position).angle()
 		
-		if get_parent().is_on_floor():
-			ammo = max_ammo
 		
 		if Input.is_action_pressed("shoot") and can_shoot and ammo > 0:
+			$gunshot.play()
 			ammo -= 1
 			can_shoot = false
 			get_parent().shot_direction = (global_position - $high_tech_hop_gun/Position2D.global_position).normalized()

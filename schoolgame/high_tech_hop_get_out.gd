@@ -8,14 +8,17 @@ var ammo = 0
 
 func _physics_process(delta):
 	
+	if get_parent().is_on_floor() and can_shoot:
+		ammo = max_ammo
+	
+	
 	if selected:
 		show()
 		get_parent().get_node("CanvasLayer/ammo").text = "Ammo: " + String(ammo) 
 		
 		global_rotation = (get_global_mouse_position() - get_parent().global_position).angle()
 		
-		if get_parent().is_on_floor():
-			ammo = max_ammo
+		
 		
 		if Input.is_action_pressed("shoot") and can_shoot and ammo > 0:
 			ammo -= 1

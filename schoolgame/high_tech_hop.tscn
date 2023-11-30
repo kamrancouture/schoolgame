@@ -133,7 +133,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 5 )
 
 [node name="hat_pickup" type="Sprite" parent="."]
-position = Vector2( 311, -2393 )
+position = Vector2( 5724, -12096 )
 texture = ExtResource( 7 )
 
 [node name="high_hop_saws" type="Node2D" parent="."]

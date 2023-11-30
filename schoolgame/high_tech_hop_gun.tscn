@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://sound_effects/gun_fire.wav" type="AudioStream" id=1]
 [ext_resource path="res://high_tech_hop_gun.gd" type="Script" id=2]
 [ext_resource path="res://Assets/gun_high_hop.png" type="Texture" id=3]
 
@@ -17,5 +18,10 @@ position = Vector2( 20.6667, -3.33333 )
 [node name="fire_rate" type="Timer" parent="."]
 wait_time = 0.25
 one_shot = true
+
+[node name="gunshot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = 5.0
+pitch_scale = 2.0
 
 [connection signal="timeout" from="fire_rate" to="." method="_on_fire_rate_timeout"]

@@ -244,7 +244,7 @@ __meta__ = {
 }
 
 [node name="asparagus_gun" parent="Player/AnimatedSprite" index="5"]
-frame = 0
+frame = 2
 
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = -254

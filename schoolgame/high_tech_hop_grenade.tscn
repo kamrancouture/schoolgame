@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/4851475.png" type="Texture" id=1]
 [ext_resource path="res://high_tech_hop_grenade.gd" type="Script" id=2]
 [ext_resource path="res://grenade_explosion.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sound_effects/NenadSimic - Muffled Distant Explosion.wav" type="AudioStream" id=4]
 
 [sub_resource type="Animation" id=2]
 resource_name = "throw"
@@ -32,5 +33,11 @@ one_shot = true
 
 [node name="grenade_explosion" parent="." instance=ExtResource( 3 )]
 
+[node name="explosion_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 24.0
+pitch_scale = 1.5
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="disappear_timer" to="." method="_on_disappear_timer_timeout"]
+[connection signal="finished" from="explosion_sound" to="." method="_on_explosion_sound_finished"]
