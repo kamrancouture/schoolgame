@@ -10,7 +10,7 @@ var aggro = false
 var rng = RandomNumberGenerator.new()
 var health = 200
 var velocity = Vector2.ZERO
-var speed = 250
+var speed = 500
 var damage = 0.03
 var wander_speed = 1
 var rotate_amount : float
@@ -18,15 +18,17 @@ var rotate_speed = 3
 var rotating = false
 onready var navigation_agent = $NavigationAgent2D
 
+enum phase {
+	chasing,
+	spawing,
+}
+
 func _ready():
+	aggro = true
 	$AnimatedSprite.play("idle")
 	rng.randomize()
-func _physics_process(delta):
 	
-	if Global.world == "computer_class":
-		$AnimatedSprite.play("aggro")
-		
-		aggro = true
+func _physics_process(delta):
 	
 	if Global.player_alive:
 		$name_teg.rect_rotation = -rotation
