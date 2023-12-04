@@ -8,8 +8,6 @@ onready var spawn_1 = get_node("spawn_point_1")
 onready var spawn_2 = get_node("spawn_point_2")
 onready var spawn_3 = get_node("spawn_point_3")
 
-var rng = RandomNumberGenerator.new()
-
 onready var spawn_points =[
 	spawn_1,
 	spawn_2,
@@ -26,8 +24,9 @@ var wave_going = false
 var wave = 1
 
 func _ready():
-	rng.randomize()
-	randomize()
+	player.get_node("CanvasLayer/new_world_animation/world_label").text = "Computer Class"
+	player.get_node("CanvasLayer/new_world_animation/AnimationPlayer").play("fade_out_label")
+	
 func _physics_process(delta):
 	if wave_going and Global.students_alive == 0:
 		wave_going = false

@@ -13,7 +13,9 @@ var duck_hunt_highscore = 57060
 var player_previous_position = null
 var player_previous_world = null
 var XP = 0
+var visited_high_hop = false
 
+var asparagus_gun_picked_up = false
 var hat_picked_up = false
 var gun_picked_up = false
 var get_out_picked_up = false
@@ -33,6 +35,7 @@ var paper_number = 0
 var paper_pause = false
 
 func restart():
+	visited_high_hop = false
 	numbers_of_death_high_hop = 0
 	player_alive = true
 	world = "starting_room"

@@ -27,6 +27,7 @@ var riding_dog = false
 var can_shoot_grenade = true
 var get_out_in_hand = false
 var grenade_speed = 100
+var asparagus_gun_in_hand = false
 var dog_in_hand = false
 var gun_in_hand = false
 var hat_in_hand = false
@@ -189,6 +190,18 @@ func _physics_process(delta):
 			elif not hotbar.get_item_text(selected_item_index) == "gun" and gun_in_hand:
 				gun_in_hand = false
 				Global.player_speed *= 1.5
+				
+			if hotbar.get_item_text(selected_item_index) == "asparagus_gun" and not asparagus_gun_in_hand:
+				asparagus_gun_in_hand = true
+				Global.player_speed /= 1.5
+				$AnimatedSprite/asparagus_gun/Area2D/CollisionShape2D.disabled = false
+				$AnimatedSprite.play("hold")
+				$AnimatedSprite/asparagus_gun.show()
+			elif not hotbar.get_item_text(selected_item_index) == "asparagus_gun" and asparagus_gun_in_hand:
+				asparagus_gun_in_hand = false
+				Global.player_speed *= 1.5
+				$AnimatedSprite/asparagus_gun/Area2D/CollisionShape2D.disabled = true
+				$AnimatedSprite/asparagus_gun.hide()
 				
 			if hotbar.get_item_text(selected_item_index) == "hat" and not hat_in_hand:
 				if not Global.OP_mode:
@@ -399,23 +412,11 @@ func move_paper_animation(paper , asparagus_image):
 
 
 
-	
+func _on_Area2D_area_entered(area):
+	if not area.get_parent().aggro:
+		area.get_parent().get_node("asparagus_gun_detection").show()
 
 
-
-
-
-
-
-	
-
-
-#func _on_Area2D_area_entered(area):
-#	print(area.get_node())
-##	area.get_node("AnimatedSprite").show()
-#
-#
-#func _on_Area2D_area_exited(area):
-#	pass
-##	if not area.aggro:
-##		area.get_node("AnimatedSprite").hide()
+func _on_Area2D_area_exited(area):
+	if not area.get_parent().aggro:
+		area.get_parent().get_node("asparagus_gun_detection").hide()

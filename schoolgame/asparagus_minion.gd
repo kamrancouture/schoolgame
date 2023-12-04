@@ -63,7 +63,6 @@ func _physics_process(delta):
 
 
 func hit():
-	aggro = true
 	$AnimatedSprite.show()
 	$name_teg.show()
 	var blood_effect = Blood_Effect.instance()
@@ -73,6 +72,7 @@ func hit():
 
 func _on_Area2D_body_entered(body):
 	$AnimatedSprite.play("aggro")
+	$asparagus_gun_detection.hide()
 	aggro = true
 	$AnimatedSprite.show()
 	$name_teg.show()
