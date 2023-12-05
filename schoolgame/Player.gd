@@ -42,6 +42,8 @@ export var health = 30
 var selected_item_index : int
 
 func _ready():
+	if Global.difficulty and not Global.world == "starting_room":
+		health = Global.player_health_for_insane_mode
 	if Global.world == "starting_room":
 		get_parent().player = self
 		Global.player_speed = 225
@@ -70,6 +72,9 @@ func _ready():
 
 
 func _physics_process(delta):
+	print(Global.difficulty)
+	if Global.difficulty:
+		Global.player_health_for_insane_mode = health
 	
 	if paper_moving:
 		move_paper_animation(paper , asparagus_image)
