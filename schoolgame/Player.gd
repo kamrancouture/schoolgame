@@ -18,6 +18,7 @@ var is_dragging_item = false
 var Death_Effect = preload("res://player_death.tscn")
 var Blood_Effect = preload("res://player_blood_effect.tscn")
 var reloading = false
+var rocket_launcher_ammo = 1
 var ammo = 30
 var max_ammo = 30
 export var fire_rate = 0.2
@@ -131,11 +132,6 @@ func _physics_process(delta):
 			
 			Global.player_hotbar = hotbar.items
 			
-			if Global.gun_picked_up and gun_in_hand:
-				$CanvasLayer/Ammo.show()
-			else:
-				$CanvasLayer/Ammo.hide()
-			
 			$health_bar.value = health
 			
 			if health <= 0 and Global.player_alive:
@@ -148,7 +144,7 @@ func _physics_process(delta):
 				death_effect.emitting = true
 				get_parent().add_child(death_effect)
 			
-			$CanvasLayer/Ammo.text = "Ammo: " + String(ammo) + "/" + String(max_ammo)
+			$CanvasLayer/Ammo.text = "Ammo: " + String(ammo)
 			velocity = Input.get_vector("a_click" , "d_click" , "w_click" , "s_click") * Global.player_speed
 			
 			velocity = move_and_slide(velocity)
@@ -172,22 +168,31 @@ func _physics_process(delta):
 				$walking_gun.stream_paused = true
 				$walking.stream_paused = true
 			
+			$CanvasLayer/get_out_ammo_reload.text = String((round ($get_out_fire_rate.time_left*pow (10,2))/pow (10,2)))
 			
 			if hotbar.get_item_text(selected_item_index) == "get_out" and not get_out_in_hand:
+				if $get_out_fire_rate.time_left == 0:
+					$CanvasLayer/get_out_ammo.show()
+				else:
+					$CanvasLayer/get_out_ammo_reload.show()
 				get_out_in_hand = true
 				Global.player_speed /= 1.5
 				$AnimatedSprite.play("hold")
 				$AnimatedSprite/get_out_sprite.show()
 			elif not hotbar.get_item_text(selected_item_index) == "get_out" and get_out_in_hand:
+				$CanvasLayer/get_out_ammo_reload.hide()
+				$CanvasLayer/get_out_ammo.hide()
 				$AnimatedSprite/get_out_sprite.hide()
 				get_out_in_hand = false
 				Global.player_speed *= 1.5
 				
 			if hotbar.get_item_text(selected_item_index) == "gun" and not gun_in_hand:
+				$CanvasLayer/Ammo.show()
 				gun_in_hand = true
 				Global.player_speed /= 1.5
 				$AnimatedSprite.play("pistol")
 			elif not hotbar.get_item_text(selected_item_index) == "gun" and gun_in_hand:
+				$CanvasLayer/Ammo.hide()
 				gun_in_hand = false
 				Global.player_speed *= 1.5
 				
@@ -280,6 +285,9 @@ func shoot():
 		$fire_rate.start(fire_rate)
 
 func shoot_grenade():
+	if not Global.OP_mode:
+		$CanvasLayer/get_out_ammo.hide()
+		$CanvasLayer/get_out_ammo_reload.show()
 	var grenade = Grenade.instance()
 	grenade.global_rotation = $AnimatedSprite.global_rotation
 	grenade.global_position = $AnimatedSprite/get_out_sprite/get_out_grenade_spawn.global_position
@@ -325,6 +333,9 @@ func _on_Hotbar_item_selected(index):
 
 
 func _on_get_out_fire_rate_timeout():
+	$CanvasLayer/get_out_ammo_reload.hide()
+	if get_out_in_hand:
+		$CanvasLayer/get_out_ammo.show()
 	can_shoot_grenade = true
 
 

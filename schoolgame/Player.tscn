@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Assets/kenney_top-down-shooter/PNG/Hitman 1/hitman1_reload.png" type="Texture" id=1]
 [ext_resource path="res://Assets/kenney_top-down-shooter/PNG/Hitman 1/hitman1_machine.png" type="Texture" id=2]
@@ -136,6 +136,14 @@ tracks/0/keys = {
 }
 
 [sub_resource type="DynamicFont" id=20]
+size = 64
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=21]
+size = 64
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=22]
 size = 64
 font_data = ExtResource( 5 )
 
@@ -285,6 +293,7 @@ visible = false
 position = Vector2( 55, 16 )
 frames = SubResource( 16 )
 animation = "asparagus_gun"
+frame = 1
 playing = true
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite/asparagus_gun"]
@@ -318,13 +327,15 @@ percent_visible = false
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Ammo" type="Label" parent="CanvasLayer"]
+visible = false
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -383.0
-margin_top = 30.0
-margin_bottom = 119.0
+margin_left = -284.0
+margin_top = 27.0
+margin_right = 99.0
+margin_bottom = 116.0
 custom_fonts/font = SubResource( 3 )
-text = "Ammo: 30/30"
+text = "Ammo: 30"
 
 [node name="Hotbar" type="ItemList" parent="CanvasLayer"]
 margin_left = 37.0
@@ -348,9 +359,9 @@ icon_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -504.0
-margin_top = 39.0
+margin_top = 10.0
 margin_right = 503.0
-margin_bottom = 75.0
+margin_bottom = 46.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 11 )
 custom_styles/fg = SubResource( 10 )
@@ -366,13 +377,30 @@ anims/RESET = SubResource( 18 )
 anims/fade_out_label = SubResource( 19 )
 
 [node name="world_label" type="Label" parent="CanvasLayer/new_world_animation"]
-modulate = Color( 1, 1, 1, 0 )
 margin_top = 250.0
 margin_right = 1024.0
 margin_bottom = 339.0
 custom_fonts/font = SubResource( 20 )
 text = "world"
 align = 1
+
+[node name="get_out_ammo" type="Label" parent="CanvasLayer"]
+visible = false
+margin_left = 740.0
+margin_top = 27.0
+margin_right = 1019.0
+margin_bottom = 116.0
+custom_fonts/font = SubResource( 21 )
+text = "Ammo: 1"
+
+[node name="get_out_ammo_reload" type="Label" parent="CanvasLayer"]
+visible = false
+margin_left = 862.0
+margin_top = 27.0
+margin_right = 902.0
+margin_bottom = 116.0
+custom_fonts/font = SubResource( 22 )
+text = "5"
 
 [node name="reload" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
