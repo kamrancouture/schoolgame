@@ -2,7 +2,7 @@ extends Area2D
 
 
 onready var player = get_parent().get_node("Player")
-var asparagus_gun_texture = preload("res://icon.png")
+var asparagus_gun_texture = preload("res://Assets/asparagus_gun_icon (3).png")
 var hotbar_number_checking = 1
 var player_lowest_non_selected : int
 var player_lowest_non_selected_found = false
