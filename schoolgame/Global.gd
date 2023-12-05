@@ -25,7 +25,7 @@ var player_hotbar = null
 
 var world = "starting_room"
 var player_health_for_insane_mode = 0
-var player_is_in_insane_mode = false
+var difficulty = "normal"
 var students_alive = 0
 var volume = -32.5
 var player_items_cheat = ["gun", gun, false, "dog", dog, false, "item", null, false, "get_out", get_out, false, "hat", hat, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false]

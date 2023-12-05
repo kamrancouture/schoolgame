@@ -58,17 +58,19 @@ text = "%%%"
 stream = ExtResource( 4 )
 volume_db = 12.0
 
-[node name="insane_mode" type="Button" parent="."]
+[node name="difficulty" type="Button" parent="."]
 modulate = Color( 1, 0, 0, 1 )
 self_modulate = Color( 1, 0, 0, 1 )
 margin_left = 216.0
 margin_top = 256.0
 margin_right = 412.0
 margin_bottom = 320.0
-custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color = Color( 0.0313726, 0.776471, 0.443137, 1 )
 custom_fonts/font = SubResource( 3 )
-text = "insane mode"
+toggle_mode = true
+action_mode = 0
+text = "normal"
 flat = true
 
 [connection signal="button_down" from="back_to_main_screen_button" to="." method="_on_back_to_main_screen_button_button_down"]
-[connection signal="button_down" from="insane_mode" to="." method="_on_insane_mode_button_down"]
+[connection signal="button_down" from="difficulty" to="." method="_on_difficulty_button_down"]
