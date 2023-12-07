@@ -118,6 +118,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("world_label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=19]
 resource_name = "fade_out_label"
@@ -133,6 +145,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("world_label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="DynamicFont" id=20]
@@ -293,7 +317,6 @@ visible = false
 position = Vector2( 55, 16 )
 frames = SubResource( 16 )
 animation = "asparagus_gun"
-frame = 1
 playing = true
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite/asparagus_gun"]
@@ -377,6 +400,7 @@ anims/RESET = SubResource( 18 )
 anims/fade_out_label = SubResource( 19 )
 
 [node name="world_label" type="Label" parent="CanvasLayer/new_world_animation"]
+visible = false
 margin_top = 250.0
 margin_right = 1024.0
 margin_bottom = 339.0

@@ -255,6 +255,9 @@ limit_bottom = 1406
 [node name="Hotbar" parent="Player/CanvasLayer" index="1"]
 items = [ "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false ]
 
+[node name="world_label" parent="Player/CanvasLayer/new_world_animation" index="1"]
+visible = false
+
 [node name="Gun_Pickup" type="Area2D" parent="."]
 z_index = 3
 collision_layer = 0
