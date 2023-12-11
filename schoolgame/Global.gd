@@ -1,7 +1,7 @@
 extends Node
 
 
-
+var asparagus_gun = preload("res://Assets/asparagus_gun_icon (3).png")
 var gun = preload("res://Assets/gun_icon_fixed_fixed.png")
 var dog = preload("res://Assets/dog_icon_fixed.png")
 var get_out = preload("res://Assets/get_out_icon_proper_size2.png")
@@ -24,11 +24,11 @@ var dog_picked_up = false
 var player_hotbar = null
 
 var world = "starting_room"
-var player_health_for_insane_mode = 0
+var player_health_for_insane_mode = 30
 var difficulty = "normal"
 var students_alive = 0
 var volume = -32.5
-var player_items_cheat = ["gun", gun, false, "dog", dog, false, "item", null, false, "get_out", get_out, false, "hat", hat, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false]
+var player_items_cheat = ["gun", gun, false, "dog", dog, false, "asparagus_gun", asparagus_gun, false, "get_out", get_out, false, "hat", hat, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false]
 
 var OP_mode = false
 var numbers_of_death_high_hop = 0
@@ -53,6 +53,9 @@ func restart():
 
 
 func _physics_process(delta):
+	print(difficulty)
+	
+	
 	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master") , volume)
 	

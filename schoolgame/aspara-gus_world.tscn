@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://aspara_gus_man.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://aspara-gus_world.gd" type="Script" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 8040, -2568, 8472, 5328, -4656, 5360, -4576, -2008 )
@@ -10,6 +11,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( -4576, -2008, -4656, 5360, 8472, 5328, 8040, -2568 ) ]
 
 [node name="aspara-gus_world" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="aspara_gus_man" parent="." instance=ExtResource( 2 )]
 __meta__ = {

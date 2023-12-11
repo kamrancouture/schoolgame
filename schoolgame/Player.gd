@@ -18,6 +18,7 @@ var is_dragging_item = false
 var Death_Effect = preload("res://player_death.tscn")
 var Blood_Effect = preload("res://player_blood_effect.tscn")
 var reloading = false
+var hat_equips = 3
 var rocket_launcher_ammo = 1
 var ammo = 30
 var max_ammo = 30
@@ -25,6 +26,7 @@ export var fire_rate = 0.2
 var Player_Bullet = preload("res://player_bullet.tscn")
 var can_shoot = true
 var riding_dog = false
+var dog_was_in_op_mode = false
 var can_shoot_grenade = true
 var get_out_in_hand = false
 var grenade_speed = 100
@@ -149,6 +151,8 @@ func _physics_process(delta):
 				death_effect.emitting = true
 				get_parent().add_child(death_effect)
 			
+			$CanvasLayer/get_out_ammo_reload.text = String((round ($get_out_fire_rate.time_left*pow (10,2))/pow (10,2)))
+			$CanvasLayer/hat_ammo.text = "equips left: " + String(hat_equips)
 			$CanvasLayer/Ammo.text = "Ammo: " + String(ammo)
 			velocity = Input.get_vector("a_click" , "d_click" , "w_click" , "s_click") * Global.player_speed
 			
@@ -173,9 +177,9 @@ func _physics_process(delta):
 				$walking_gun.stream_paused = true
 				$walking.stream_paused = true
 			
-			$CanvasLayer/get_out_ammo_reload.text = String((round ($get_out_fire_rate.time_left*pow (10,2))/pow (10,2)))
-			
 			if hotbar.get_item_text(selected_item_index) == "get_out" and not get_out_in_hand:
+				if Global.OP_mode:
+					$get_out_fire_rate.stop()
 				if $get_out_fire_rate.time_left == 0:
 					$CanvasLayer/get_out_ammo.show()
 				else:
@@ -202,6 +206,10 @@ func _physics_process(delta):
 				Global.player_speed *= 1.5
 				
 			if hotbar.get_item_text(selected_item_index) == "asparagus_gun" and not asparagus_gun_in_hand:
+				if Global.OP_mode:
+					$AnimatedSprite/asparagus_gun/Area2D/CollisionShape2D.scale *= 100
+				else:
+					$AnimatedSprite/asparagus_gun/Area2D/CollisionShape2D.scale = Vector2.ONE
 				asparagus_gun_in_hand = true
 				Global.player_speed /= 1.5
 				$AnimatedSprite/asparagus_gun/Area2D/CollisionShape2D.disabled = false
@@ -214,13 +222,15 @@ func _physics_process(delta):
 				$AnimatedSprite/asparagus_gun.hide()
 				
 			if hotbar.get_item_text(selected_item_index) == "hat" and not hat_in_hand:
+				hat_in_hand = true
+				$CanvasLayer/hat_ammo.show()
 				if not Global.OP_mode:
 					$AnimatedSprite/hat_holding.show()
-					hat_in_hand = true
 					$AnimatedSprite.play("hold")
 				else:
 					$AnimatedSprite.play("idle")
 			elif not hotbar.get_item_text(selected_item_index) == "hat" and hat_in_hand:
+				$CanvasLayer/hat_ammo.hide()
 				$AnimatedSprite/hat_holding.hide()
 				hat_in_hand = false
 				
@@ -234,12 +244,15 @@ func _physics_process(delta):
 				if can_shoot and gun_in_hand and ammo > 0 and not reloading:
 					shoot()
 				elif get_out_in_hand and can_shoot_grenade:
-					can_shoot_grenade = false
-					$get_out_fire_rate.start()
+					if not Global.OP_mode:
+						can_shoot_grenade = false
+						$get_out_fire_rate.start()
 					shoot_grenade()
-				elif hat_in_hand and can_wear_hat:
+				elif hat_in_hand and can_wear_hat and hat_equips > 0:
+					hat_equips -= 1
 					can_wear_hat = false
-					Global.player_speed *= 2
+					Global.player_speed *= 1.25
+					can_shoot_grenade = true
 					$AnimatedSprite/hat_holding.hide()
 					$AnimatedSprite/hat_wearing.show()
 					$AnimatedSprite.play("idle")
@@ -250,12 +263,18 @@ func _physics_process(delta):
 				$AnimatedSprite. play("idle")
 				$AnimatedSprite/dog.show()
 				dog_in_hand = true
+				if Global.OP_mode:
+					dog_was_in_op_mode = true
+					Global.player_speed *= 2
 				Global.player_speed *= 2
 				
 			elif dog_in_hand and not $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "dog":
 				dog_in_hand = false
 				$AnimationPlayer.play("idle")
 				$AnimatedSprite/dog.hide()
+				if dog_was_in_op_mode:
+					dog_was_in_op_mode = false
+					Global.player_speed /= 2
 				Global.player_speed /= 2
 			if velocity == Vector2.ZERO and dog_in_hand:
 				$AnimationPlayer.play("idle")
@@ -285,7 +304,7 @@ func shoot():
 	get_parent().add_child(player_bullet)
 	$gunshot.play()
 	if Global.OP_mode:
-		$fire_rate.start(fire_rate / 2)
+		$fire_rate.start(fire_rate / 4)
 	else:
 		$fire_rate.start(fire_rate)
 
@@ -352,7 +371,8 @@ func _on_you_lose_timer_timeout():
 
 
 func _on_OP_time_timeout():
-	Global.player_speed /= 2
+	can_wear_hat = true
+	Global.player_speed /= 1.25
 	$AnimatedSprite/hat_wearing.hide()
 	if hat_in_hand:
 		$AnimatedSprite.play("hold")
