@@ -9,7 +9,7 @@ var aggro = false
 var rng = RandomNumberGenerator.new()
 var health = 10
 var velocity = Vector2.ZERO
-var speed = 200
+var speed = 335
 var damage = 0.025
 var wander_speed = 1
 var rotate_amount : float
@@ -30,11 +30,6 @@ func _physics_process(delta):
 	
 	if Global.player_alive:
 		$name_tag.rect_rotation = -rotation
-		if not aggro:
-			velocity = Vector2(wander_speed , 0).rotated(rotation)
-			if rotate_amount > 0:
-				rotate_amount -= rotate_speed
-				global_rotation += deg2rad(rotate_speed)
 		if $attack_box.get_overlapping_bodies():
 			player.health -= damage
 			if can_hit:
@@ -73,9 +68,7 @@ func _on_Area2D_body_entered(body):
 	aggro = true
 
 
-func _on_Area2D_body_exited(body):
-	$AnimatedSprite.play("idle")
-	aggro = false
+
 
 
 func _on_hit_timer_timeout():
