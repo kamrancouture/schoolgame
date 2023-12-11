@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-
+var Asparagus_minion = preload("res://asparagus_minion.tscn")
 
 var can_hit = true
 var Death_Blood = preload("res://zombie_death_effect.tscn")
@@ -18,10 +18,9 @@ var rotate_speed = 3
 var rotating = false
 onready var navigation_agent = $NavigationAgent2D
 
-enum phase {
-	chasing,
-	spawing,
-}
+var can_spawn = true
+var chasing = true
+var spawning = false
 
 func _ready():
 	aggro = true
@@ -32,11 +31,6 @@ func _physics_process(delta):
 	
 	if Global.player_alive:
 		$name_teg.rect_rotation = -rotation
-		if not aggro:
-			velocity = Vector2(wander_speed , 0).rotated(rotation)
-			if rotate_amount > 0:
-				rotate_amount -= rotate_speed
-				global_rotation += deg2rad(rotate_speed)
 		if $attack_box.get_overlapping_bodies():
 			player.health -= damage
 			if can_hit:
@@ -51,14 +45,15 @@ func _physics_process(delta):
 			Global.students_alive -= 1
 			queue_free()
 		
-		if aggro:
+		if aggro and chasing:
 			navigation_agent.set_target_location(player.global_position)
 			velocity = global_position.direction_to(navigation_agent.get_next_location()) * speed
 			navigation_agent.set_velocity(velocity)
 			$AnimatedSprite.look_at(navigation_agent.get_next_location())
+			move_and_slide(velocity)
+		elif spawning and can_spawn:
+			$spawn_timer.start(rng.randf_range(0.15 , 1.5))
 		
-		
-		move_and_slide(velocity)
 
 
 func hit():
@@ -82,3 +77,19 @@ func _on_hit_timer_timeout():
 	can_hit = true
 
 
+
+
+func _on_spawn_timer_timeout():
+	print("hi")
+	can_spawn = true
+	var asparagus_minion = Asparagus_minion.instance()
+	asparagus_minion.get_node("AnimatedSprite").show()
+	asparagus_minion.aggro = true
+	asparagus_minion.global_position = global_position
+	get_parent().add_child(asparagus_minion)
+
+
+func _on_phase_timer_timeout():
+	if chasing:
+		chasing = false
+		spawning = true

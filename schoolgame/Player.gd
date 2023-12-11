@@ -74,7 +74,6 @@ func _ready():
 
 
 func _physics_process(delta):
-	print(Global.difficulty)
 	if Global.difficulty:
 		Global.player_health_for_insane_mode = health
 	
