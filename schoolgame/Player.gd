@@ -371,6 +371,7 @@ func _on_you_lose_timer_timeout():
 
 
 func _on_OP_time_timeout():
+	$AnimatedSprite/asparagus_gun/Area2D/CollisionShape2D.scale = Vector2.ONE
 	can_wear_hat = true
 	Global.player_speed /= 1.25
 	$AnimatedSprite/hat_wearing.hide()
