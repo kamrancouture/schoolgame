@@ -18,13 +18,13 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 39.2046
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 275.862
+radius = 1180.94
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 49.0102
+radius = 18.0278
 
 [node name="zombie" type="KinematicBody2D"]
 z_index = 1

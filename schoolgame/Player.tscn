@@ -321,7 +321,7 @@ visible = false
 position = Vector2( 55, 16 )
 frames = SubResource( 16 )
 animation = "asparagus_gun"
-frame = 1
+frame = 2
 playing = true
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite/asparagus_gun"]

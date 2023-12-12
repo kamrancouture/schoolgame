@@ -15,6 +15,7 @@ var wander_speed = 1
 var rotate_amount : float
 var rotate_speed = 3
 var rotating = false
+var set_sprite = false
 onready var navigation_agent = $NavigationAgent2D
 
 func _ready():
@@ -31,6 +32,7 @@ func _physics_process(delta):
 	if Global.player_alive:
 		$name_tag.rect_rotation = -rotation
 		if $attack_box.get_overlapping_bodies():
+			print("hi")
 			player.health -= damage
 			if can_hit:
 				can_hit = false
@@ -46,7 +48,18 @@ func _physics_process(delta):
 		
 		if aggro:
 			$name_tag.show()
-			$AnimatedSprite.play("default")
+			if rng.randf_range(0,100) < 15 and not set_sprite:
+				health += 7
+				damage += 0.5
+				set_sprite = true
+				$AnimatedSprite.play("big_mike")
+				$mikeCollisionShape2D.disabled = true
+				$attack_box/mikeCollisionShape2D.disabled = true
+			elif not set_sprite:
+				set_sprite = true
+				$AnimatedSprite.play("default")
+				$big_mikeCollisionShape2D2.disabled = true
+				$attack_box/big_mikeCollisionShape2D2.disabled = true
 			navigation_agent.set_target_location(player.global_position)
 			velocity = global_position.direction_to(navigation_agent.get_next_location()) * speed
 			navigation_agent.set_velocity(velocity)
