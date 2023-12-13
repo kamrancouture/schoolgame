@@ -32,7 +32,7 @@ var get_out_in_hand = false
 var grenade_speed = 100
 var asparagus_gun_in_hand = false
 var dog_in_hand = false
-var gun_in_hand = false
+var duck_hunt_gun_in_hand = false
 var hat_in_hand = false
 var wearing_hat = false
 var can_wear_hat = true
@@ -76,6 +76,11 @@ func _ready():
 
 
 func _physics_process(delta):
+	
+	
+	
+	
+	
 	if Global.difficulty:
 		Global.player_health_for_insane_mode = health
 	
@@ -165,7 +170,7 @@ func _physics_process(delta):
 					$dog_running.stream_paused = false
 					$walking.stream_paused = true
 					$walking_gun.stream_paused = true
-				elif gun_in_hand:
+				elif duck_hunt_gun_in_hand:
 					$dog_running.stream_paused = true
 					$walking.stream_paused = true
 					$walking_gun.stream_paused = false
@@ -196,14 +201,19 @@ func _physics_process(delta):
 				get_out_in_hand = false
 				Global.player_speed *= 1.5
 				
-			if hotbar.get_item_text(selected_item_index) == "gun" and not gun_in_hand:
+			if hotbar.get_item_text(selected_item_index) == "duck_hunt_gun" and not duck_hunt_gun_in_hand:
 				$CanvasLayer/Ammo.show()
-				gun_in_hand = true
+				duck_hunt_gun_in_hand = true
 				Global.player_speed /= 1.5
-				$AnimatedSprite.play("pistol")
-			elif not hotbar.get_item_text(selected_item_index) == "gun" and gun_in_hand:
+				$AnimatedSprite.play("hold")
+				$AnimatedSprite/duck_hunt_gun.show()
+			elif not hotbar.get_item_text(selected_item_index) == "duck_hunt_gun" and duck_hunt_gun_in_hand:
+				$AnimatedSprite/duck_hunt_gun.hide()
+				if reloading:
+					$reload_timer.stop()
+					reloading = false
 				$CanvasLayer/Ammo.hide()
-				gun_in_hand = false
+				duck_hunt_gun_in_hand = false
 				Global.player_speed *= 1.5
 				
 			if hotbar.get_item_text(selected_item_index) == "asparagus_gun" and not asparagus_gun_in_hand:
@@ -238,11 +248,11 @@ func _physics_process(delta):
 			if hotbar.get_item_icon(selected_item_index) == null:
 				$AnimatedSprite.play("idle")
 			
-			if Input.is_action_just_pressed("reload") and not reloading and not ammo == max_ammo and gun_in_hand:
+			if Input.is_action_just_pressed("reload") and not reloading and not ammo == max_ammo and duck_hunt_gun_in_hand:
 				reload()
 			
 			if Input.is_action_pressed("shoot"):
-				if can_shoot and gun_in_hand and ammo > 0 and not reloading:
+				if can_shoot and duck_hunt_gun_in_hand and ammo > 0 and not reloading:
 					shoot()
 				elif get_out_in_hand and can_shoot_grenade:
 					if not Global.OP_mode:
@@ -284,7 +294,7 @@ func _physics_process(delta):
 			
 
 			
-			elif ammo == 0 and gun_in_hand and not reloading:
+			elif ammo == 0 and duck_hunt_gun_in_hand and not reloading:
 				reload()
 
 
@@ -321,12 +331,8 @@ func shoot_grenade():
 func reload():
 	reloading = true
 	$reload.play()
-	$AnimatedSprite.play("reload")
-	yield($AnimatedSprite , "animation_finished")
-	reloading = false
-	if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "gun":
-		$AnimatedSprite.play("pistol")
-		ammo = max_ammo
+	$reload_timer.start()
+
 
 
 func _on_fire_rate_timeout():
@@ -458,3 +464,9 @@ func _on_Area2D_area_entered(area):
 func _on_Area2D_area_exited(area):
 	if not area.get_parent().aggro:
 		area.get_parent().get_node("asparagus_gun_detection").hide()
+
+
+func _on_reload_timer_timeout():
+	reloading = false
+	if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "duck_hunt_gun":
+		ammo = max_ammo

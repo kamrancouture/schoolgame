@@ -16,3 +16,7 @@ func _on_player_bullet_body_entered(body):
 		$hit_enemy.play()
 		yield($hit_enemy , "finished")
 	queue_free()
+
+
+func _on_Timer_timeout():
+	$CannonBall.show()
