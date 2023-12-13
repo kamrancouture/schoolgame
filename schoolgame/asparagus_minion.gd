@@ -18,11 +18,12 @@ var rotating = false
 onready var navigation_agent = $NavigationAgent2D
 
 func _ready():
-	$AnimatedSprite.play("idle")
+	if not aggro:
+		$AnimatedSprite.play("idle")
+		$AnimatedSprite.hide()
+		$name_teg.hide()
+		set_collision_layer_bit(1,false)
 	rng.randomize()
-	$AnimatedSprite.hide()
-	$name_teg.hide()
-	set_collision_layer_bit(1,false)
 func _physics_process(delta):
 	
 	if not Global.paper_pause:
