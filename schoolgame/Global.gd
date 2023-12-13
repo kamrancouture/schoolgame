@@ -53,9 +53,6 @@ func restart():
 
 
 func _physics_process(delta):
-	print(difficulty)
-	
-	
 	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master") , volume)
 	

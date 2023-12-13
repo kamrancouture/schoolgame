@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 var Asparagus_minion = preload("res://asparagus_minion.tscn")
-
 var can_hit = true
 var Death_Blood = preload("res://zombie_death_effect.tscn")
 var Blood_Effect = preload("res://zombie_blood_effect.tscn")
@@ -51,9 +50,11 @@ func _physics_process(delta):
 			navigation_agent.set_velocity(velocity)
 			$AnimatedSprite.look_at(navigation_agent.get_next_location())
 			move_and_slide(velocity)
-		elif spawning and can_spawn:
-			$spawn_timer.start(rng.randf_range(0.15 , 1.5))
-		
+		elif spawning:
+			if can_spawn:
+				can_spawn = false
+				$spawn_timer.start(rng.randf_range(0.15 , 1.5))
+			$AnimatedSprite.look_at(player.global_position)
 
 
 func hit():
@@ -80,16 +81,24 @@ func _on_hit_timer_timeout():
 
 
 func _on_spawn_timer_timeout():
-	print("hi")
 	can_spawn = true
 	var asparagus_minion = Asparagus_minion.instance()
+	asparagus_minion.player = player
 	asparagus_minion.get_node("AnimatedSprite").show()
+	asparagus_minion.get_node("AnimatedSprite").play("aggro")
 	asparagus_minion.aggro = true
 	asparagus_minion.global_position = global_position
-	get_parent().add_child(asparagus_minion)
-
+	get_parent().get_node("asparagus_minions").add_child(asparagus_minion)
 
 func _on_phase_timer_timeout():
 	if chasing:
+		$phase_timer.start()
+		$AnimatedSprite.play("idle")
 		chasing = false
 		spawning = true
+	elif spawning:
+		$phase_timer.start()
+		$AnimatedSprite.play("walking")
+		spawning = false
+		chasing = true
+		
