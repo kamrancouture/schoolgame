@@ -24,6 +24,7 @@ func _ready():
 	$name_tag.hide()
 
 func _physics_process(delta):
+	move_and_slide(velocity)
 	
 	if Global.world == "computer_class":
 		$AnimatedSprite.play("aggro")
@@ -48,9 +49,10 @@ func _physics_process(delta):
 		
 		if aggro:
 			$name_tag.show()
-			if rng.randf_range(0,100) < 15 and not set_sprite:
+			if rng.randf_range(0,100) < 30 and not set_sprite:
 				health += 7
 				damage += 0.5
+				speed += 65
 				set_sprite = true
 				$AnimatedSprite.play("big_mike")
 				$mikeCollisionShape2D.disabled = true
@@ -66,7 +68,7 @@ func _physics_process(delta):
 			$AnimatedSprite.look_at(navigation_agent.get_next_location())
 		
 		
-		move_and_slide(velocity)
+		
 
 
 func hit():
