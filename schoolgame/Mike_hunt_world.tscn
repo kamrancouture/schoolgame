@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Mike_hunt_world.gd" type="Script" id=1]
 [ext_resource path="res://mike_hunt.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/mike_hunt.png" type="Texture" id=5]
 [ext_resource path="res://Assets/mike_hunt_hide_ball.png" type="Texture" id=6]
 [ext_resource path="res://Assets/big_mike.png" type="Texture" id=7]
+[ext_resource path="res://boss_mike.tscn" type="PackedScene" id=8]
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -1297,7 +1298,7 @@ text = "mike"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="mikes/mike_hunt22"]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="mike_hunt_tile" type="TileMap" parent="."]
 z_index = -15
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
@@ -1332,6 +1333,9 @@ shape = SubResource( 10 )
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 2828, 264 )
 shape = SubResource( 9 )
+
+[node name="boss_mike" parent="." instance=ExtResource( 8 )]
+visible = false
 
 [connection signal="body_entered" from="mikes/mike_hunt/Area2D" to="mikes/mike_hunt" method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="mikes/mike_hunt/hit_timer" to="mikes/mike_hunt" method="_on_hit_timer_timeout"]
