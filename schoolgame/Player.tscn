@@ -322,7 +322,7 @@ visible = false
 position = Vector2( 55, 16 )
 frames = SubResource( 16 )
 animation = "asparagus_gun"
-frame = 1
+frame = 2
 playing = true
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite/asparagus_gun"]
@@ -335,6 +335,7 @@ shape = SubResource( 17 )
 disabled = true
 
 [node name="duck_hunt_gun" type="Sprite" parent="AnimatedSprite"]
+visible = false
 position = Vector2( 26, 13 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 20 )

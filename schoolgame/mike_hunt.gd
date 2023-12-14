@@ -27,8 +27,6 @@ func _physics_process(delta):
 	if $AnimatedSprite.animation == "hide":
 		$mikeCollisionShape2D.disabled = true
 		$big_mikeCollisionShape2D2.disabled = true
-	if health <= 0:
-		Global.mikes_left += 1
 	move_and_slide(velocity)
 	
 	if Global.world == "computer_class":

@@ -26,6 +26,6 @@ func _physics_process(delta):
 				else:
 					hotbar_number_checking += 1
 			player.get_node("CanvasLayer/Hotbar").set_item_icon(hotbar_number_checking - 1 , gun_texture)
-			player.get_node("CanvasLayer/Hotbar").set_item_text(hotbar_number_checking - 1 , "gun")
+			player.get_node("CanvasLayer/Hotbar").set_item_text(hotbar_number_checking - 1 , "duck_hunt_gun")
 	else:
 		$Press_E.hide()
