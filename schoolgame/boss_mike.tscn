@@ -3,10 +3,10 @@
 [ext_resource path="res://boss_mike.gd" type="Script" id=1]
 [ext_resource path="res://Assets/big_mike.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=11]
 radius = 236.019
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CircleShape2D" id=12]
 radius = 248.244
 
 [node name="boss_mike" type="KinematicBody2D"]
@@ -21,27 +21,26 @@ scale = Vector2( 20, 20 )
 texture = ExtResource( 2 )
 
 [node name="big_mikeCollisionShape2D2" type="CollisionShape2D" parent="."]
-shape = SubResource( 6 )
-
-[node name="big_mikeCollisionShape2D3" type="CollisionShape2D" parent="."]
-shape = SubResource( 6 )
+shape = SubResource( 11 )
+disabled = true
 
 [node name="attack_box" type="Area2D" parent="."]
 collision_layer = 0
 monitorable = false
 
 [node name="big_mikeCollisionShape2D2" type="CollisionShape2D" parent="attack_box"]
-shape = SubResource( 7 )
+shape = SubResource( 12 )
+disabled = true
 
 [node name="hit_timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="name_tag" type="Label" parent="."]
-margin_left = -16.0
-margin_top = -52.0
-margin_right = 16.0
-margin_bottom = -38.0
-text = "mike"
+margin_left = -37.0
+margin_top = -8.0
+margin_right = 29.0
+margin_bottom = 6.0
+text = "boss mike"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
