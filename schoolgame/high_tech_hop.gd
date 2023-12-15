@@ -18,5 +18,6 @@ func _physics_process(delta):
 func _on_Area2D_body_entered(body):
 	Global.numbers_of_death_high_hop += 1
 	Global.player_hotbar = player.hotbar.items
+	Global.world = "computer_class"
 	get_tree().change_scene("res://high_tech_hop.tscn")
 	

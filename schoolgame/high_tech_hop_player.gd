@@ -97,7 +97,7 @@ func _physics_process(delta):
 	
 	
 	if is_on_floor():
-		velocity.x = Input.get_axis("a_click" , "d_click") * speed
+		velocity.x = Input.get_axis("move_left" , "move_right") * speed
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y -= jumpforce
@@ -119,7 +119,7 @@ func _physics_process(delta):
 		$CanvasLayer/ammo.hide()
 
 	
-	if hotbar.get_item_text(selected_item_index) == "gun":
+	if hotbar.get_item_text(selected_item_index) == "duck_hunt_gun":
 		$CanvasLayer/ammo.show()
 		gun_in_hand = true
 		gun.selected = true

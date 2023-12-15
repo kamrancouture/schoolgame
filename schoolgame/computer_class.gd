@@ -24,15 +24,21 @@ var wave_going = false
 var wave = 1
 
 func _ready():
+	
+	if Global.visited_high_hop:
+	
 	player.get_node("CanvasLayer/new_world_animation/world_label").text = "Computer Class"
 	player.get_node("CanvasLayer/new_world_animation/AnimationPlayer").play("fade_out_label")
 	
 func _physics_process(delta):
-	if wave_going and Global.students_alive == 0:
-		wave_going = false
-		wave += 1
-		Global.XP += 10 * wave
-		$wave_timer.start()
+	if not Global.visited_high_hop:
+		if wave_going and Global.students_alive == 0:
+			wave_going = false
+			wave += 1
+			Global.XP += 10 * wave
+			$wave_timer.start()
+	else:
+		pass
 
 
 func _on_wave_timer_timeout():
