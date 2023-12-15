@@ -8,6 +8,7 @@ var first_item_selected_info = [
 	"item",
 	null,
 ]
+var grapple_hook_in_hand = false
 var paper_on_screen = false
 var asparagus_image = null
 var paper = null
@@ -19,6 +20,7 @@ var Death_Effect = preload("res://player_death.tscn")
 var Blood_Effect = preload("res://player_blood_effect.tscn")
 var reloading = false
 var hat_equips = 3
+var grapple_hook_speed = 500
 var rocket_launcher_ammo = 1
 var ammo = 30
 var max_ammo = 30
@@ -76,9 +78,6 @@ func _ready():
 
 
 func _physics_process(delta):
-	
-	
-	
 	
 	
 	if Global.difficulty:
@@ -162,7 +161,6 @@ func _physics_process(delta):
 			$CanvasLayer/Ammo.text = "Ammo: " + String(ammo)
 			velocity = Input.get_vector("a_click" , "d_click" , "w_click" , "s_click") * Global.player_speed
 			
-			velocity = move_and_slide(velocity)
 			$AnimatedSprite.look_at(get_global_mouse_position())
 			
 			if not velocity == Vector2.ZERO:
@@ -215,7 +213,11 @@ func _physics_process(delta):
 				$CanvasLayer/Ammo.hide()
 				duck_hunt_gun_in_hand = false
 				Global.player_speed *= 1.5
-				
+			if hotbar.get_item_text(selected_item_index) == "grapple_hook" and not grapple_hook_in_hand:
+				$AnimatedSprite.play("pistol")
+				grapple_hook_in_hand = true
+			elif not hotbar.get_item_text(selected_item_index) == "grapple_hook" and grapple_hook_in_hand:
+				grapple_hook_in_hand = false
 			if hotbar.get_item_text(selected_item_index) == "asparagus_gun" and not asparagus_gun_in_hand:
 				if Global.OP_mode:
 					$AnimatedSprite/asparagus_gun/Area2D/CollisionShape2D.scale *= 100
@@ -268,8 +270,8 @@ func _physics_process(delta):
 					$AnimatedSprite/hat_wearing.show()
 					$AnimatedSprite.play("idle")
 					Global.OP_mode = true
-					$OP_time.start()
-					
+				elif grapple_hook_in_hand:
+					velocity -= ((global_position - get_global_mouse_position()).normalized()) * grapple_hook_speed
 			if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "dog" and not dog_in_hand:
 				$AnimatedSprite. play("idle")
 				$AnimatedSprite/dog.show()
@@ -296,7 +298,9 @@ func _physics_process(delta):
 			
 			elif ammo == 0 and duck_hunt_gun_in_hand and not reloading:
 				reload()
-
+			
+			
+		velocity = move_and_slide(velocity)
 
 func hit():
 	var blood_effect = Blood_Effect.instance()

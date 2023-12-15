@@ -28,7 +28,7 @@ var player_health_for_insane_mode = 30
 var difficulty = "normal"
 var students_alive = 0
 var volume = -32.5
-var player_items_cheat = ["duck_hunt_gun", duck_hunt_gun, false, "dog", dog, false, "asparagus_gun", asparagus_gun, false, "get_out", get_out, false, "hat", hat, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false]
+var player_items_cheat = ["duck_hunt_gun", duck_hunt_gun, false, "dog", dog, false, "asparagus_gun", asparagus_gun, false, "get_out", get_out, false, "hat", hat, false, "grapple_hook", grapple_hook, false, "item", null, false, "item", null, false, "item", null, false]
 
 var OP_mode = false
 var numbers_of_death_high_hop = 0
