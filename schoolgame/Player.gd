@@ -31,6 +31,8 @@ var riding_dog = false
 var dog_was_in_op_mode = false
 var can_shoot_grenade = true
 var get_out_in_hand = false
+var grappling = false
+var mouse_position = Vector2.ZERO
 var grenade_speed = 100
 var asparagus_gun_in_hand = false
 var dog_in_hand = false
@@ -78,7 +80,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	
+	print(grapple_hook_in_hand)
 	
 	if Global.difficulty:
 		Global.player_health_for_insane_mode = health
@@ -218,6 +220,13 @@ func _physics_process(delta):
 				grapple_hook_in_hand = true
 			elif not hotbar.get_item_text(selected_item_index) == "grapple_hook" and grapple_hook_in_hand:
 				grapple_hook_in_hand = false
+				grappling = false
+				mouse_position = Vector2.ZERO
+			if grappling and grapple_hook_in_hand:
+				velocity -= ((global_position - mouse_position).normalized() * grapple_hook_speed)
+			if global_position.distance_to(mouse_position) <= 10:
+				grappling = false
+			
 			if hotbar.get_item_text(selected_item_index) == "asparagus_gun" and not asparagus_gun_in_hand:
 				if Global.OP_mode:
 					$AnimatedSprite/asparagus_gun/Area2D/CollisionShape2D.scale *= 100
@@ -270,8 +279,14 @@ func _physics_process(delta):
 					$AnimatedSprite/hat_wearing.show()
 					$AnimatedSprite.play("idle")
 					Global.OP_mode = true
-				elif grapple_hook_in_hand:
-					velocity -= ((global_position - get_global_mouse_position()).normalized()) * grapple_hook_speed
+			if Input.is_action_just_pressed("shoot"):
+				if not grappling:
+					mouse_position = get_global_mouse_position()
+					grappling = true
+				
+					
+			
+			
 			if $CanvasLayer/Hotbar.get_item_text(selected_item_index) == "dog" and not dog_in_hand:
 				$AnimatedSprite. play("idle")
 				$AnimatedSprite/dog.show()
