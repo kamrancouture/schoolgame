@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/I_Block.png-ad7b00740bc96dab8a4a70cf960586a3.stex"
+path="res://.import/I-Block.png-2544e47a4ed6f583b4bc6653d43088c4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tetris/pieces/I_Block.png"
-dest_files=[ "res://.import/I_Block.png-ad7b00740bc96dab8a4a70cf960586a3.stex" ]
+source_file="res://Assets/tetris/pieces/I-Block.png"
+dest_files=[ "res://.import/I-Block.png-2544e47a4ed6f583b4bc6653d43088c4.stex" ]
 
 [params]
 
