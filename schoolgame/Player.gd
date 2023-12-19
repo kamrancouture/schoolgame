@@ -20,7 +20,9 @@ var Death_Effect = preload("res://player_death.tscn")
 var Blood_Effect = preload("res://player_blood_effect.tscn")
 var reloading = false
 var hat_equips = 3
-var grapple_hook_speed = 500
+var grapple_hook_speed = 0
+var original_grapple_hook_speed = 10
+var max_grapple_speed = 700
 var rocket_launcher_ammo = 1
 var ammo = 30
 var max_ammo = 30
@@ -223,9 +225,16 @@ func _physics_process(delta):
 				grappling = false
 				mouse_position = Vector2.ZERO
 			if grappling and grapple_hook_in_hand:
+				$grapple_hook_line.global_position = Vector2.ZERO
+				$grapple_hook_line.clear_points()
+				$grapple_hook_line.add_point($AnimatedSprite/grapple_spawn.global_position)
+				$grapple_hook_line.add_point(mouse_position)
+				grapple_hook_speed = min((global_position.distance_to(mouse_position) / 3) * original_grapple_hook_speed , max_grapple_speed)
 				velocity -= ((global_position - mouse_position).normalized() * grapple_hook_speed)
-			if global_position.distance_to(mouse_position) <= 10:
+			if global_position.distance_to(mouse_position) <= 10 or Input.is_action_just_released("shoot"):
+				$grapple_hook_line.clear_points()
 				grappling = false
+				mouse_position = Vector2.ZERO
 			
 			if hotbar.get_item_text(selected_item_index) == "asparagus_gun" and not asparagus_gun_in_hand:
 				if Global.OP_mode:
@@ -280,7 +289,7 @@ func _physics_process(delta):
 					$AnimatedSprite.play("idle")
 					Global.OP_mode = true
 			if Input.is_action_just_pressed("shoot"):
-				if not grappling:
+				if not grappling and grapple_hook_in_hand:
 					mouse_position = get_global_mouse_position()
 					grappling = true
 				
