@@ -246,7 +246,7 @@ position = Vector2( 0, -1 )
 shape = SubResource( 1 )
 
 [node name="high_tech_hop_gun" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1, -11 )
+position = Vector2( 1, -12 )
 
 [node name="high_tech_hop_get_out" parent="." instance=ExtResource( 6 )]
 visible = false
