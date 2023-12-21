@@ -3,7 +3,6 @@ extends Node2D
 onready var player = get_node("high_tech_hop_player")
 
 func _ready():
-	
 	if not Global.visited_high_hop:
 		Global.visited_high_hop = true
 		player.get_node("CanvasLayer/new_world_animation/world_label").text = "high tech hop"

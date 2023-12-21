@@ -71,3 +71,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("f6"):
 		get_tree().change_scene("res://Mike_hunt_world.tscn")
 		world = "mike_hunt_world"
+	if Input.is_action_just_pressed("f7"):
+		get_tree().change_scene("res://Tetris_world.tscn")
+		world = "tetris_world"

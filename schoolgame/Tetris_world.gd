@@ -24,5 +24,5 @@ func _physics_process(delta):
 	pass
 
 
-func _on_can_move_timeout():
-	$piece.can_move = true
+
+

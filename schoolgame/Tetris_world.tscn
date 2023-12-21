@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Tetris_world.gd" type="Script" id=1]
-[ext_resource path="res://Assets/tetris/pieces/O_Block.png" type="Texture" id=2]
+[ext_resource path="res://Assets/tetris/pieces/I-Block.png" type="Texture" id=2]
 [ext_resource path="res://piece.gd" type="Script" id=3]
 
 [node name="Tetris_world" type="Node2D"]
@@ -17,12 +17,19 @@ margin_right = 632.0
 margin_bottom = 576.0
 
 [node name="piece" type="Sprite" parent="."]
-position = Vector2( 344, 32 )
+position = Vector2( 376, 16 )
 texture = ExtResource( 2 )
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="can_move" type="Timer" parent="."]
 wait_time = 0.25
 one_shot = true
 
-[connection signal="timeout" from="can_move" to="." method="_on_can_move_timeout"]
+[node name="move_down" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="can_move" to="piece" method="_on_can_move_timeout"]
+[connection signal="timeout" from="move_down" to="piece" method="_on_move_down_timeout"]

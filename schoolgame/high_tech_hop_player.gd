@@ -97,7 +97,40 @@ func _physics_process(delta):
 	
 	
 	if is_on_floor():
-		velocity.x = Input.get_axis("move_left" , "move_right") * speed
+		if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
+			if dog_selected:
+				$player_sprites.position = Vector2(1,-10)
+				$player_sprites.play("idle")
+				$AnimationPlayer.play("dog_moving")
+				
+			else:
+				$AnimationPlayer.play("RESET")
+				$player_sprites.position = Vector2(1,0)
+				if gun_in_hand or get_out_in_hand:
+					$player_sprites.play("gun_walking")
+				else:
+					$player_sprites.play("walking")
+			velocity.x = Input.get_axis("move_left" , "move_right") * speed
+		
+		elif dog_selected:
+			$AnimationPlayer.play("RESET")
+		else:
+			$AnimationPlayer.play("RESET")
+			$player_sprites.position = Vector2(1,0)
+			if gun_in_hand or get_out_in_hand:
+				$player_sprites.play("gun_idle")
+			else:
+				$player_sprites.play("idle")
+	else:
+		if dog_selected:
+			$AnimationPlayer.play("RESET")
+		else:
+			$AnimationPlayer.play("RESET")
+			$player_sprites.position = Vector2(1,0)
+			if gun_in_hand or get_out_in_hand:
+				$player_sprites.play("gun_idle")
+			else:
+				$player_sprites.play("idle")
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y -= jumpforce
@@ -107,13 +140,15 @@ func _physics_process(delta):
 	get_out.global_position = $gun_position.global_position
 	gun.global_position = $gun_position.global_position
 	velocity += shot_power * shot_direction
-	print(shot_power)
 	velocity += (((500 - global_position.distance_to(grenade_shot_position)) + abs(500 - global_position.distance_to(grenade_shot_position))) * (global_position - grenade_shot_position).normalized()) * shot_power
 	shot_power = 0
 	shot_direction = Vector2.ZERO
 	grenade_shot_position = Vector2(10000000,10000000)
 	
 	velocity = move_and_slide(velocity , Vector2.UP)
+	
+	if is_on_floor():
+		velocity.x = lerp(velocity.x , 0 , 0.2)
 	
 	if hotbar.get_item_text(selected_item_index) == "item":
 		$CanvasLayer/ammo.hide()
@@ -146,27 +181,6 @@ func _physics_process(delta):
 		jumpforce /= 3
 	
 	
-	if dog_selected:
-		$player_sprites.position = Vector2(1,-10)
-		$player_sprites.play("idle")
-		if not velocity == Vector2.ZERO and is_on_floor():
-			$player_sprites.play("idle")
-			$AnimationPlayer.play("dog_moving")
-		else:
-			$AnimationPlayer.play("RESET")
-	
-	else:
-		$AnimationPlayer.play("RESET")
-		$player_sprites.position = Vector2(1,0)
-		if gun_in_hand or get_out_in_hand:
-			if not velocity == Vector2.ZERO and is_on_floor():
-				$player_sprites.play("gun_walking")
-			else:
-				$player_sprites.play("gun_idle")
-		elif not velocity == Vector2.ZERO and is_on_floor():
-			$player_sprites.play("walking")
-		else:
-			$player_sprites.play("idle")
 
 
 func _on_hotbar_item_selected(index):
