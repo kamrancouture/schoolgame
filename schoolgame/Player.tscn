@@ -21,7 +21,7 @@
 [ext_resource path="res://Assets/asparagus_gun.png" type="Texture" id=19]
 [ext_resource path="res://Assets/duck_hunt_gun.png" type="Texture" id=20]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=24]
 animations = [ {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
@@ -55,19 +55,19 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 728.75, 25.5 )
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=25]
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0.784314, 0, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0, 0, 0, 0.196078 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=28]
 size = 64
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=29]
 size = 32
 font_data = ExtResource( 5 )
 
@@ -79,7 +79,7 @@ border_width_bottom = 3
 border_color = Color( 1, 1, 1, 1 )
 border_blend = true
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=30]
 bg_color = Color( 0.333333, 0.333333, 0.333333, 0.333333 )
 border_color = Color( 1, 1, 1, 1 )
 corner_radius_top_left = 16
@@ -282,7 +282,7 @@ script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -1 )
-frames = SubResource( 1 )
+frames = SubResource( 24 )
 animation = "pistol"
 
 [node name="bullet_spawn" type="Position2D" parent="AnimatedSprite"]
@@ -344,7 +344,7 @@ texture = ExtResource( 20 )
 position = Vector2( 20, 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 25 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -361,8 +361,8 @@ margin_left = -30.0
 margin_top = 22.0
 margin_right = 30.0
 margin_bottom = 27.0
-custom_styles/fg = SubResource( 4 )
-custom_styles/bg = SubResource( 5 )
+custom_styles/fg = SubResource( 26 )
+custom_styles/bg = SubResource( 27 )
 value = 50.0
 percent_visible = false
 
@@ -376,7 +376,7 @@ margin_left = -284.0
 margin_top = 27.0
 margin_right = 99.0
 margin_bottom = 116.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 28 )
 text = "Ammo: 30"
 
 [node name="Hotbar" type="ItemList" parent="CanvasLayer"]
@@ -386,9 +386,9 @@ margin_right = 994.0
 margin_bottom = 600.0
 custom_constants/vseparation = 25
 custom_constants/line_separation = 0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 29 )
 custom_styles/selected = SubResource( 8 )
-custom_styles/bg = SubResource( 7 )
+custom_styles/bg = SubResource( 30 )
 items = [ "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false, "item", null, false ]
 allow_reselect = true
 auto_height = true

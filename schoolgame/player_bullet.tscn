@@ -31,5 +31,9 @@ wait_time = 0.065
 one_shot = true
 autostart = true
 
+[node name="op_mode_timer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="body_entered" from="." to="." method="_on_player_bullet_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="op_mode_timer" to="." method="_on_op_mode_timer_timeout"]

@@ -28,6 +28,6 @@ margin_left = 390.0
 margin_top = 272.0
 margin_right = 845.0
 margin_bottom = 467.0
-text = "KAMRAN"
+text = "MASON"
 
 [connection signal="button_down" from="back_to_mine_screen" to="." method="_on_back_to_mine_screen_button_down"]

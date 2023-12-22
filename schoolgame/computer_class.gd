@@ -26,7 +26,7 @@ var wave = 1
 func _ready():
 	
 	if Global.visited_high_hop:
-	
+		pass
 	player.get_node("CanvasLayer/new_world_animation/world_label").text = "Computer Class"
 	player.get_node("CanvasLayer/new_world_animation/AnimationPlayer").play("fade_out_label")
 	
