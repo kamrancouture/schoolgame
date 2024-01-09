@@ -31,5 +31,7 @@ one_shot = true
 [node name="move_down" type="Timer" parent="."]
 autostart = true
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
 [connection signal="timeout" from="can_move" to="piece" method="_on_can_move_timeout"]
 [connection signal="timeout" from="move_down" to="piece" method="_on_move_down_timeout"]

@@ -30,9 +30,9 @@ func _physics_process(delta):
 func _on_move_down_timeout():
 	global_position.y += 32
 	if Input.is_action_pressed("tetris_push_down"):
-		get_parent().get_node("move_down").wait_time = 0.1
+		get_parent().get_node("move_down").start(0.1)
 	else:
-		get_parent().get_node("move_down").wait_time = .5
+		get_parent().get_node("move_down").start(0.5)
 	
 
 
