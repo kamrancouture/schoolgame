@@ -23,6 +23,8 @@ var hat_equips = 3
 var grapple_hook_speed = 0
 var original_grapple_hook_speed = 10
 var max_grapple_speed = 700
+var op_mode_original_grapple_speed = 50
+var op_mode_grapple_max_speed = 2000
 var rocket_launcher_ammo = 1
 var ammo = 30
 var max_ammo = 30
@@ -82,7 +84,6 @@ func _ready():
 
 
 func _physics_process(delta):
-	print(grapple_hook_in_hand)
 	
 	if Global.difficulty:
 		Global.player_health_for_insane_mode = health
@@ -229,8 +230,15 @@ func _physics_process(delta):
 				$grapple_hook_line.clear_points()
 				$grapple_hook_line.add_point($AnimatedSprite/grapple_spawn.global_position)
 				$grapple_hook_line.add_point(mouse_position)
-				grapple_hook_speed = min((global_position.distance_to(mouse_position) / 3) * original_grapple_hook_speed , max_grapple_speed)
-				velocity -= ((global_position - mouse_position).normalized() * grapple_hook_speed)
+				if not Global.OP_mode:
+					grapple_hook_speed = min((global_position.distance_to(mouse_position) / 3) * original_grapple_hook_speed , max_grapple_speed)
+					velocity -= ((global_position - mouse_position).normalized() * grapple_hook_speed)
+				if Global.OP_mode:
+					grapple_hook_speed = min((global_position.distance_to(mouse_position) / 3) * op_mode_original_grapple_speed , op_mode_grapple_max_speed)
+					if global_position.distance_to(mouse_position) < grapple_hook_speed * delta:
+						global_position = mouse_position
+					else:
+						velocity -= ((global_position - mouse_position).normalized() * grapple_hook_speed)
 			if global_position.distance_to(mouse_position) <= 10 or Input.is_action_just_released("shoot"):
 				$grapple_hook_line.clear_points()
 				grappling = false
