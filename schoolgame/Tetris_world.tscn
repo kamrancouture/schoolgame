@@ -1,17 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Tetris_world.gd" type="Script" id=1]
-[ext_resource path="res://Assets/tetris/pieces/O_Block.png" type="Texture" id=2]
-[ext_resource path="res://piece.gd" type="Script" id=3]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 0.5, 32 )
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 0.5, 32 )
-
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 32, 0.5 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 160, 48 )
@@ -33,38 +22,6 @@ anchor_bottom = 0.5
 margin_left = 312.0
 margin_right = 632.0
 margin_bottom = 576.0
-
-[node name="piece" type="Sprite" parent="."]
-position = Vector2( 408, 32 )
-texture = ExtResource( 2 )
-script = ExtResource( 3 )
-
-[node name="left_wall_detector" type="Area2D" parent="piece"]
-collision_layer = 0
-collision_mask = 256
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="piece/left_wall_detector"]
-position = Vector2( -32.5, 0 )
-shape = SubResource( 2 )
-
-[node name="right_wall_detector" type="Area2D" parent="piece"]
-collision_layer = 0
-collision_mask = 256
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="piece/right_wall_detector"]
-position = Vector2( 32.5, 0 )
-shape = SubResource( 6 )
-
-[node name="bottom_detector" type="Area2D" parent="piece"]
-collision_layer = 0
-collision_mask = 128
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="piece/bottom_detector"]
-position = Vector2( 0, 32.5 )
-shape = SubResource( 7 )
 
 [node name="can_move" type="Timer" parent="."]
 wait_time = 0.1
@@ -94,12 +51,3 @@ shape = SubResource( 4 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="tetris_walls"]
 position = Vector2( 236, 288 )
 shape = SubResource( 5 )
-
-[connection signal="area_entered" from="piece/left_wall_detector" to="piece" method="_on_left_wall_detector_area_entered"]
-[connection signal="area_exited" from="piece/left_wall_detector" to="piece" method="_on_left_wall_detector_area_exited"]
-[connection signal="area_entered" from="piece/right_wall_detector" to="piece" method="_on_right_wall_detector_area_entered"]
-[connection signal="area_exited" from="piece/right_wall_detector" to="piece" method="_on_right_wall_detector_area_exited"]
-[connection signal="area_entered" from="piece/bottom_detector" to="piece" method="_on_bottom_detector_area_entered"]
-[connection signal="area_exited" from="piece/bottom_detector" to="piece" method="_on_bottom_detector_area_exited"]
-[connection signal="timeout" from="can_move" to="piece" method="_on_can_move_timeout"]
-[connection signal="timeout" from="move_down" to="piece" method="_on_move_down_timeout"]
