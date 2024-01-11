@@ -1,13 +1,10 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://Mike_hunt_world.gd" type="Script" id=1]
-[ext_resource path="res://mike_hunt.gd" type="Script" id=2]
+[ext_resource path="res://mike_hunt.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/asparagus_gun (2).png" type="Texture" id=3]
 [ext_resource path="res://Assets/mike_hunt_map_tile.png" type="Texture" id=4]
-[ext_resource path="res://Assets/mike_hunt.png" type="Texture" id=5]
-[ext_resource path="res://Assets/mike_hunt_hide_ball.png" type="Texture" id=6]
-[ext_resource path="res://Assets/big_mike.png" type="Texture" id=7]
-[ext_resource path="res://boss_mike.gd" type="Script" id=8]
+[ext_resource path="res://boss_mike.tscn" type="PackedScene" id=5]
 [ext_resource path="res://grapple_hook.gd" type="Script" id=9]
 [ext_resource path="res://Azalea Font/Azalea-BF64f6fe9c7c4b6.otf" type="DynamicFontData" id=10]
 [ext_resource path="res://Assets/kenney_input-prompts-pixel-16/Tiles/tile_0087.png" type="Texture" id=11]
@@ -30,39 +27,6 @@
 [ext_resource path="res://sound_effects/gun_fire.wav" type="AudioStream" id=28]
 [ext_resource path="res://Player.gd" type="Script" id=29]
 [ext_resource path="res://hypersuper/HyperSuperItalic.ttf" type="DynamicFontData" id=30]
-
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "big_mike",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "hide",
-"speed": 5.0
-} ]
-
-[sub_resource type="CircleShape2D" id=2]
-radius = 13.0
-
-[sub_resource type="CircleShape2D" id=6]
-radius = 60.0083
-
-[sub_resource type="CircleShape2D" id=3]
-radius = 313.409
-
-[sub_resource type="CircleShape2D" id=4]
-radius = 74.0
-
-[sub_resource type="CircleShape2D" id=7]
-radius = 63.0
 
 [sub_resource type="TileSet" id=1]
 0/name = "mike_hunt_map_tile.png 0"
@@ -345,12 +309,6 @@ extents = Vector2( 554.25, 2460.59 )
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 5487.5, 969.979 )
 
-[sub_resource type="RectangleShape2D" id=34]
-extents = Vector2( 190.5, 151 )
-
-[sub_resource type="RectangleShape2D" id=35]
-extents = Vector2( 194, 152.5 )
-
 [sub_resource type="CircleShape2D" id=36]
 radius = 80.0062
 
@@ -362,107 +320,11 @@ script = ExtResource( 1 )
 
 [node name="mikes" type="Node2D" parent="."]
 
-[node name="mike_hunt64" type="KinematicBody2D" parent="mikes"]
-position = Vector2( -1825, -1023 )
-z_index = 1
-collision_layer = 2
-collision_mask = 11
-script = ExtResource( 2 )
+[node name="mike_hunt" parent="mikes" instance=ExtResource( 2 )]
+position = Vector2( -728, 0 )
 __meta__ = {
 "_edit_group_": true
 }
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="mikes/mike_hunt64"]
-position = Vector2( 4, 3 )
-scale = Vector2( 5, 5 )
-frames = SubResource( 5 )
-
-[node name="mikeCollisionShape2D" type="CollisionShape2D" parent="mikes/mike_hunt64"]
-shape = SubResource( 2 )
-
-[node name="big_mikeCollisionShape2D2" type="CollisionShape2D" parent="mikes/mike_hunt64"]
-shape = SubResource( 6 )
-
-[node name="Area2D" type="Area2D" parent="mikes/mike_hunt64"]
-collision_layer = 0
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="mikes/mike_hunt64/Area2D"]
-shape = SubResource( 3 )
-
-[node name="attack_box" type="Area2D" parent="mikes/mike_hunt64"]
-collision_layer = 0
-monitorable = false
-
-[node name="mikeCollisionShape2D" type="CollisionShape2D" parent="mikes/mike_hunt64/attack_box"]
-scale = Vector2( 0.2, 0.2 )
-shape = SubResource( 4 )
-
-[node name="big_mikeCollisionShape2D2" type="CollisionShape2D" parent="mikes/mike_hunt64/attack_box"]
-shape = SubResource( 7 )
-
-[node name="hit_timer" type="Timer" parent="mikes/mike_hunt64"]
-one_shot = true
-
-[node name="name_tag" type="Label" parent="mikes/mike_hunt64"]
-margin_left = -16.0
-margin_top = -52.0
-margin_right = 16.0
-margin_bottom = -38.0
-text = "mike"
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="mikes/mike_hunt64"]
-
-[node name="mike_hunt22" type="KinematicBody2D" parent="mikes"]
-position = Vector2( -628, -128 )
-z_index = 1
-collision_layer = 2
-collision_mask = 11
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="mikes/mike_hunt22"]
-position = Vector2( 4, 3 )
-scale = Vector2( 5, 5 )
-frames = SubResource( 5 )
-
-[node name="mikeCollisionShape2D" type="CollisionShape2D" parent="mikes/mike_hunt22"]
-shape = SubResource( 2 )
-
-[node name="big_mikeCollisionShape2D2" type="CollisionShape2D" parent="mikes/mike_hunt22"]
-shape = SubResource( 6 )
-
-[node name="Area2D" type="Area2D" parent="mikes/mike_hunt22"]
-collision_layer = 0
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="mikes/mike_hunt22/Area2D"]
-shape = SubResource( 3 )
-
-[node name="attack_box" type="Area2D" parent="mikes/mike_hunt22"]
-collision_layer = 0
-monitorable = false
-
-[node name="mikeCollisionShape2D" type="CollisionShape2D" parent="mikes/mike_hunt22/attack_box"]
-scale = Vector2( 0.2, 0.2 )
-shape = SubResource( 4 )
-
-[node name="big_mikeCollisionShape2D2" type="CollisionShape2D" parent="mikes/mike_hunt22/attack_box"]
-shape = SubResource( 7 )
-
-[node name="hit_timer" type="Timer" parent="mikes/mike_hunt22"]
-one_shot = true
-
-[node name="name_tag" type="Label" parent="mikes/mike_hunt22"]
-margin_left = -16.0
-margin_top = -52.0
-margin_right = 16.0
-margin_bottom = -38.0
-text = "mike"
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="mikes/mike_hunt22"]
 
 [node name="mike_hunt_tile" type="TileMap" parent="."]
 z_index = -15
@@ -525,7 +387,6 @@ visible = false
 position = Vector2( 55, 16 )
 frames = SubResource( 16 )
 animation = "asparagus_gun"
-frame = 1
 playing = true
 
 [node name="Area2D" type="Area2D" parent="Player/AnimatedSprite/asparagus_gun"]
@@ -756,42 +617,6 @@ shape = SubResource( 33 )
 position = Vector2( 2828, 264 )
 shape = SubResource( 32 )
 
-[node name="boss_mike" type="KinematicBody2D" parent="."]
-visible = false
-z_index = 1
-collision_layer = 2
-collision_mask = 11
-script = ExtResource( 8 )
-
-[node name="Sprite" type="Sprite" parent="boss_mike"]
-position = Vector2( 8, 17 )
-scale = Vector2( 20, 20 )
-texture = ExtResource( 7 )
-
-[node name="big_mikeCollisionShape2D2" type="CollisionShape2D" parent="boss_mike"]
-position = Vector2( -1.5, -13 )
-shape = SubResource( 34 )
-
-[node name="attack_box" type="Area2D" parent="boss_mike"]
-collision_layer = 0
-monitorable = false
-
-[node name="big_mikeCollisionShape2D2" type="CollisionShape2D" parent="boss_mike/attack_box"]
-position = Vector2( -1, -13.5 )
-shape = SubResource( 35 )
-
-[node name="hit_timer" type="Timer" parent="boss_mike"]
-one_shot = true
-
-[node name="name_tag" type="Label" parent="boss_mike"]
-margin_left = -16.0
-margin_top = -52.0
-margin_right = 16.0
-margin_bottom = -38.0
-text = "mike"
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="boss_mike"]
-
 [node name="grapple_hook" type="Area2D" parent="."]
 position = Vector2( -1336, -400 )
 z_index = 3
@@ -821,10 +646,12 @@ margin_bottom = -6.0
 custom_fonts/font = SubResource( 37 )
 text = "grapple hook"
 
-[connection signal="body_entered" from="mikes/mike_hunt64/Area2D" to="mikes/mike_hunt64" method="_on_Area2D_body_entered"]
-[connection signal="timeout" from="mikes/mike_hunt64/hit_timer" to="mikes/mike_hunt64" method="_on_hit_timer_timeout"]
-[connection signal="body_entered" from="mikes/mike_hunt22/Area2D" to="mikes/mike_hunt22" method="_on_Area2D_body_entered"]
-[connection signal="timeout" from="mikes/mike_hunt22/hit_timer" to="mikes/mike_hunt22" method="_on_hit_timer_timeout"]
+[node name="boss_mike" parent="." instance=ExtResource( 5 )]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
 [connection signal="area_entered" from="Player/AnimatedSprite/asparagus_gun/Area2D" to="Player" method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Player/AnimatedSprite/asparagus_gun/Area2D" to="Player" method="_on_Area2D_area_exited"]
 [connection signal="timeout" from="Player/fire_rate" to="Player" method="_on_fire_rate_timeout"]
@@ -833,4 +660,3 @@ text = "grapple hook"
 [connection signal="timeout" from="Player/you_lose_timer" to="Player" method="_on_you_lose_timer_timeout"]
 [connection signal="timeout" from="Player/OP_time" to="Player" method="_on_OP_time_timeout"]
 [connection signal="timeout" from="Player/reload_timer" to="Player" method="_on_reload_timer_timeout"]
-[connection signal="timeout" from="boss_mike/hit_timer" to="boss_mike" method="_on_hit_timer_timeout"]

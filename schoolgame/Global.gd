@@ -14,6 +14,7 @@ var player_previous_position = null
 var player_previous_world = null
 var XP = 0
 var visited_high_hop = false
+var mike_hunt_ready = false
 
 var asparagus_gun_picked_up = false
 var hat_picked_up = false

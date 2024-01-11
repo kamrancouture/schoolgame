@@ -19,6 +19,8 @@ var set_sprite = false
 onready var navigation_agent = $NavigationAgent2D
 
 func _ready():
+	if Global.mike_hunt_ready:
+		aggro = true
 	$AnimatedSprite.play("hide")
 	rng.randomize()
 	$name_tag.hide()
@@ -29,14 +31,10 @@ func _physics_process(delta):
 		$big_mikeCollisionShape2D2.disabled = true
 	move_and_slide(velocity)
 	
-	if Global.world == "computer_class":
-		$AnimatedSprite.play("aggro")
-		aggro = true
 	
 	if Global.player_alive:
 		$name_tag.rect_rotation = -rotation
 		if $attack_box.get_overlapping_bodies():
-			print("hi")
 			player.health -= damage
 			if can_hit:
 				can_hit = false
