@@ -55,7 +55,8 @@ func _physics_process(delta):
 		elif detected_wall.name == "left_side" or detected_wall.name == "tetris_right_wall":
 			can_move_right = false
 			
-		if move_down and not piece_on_bottom:
+	if move_down and not piece_on_bottom:
+			print("hello")
 			move_down = false
 			global_position.y += 32
 
@@ -117,6 +118,7 @@ func _physics_process(delta):
 		global_position.x += 32
 	
 func _on_move_down_timeout():
+	print("hi")
 	if not piece_placed:
 		if piece_on_bottom:
 			place()
