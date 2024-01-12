@@ -15,50 +15,58 @@ collision_layer = 2
 collision_mask = 9
 script = ExtResource( 1 )
 
+[node name="name_tag" type="Label" parent="."]
+process_priority = 5
+margin_left = -56.0
+margin_top = -160.0
+margin_right = 10.0
+margin_bottom = -144.0
+text = "boss mike"
+
 [node name="big_mikeCollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( -12, -1.13687e-13 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 disabled = true
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Node2D"]
 position = Vector2( 0, 30 )
 scale = Vector2( 20, 20 )
+z_index = -2
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="attack_box" type="Area2D" parent="."]
+[node name="attack_box" type="Area2D" parent="Node2D"]
 position = Vector2( 2.84217e-14, 0 )
-scale = Vector2( 1, 1 )
 collision_layer = 0
 monitorable = false
 
-[node name="big_mikeCollisionShape2D2" type="CollisionShape2D" parent="attack_box"]
+[node name="big_mikeCollisionShape2D2" type="CollisionShape2D" parent="Node2D/attack_box"]
 position = Vector2( -8, -5.48363e-06 )
 scale = Vector2( 0.999999, 0.999999 )
 shape = SubResource( 2 )
 disabled = true
 
-[node name="hit_timer" type="Timer" parent="."]
+[node name="hit_timer" type="Timer" parent="Node2D"]
 one_shot = true
 
-[node name="name_tag" type="Label" parent="."]
-margin_left = -48.0
-margin_top = -160.0
-margin_right = 18.0
-margin_bottom = -146.0
-text = "hello"
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-
-[node name="spawned_mikes" type="Timer" parent="."]
+[node name="spawned_mikes" type="Timer" parent="Node2D"]
 wait_time = 3.0
 one_shot = true
 
-[node name="Position2D" type="Position2D" parent="."]
+[node name="Position2D" type="Position2D" parent="Node2D"]
 position = Vector2( 216, -11 )
 
-[connection signal="timeout" from="hit_timer" to="." method="_on_hit_timer_timeout"]
-[connection signal="timeout" from="spawned_mikes" to="." method="_on_spawned_mikes_timeout"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Node2D"]
+
+[node name="change_scene" type="Timer" parent="Node2D"]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="Node2D/attack_box" to="." method="_on_attack_box_body_entered"]
+[connection signal="timeout" from="Node2D/hit_timer" to="." method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="Node2D/spawned_mikes" to="." method="_on_spawned_mikes_timeout"]
+[connection signal="timeout" from="Node2D/change_scene" to="." method="_on_change_scene_timeout"]

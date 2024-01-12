@@ -11,5 +11,5 @@ func _physics_process(delta):
 		$grapple_hook/CollisionShape2D.disabled = false
 		$boss_mike.show()
 		$boss_mike/big_mikeCollisionShape2D2.disabled = false
-		$boss_mike/attack_box/big_mikeCollisionShape2D2.disabled = false
+		$boss_mike/Node2D/attack_box/big_mikeCollisionShape2D2.disabled = false
 		$boss_mike.spawned = true

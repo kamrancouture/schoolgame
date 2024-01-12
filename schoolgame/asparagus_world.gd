@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var player_spawned = true
 onready var player = get_node("Player")
 
 func _ready():
@@ -11,6 +11,9 @@ func _ready():
 	$aspara_gus_teleporter.hide()
 
 func _physics_process(delta):
+	if player_spawned:
+		$Player.global_position = $player_spawned.global_position
+		player_spawned = false
 	$CanvasLayer/Label.text = "papers: " + String(Global.paper_number) + "/5"
 	if Global.paper_number == 5:
 		$aspara_gus_teleporter.show()

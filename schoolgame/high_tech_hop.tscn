@@ -74,7 +74,7 @@ radius = 20.0
 script = ExtResource( 1 )
 
 [node name="high_tech_hop_player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 546, 183 )
+position = Vector2( 5841, -12178 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

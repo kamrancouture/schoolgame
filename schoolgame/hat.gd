@@ -29,6 +29,6 @@ func _physics_process(delta):
 			player.get_node("CanvasLayer/Hotbar").set_item_text(hotbar_number_checking - 1 , "hat")
 			Global.player_hotbar = player.hotbar.items
 			Global.world = "asparagus_world"
-			get_tree().change_scene("res://computer_class.tscn")
+			get_tree().change_scene("res://Mike_hunt_world.tscn")
 	else:
 		$Press_E.hide()
