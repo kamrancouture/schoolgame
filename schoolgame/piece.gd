@@ -1,5 +1,6 @@
 extends Sprite
 
+var move_down = false
 var piece_placed = false
 var piece_on_bottom = false
 var can_move_left = true
@@ -13,23 +14,51 @@ var piece = null
 
 func _physics_process(delta):
 	
-	if Input.is_action_pressed("tetris_push_down") and $move_down.time_left > .1:
-		$move_down.start(0.1)
+	piece_on_bottom = false
+	can_move_left = true
+	can_move_right = true
 	
-	if Input.is_action_just_pressed("rotate_left"):
-		global_rotation_degrees -= 90
-	if Input.is_action_just_pressed("rotate_right"):
-		global_rotation_degrees += 90
 	
-	if Input.is_action_pressed("move_left") and can_move and can_move_left:
-		can_move = false
-		$can_move.start()
-		global_position.x -= 32
-	if Input.is_action_pressed("move_right") and can_move and can_move_right:
-		can_move = false
-		$can_move.start()
-		global_position.x += 32
+	if $wall_detector_1.get_overlapping_areas():
+		var detected_wall = $wall_detector_1.get_overlapping_areas().front()
+		if detected_wall.name == "top_side" or detected_wall.name == "tetris_floor":
+			piece_on_bottom = true
+		elif detected_wall.name == "right_side" or detected_wall.name == "tetris_left_wall":
+			can_move_left = false
+		elif detected_wall.name == "left_side" or detected_wall.name == "tetris_right_wall":
+			can_move_right = false
 	
+	if $wall_detector_2.get_overlapping_areas():
+		var detected_wall = $wall_detector_2.get_overlapping_areas().front()
+		if detected_wall.name == "top_side" or detected_wall.name == "tetris_floor":
+			piece_on_bottom = true
+		elif detected_wall.name == "right_side" or detected_wall.name == "tetris_left_wall":
+			can_move_left = false
+		elif detected_wall.name == "left_side" or detected_wall.name == "tetris_right_wall":
+			can_move_right = false
+	
+	if $wall_detector_3.get_overlapping_areas():
+		var detected_wall = $wall_detector_3.get_overlapping_areas().front()
+		if detected_wall.name == "top_side" or detected_wall.name == "tetris_floor":
+			piece_on_bottom = true
+		elif detected_wall.name == "right_side" or detected_wall.name == "tetris_left_wall":
+			can_move_left = false
+		elif detected_wall.name == "left_side" or detected_wall.name == "tetris_right_wall":
+			can_move_right = false
+	
+	if $wall_detector_4.get_overlapping_areas():
+		var detected_wall = $wall_detector_4.get_overlapping_areas().front()
+		if detected_wall.name == "top_side" or detected_wall.name == "tetris_floor":
+			piece_on_bottom = true
+		elif detected_wall.name == "right_side" or detected_wall.name == "tetris_left_wall":
+			can_move_left = false
+		elif detected_wall.name == "left_side" or detected_wall.name == "tetris_right_wall":
+			can_move_right = false
+			
+		if move_down and not piece_on_bottom:
+			move_down = false
+			global_position.y += 32
+
 	piece_on_bottom = false
 	can_move_left = true
 	can_move_right = true
@@ -69,13 +98,30 @@ func _physics_process(delta):
 		elif detected_wall.name == "left_side" or detected_wall.name == "tetris_right_wall":
 			can_move_right = false
 	
-
+	
+	if Input.is_action_pressed("tetris_push_down") and $move_down.time_left > .1:
+		$move_down.start(0.1)
+	
+	if Input.is_action_just_pressed("rotate_left"):
+		global_rotation_degrees -= 90
+	if Input.is_action_just_pressed("rotate_right"):
+		global_rotation_degrees += 90
+	
+	if Input.is_action_pressed("move_left") and can_move and can_move_left:
+		can_move = false
+		$can_move.start()
+		global_position.x -= 32
+	if Input.is_action_pressed("move_right") and can_move and can_move_right:
+		can_move = false
+		$can_move.start()
+		global_position.x += 32
+	
 func _on_move_down_timeout():
 	if not piece_placed:
 		if piece_on_bottom:
 			place()
 		else:
-			global_position.y += 32
+			move_down = true
 			if Input.is_action_pressed("tetris_push_down"):
 				$move_down.start(0.1)
 			else:
