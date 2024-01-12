@@ -30,7 +30,45 @@ func _physics_process(delta):
 		$can_move.start()
 		global_position.x += 32
 	
-
+	
+	can_move_left = true
+	can_move_right = true
+	if $wall_detector_1.get_overlapping_areas():
+		var detected_wall = $wall_detector_1.get_overlapping_areas().front()
+		if detected_wall.name == "top_side" or detected_wall.name == "tetris_floor":
+			piece_on_bottom = true
+		elif detected_wall.name == "left_side" or detected_wall.name == "tetris_left_wall":
+			can_move_left = false
+		elif detected_wall.name == "right_side" or detected_wall.name == "tetris_right_wall":
+			can_move_right = false
+	
+	if $wall_detector_2.get_overlapping_areas():
+		var detected_wall = $wall_detector_2.get_overlapping_areas().front()
+		if detected_wall.name == "top_side" or detected_wall.name == "tetris_floor":
+			piece_on_bottom = true
+		elif detected_wall.name == "left_side" or detected_wall.name == "tetris_left_wall":
+			can_move_left = false
+		elif detected_wall.name == "right_side" or detected_wall.name == "tetris_right_wall":
+			can_move_right = false
+	
+	if $wall_detector_3.get_overlapping_areas():
+		var detected_wall = $wall_detector_3.get_overlapping_areas().front()
+		if detected_wall.name == "top_side" or detected_wall.name == "tetris_floor":
+			piece_on_bottom = true
+		elif detected_wall.name == "left_side" or detected_wall.name == "tetris_left_wall":
+			can_move_left = false
+		elif detected_wall.name == "right_side" or detected_wall.name == "tetris_right_wall":
+			can_move_right = false
+	
+	if $wall_detector_4.get_overlapping_areas():
+		var detected_wall = $wall_detector_.get_overlapping_areas().front()
+		if detected_wall.name == "top_side" or detected_wall.name == "tetris_floor":
+			piece_on_bottom = true
+		elif detected_wall.name == "left_side" or detected_wall.name == "tetris_left_wall":
+			can_move_left = false
+		elif detected_wall.name == "right_side" or detected_wall.name == "tetris_right_wall":
+			can_move_right = false
+	
 
 func _on_move_down_timeout():
 	if not piece_placed:
@@ -65,29 +103,8 @@ func place():
 		queue_free()
 
 
+
+
+
 func _on_can_move_timeout():
 	can_move = true
-
-
-func _on_left_wall_detector_area_entered(area):
-	can_move_left = false
-
-
-func _on_right_wall_detector_area_entered(area):
-	can_move_right = false
-
-
-func _on_left_wall_detector_area_exited(area):
-	can_move_left = true
-
-
-func _on_right_wall_detector_area_exited(area):
-	can_move_right = true
-
-
-func _on_floor_detector_area_entered(area):
-	piece_on_bottom = true
-
-
-func _on_floor_detector_area_exited(area):
-	piece_on_bottom = false
