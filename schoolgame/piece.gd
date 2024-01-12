@@ -61,7 +61,7 @@ func _physics_process(delta):
 			can_move_right = false
 	
 	if $wall_detector_4.get_overlapping_areas():
-		var detected_wall = $wall_detector_.get_overlapping_areas().front()
+		var detected_wall = $wall_detector_4.get_overlapping_areas().front()
 		if detected_wall.name == "top_side" or detected_wall.name == "tetris_floor":
 			piece_on_bottom = true
 		elif detected_wall.name == "left_side" or detected_wall.name == "tetris_left_wall":
