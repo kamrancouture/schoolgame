@@ -12,7 +12,6 @@ func _physics_process(delta):
 	print(spawned)
 	if health <= 0:
 		spawned = false
-		$Node2D/change_scene.start()
 		hide()
 	if spawned:
 		set_collision_mask_bit(0 , true)
@@ -51,5 +50,3 @@ func _on_attack_box_body_entered(body):
 	pass
 
 
-func _on_change_scene_timeout():
-	get_tree().change_scene("res://asparagus_world.tscn")

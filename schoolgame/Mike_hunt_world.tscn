@@ -387,7 +387,6 @@ visible = false
 position = Vector2( 55, 16 )
 frames = SubResource( 16 )
 animation = "asparagus_gun"
-frame = 1
 playing = true
 
 [node name="Area2D" type="Area2D" parent="Player/AnimatedSprite/asparagus_gun"]
@@ -647,11 +646,18 @@ margin_bottom = -6.0
 custom_fonts/font = SubResource( 37 )
 text = "grapple hook"
 
+[node name="change_scen" type="Timer" parent="grapple_hook"]
+wait_time = 0.5
+
 [node name="boss_mike" parent="." instance=ExtResource( 5 )]
 visible = false
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
 
 [connection signal="area_entered" from="Player/AnimatedSprite/asparagus_gun/Area2D" to="Player" method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Player/AnimatedSprite/asparagus_gun/Area2D" to="Player" method="_on_Area2D_area_exited"]
@@ -661,3 +667,4 @@ __meta__ = {
 [connection signal="timeout" from="Player/you_lose_timer" to="Player" method="_on_you_lose_timer_timeout"]
 [connection signal="timeout" from="Player/OP_time" to="Player" method="_on_OP_time_timeout"]
 [connection signal="timeout" from="Player/reload_timer" to="Player" method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="grapple_hook/change_scen" to="grapple_hook" method="_on_change_scen_timeout"]

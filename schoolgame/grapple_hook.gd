@@ -26,6 +26,10 @@ func _physics_process(delta):
 							hotbar_number_checking += 1
 					player.get_node("CanvasLayer/Hotbar").set_item_icon(hotbar_number_checking - 1 , grapple_hook_texture)
 					player.get_node("CanvasLayer/Hotbar").set_item_text(hotbar_number_checking - 1 , "grapple_hook")
-					queue_free()
+					$change_scen.start()
 		else:
 			$Press_E.hide()
+
+
+func _on_change_scen_timeout():
+	get_tree().change_scene("res://asparagus_world.tscn")

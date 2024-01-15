@@ -54,7 +54,7 @@ disabled = true
 one_shot = true
 
 [node name="spawned_mikes" type="Timer" parent="Node2D"]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
 [node name="Position2D" type="Position2D" parent="Node2D"]
@@ -62,11 +62,6 @@ position = Vector2( 216, -11 )
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Node2D"]
 
-[node name="change_scene" type="Timer" parent="Node2D"]
-wait_time = 2.0
-one_shot = true
-
 [connection signal="body_entered" from="Node2D/attack_box" to="." method="_on_attack_box_body_entered"]
 [connection signal="timeout" from="Node2D/hit_timer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="Node2D/spawned_mikes" to="." method="_on_spawned_mikes_timeout"]
-[connection signal="timeout" from="Node2D/change_scene" to="." method="_on_change_scene_timeout"]
