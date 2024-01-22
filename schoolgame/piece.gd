@@ -84,6 +84,7 @@ func detect_walls():
 
 func _on_move_down_timeout():
 	if not piece_placed:
+		detect_walls()
 		if piece_on_bottom:
 			place()
 		else:
