@@ -1,5 +1,6 @@
 extends Sprite
 
+var piece_rotate_up = false
 var move_down = false
 var piece_placed = false
 var piece_on_bottom = false
@@ -10,7 +11,7 @@ var speed = 1
 var push_down_speed = 3
 
 var Tetris_Block = preload("res://tetris_block.tscn")
-var piece = "O"
+var piece = "J"
 
 func _physics_process(delta):
 	
@@ -27,8 +28,16 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("rotate_left"):
 		global_rotation_degrees -= 90
 	if Input.is_action_just_pressed("rotate_right"):
-		global_rotation_degrees += 90
-	
+		if piece_rotate_up:
+			piece_rotate_up = false
+			global_position.x += 16
+			global_position.y += 16
+			global_rotation_degrees += 90
+		elif not piece_rotate_up:
+			piece_rotate_up = true
+			global_position.x -= 16
+			global_position.y -= 16
+			global_rotation_degrees += 90
 	detect_walls()
 	
 	if Input.is_action_pressed("move_left") and can_move and can_move_left:
@@ -80,7 +89,22 @@ func detect_walls():
 			can_move_left = false
 		elif detected_wall.name == "left_side" or detected_wall.name == "tetris_right_wall":
 			can_move_right = false
-
+	if $wall_detector_5.get_overlapping_areas():
+		var detected_wall = $wall_detector_5.get_overlapping_areas().front()
+		if detected_wall.name == "top_side" or detected_wall.name == "tetris_floor":
+			piece_on_bottom = true
+		elif detected_wall.name == "right_side" or detected_wall.name == "tetris_left_wall":
+			can_move_left = false
+		elif detected_wall.name == "left_side" or detected_wall.name == "tetris_right_wall":
+			can_move_right = false
+	if $wall_detector_6.get_overlapping_areas():
+		var detected_wall = $wall_detector_6.get_overlapping_areas().front()
+		if detected_wall.name == "top_side" or detected_wall.name == "tetris_floor":
+			piece_on_bottom = true
+		elif detected_wall.name == "right_side" or detected_wall.name == "tetris_left_wall":
+			can_move_left = false
+		elif detected_wall.name == "left_side" or detected_wall.name == "tetris_right_wall":
+			can_move_right = false
 
 func _on_move_down_timeout():
 	if not piece_placed:

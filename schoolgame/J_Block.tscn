@@ -1,0 +1,113 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://J_Block.gd" type="Script" id=1]
+[ext_resource path="res://Assets/tetris/pieces/J_Block.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 0.5, 14 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 0.5, 30 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 14, 0.5 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 46, 0.5 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 30.5, 0.5 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 0.5, 14.5 )
+
+[node name="J_Block" type="Sprite"]
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[node name="wall_detector_1" type="Area2D" parent="."]
+show_behind_parent = true
+collision_layer = 0
+collision_mask = 384
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_detector_1"]
+show_behind_parent = true
+position = Vector2( -48.5, -16 )
+shape = SubResource( 7 )
+
+[node name="wall_detector_2" type="Area2D" parent="."]
+show_behind_parent = true
+collision_layer = 0
+collision_mask = 384
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_detector_2"]
+show_behind_parent = true
+position = Vector2( 48.5, 0 )
+shape = SubResource( 8 )
+
+[node name="wall_detector_3" type="Area2D" parent="."]
+show_behind_parent = true
+collision_layer = 0
+collision_mask = 384
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_detector_3"]
+position = Vector2( 32, 32.5 )
+shape = SubResource( 9 )
+
+[node name="wall_detector_4" type="Area2D" parent="."]
+show_behind_parent = true
+collision_layer = 0
+collision_mask = 384
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_detector_4"]
+position = Vector2( 0, -32.5 )
+shape = SubResource( 10 )
+
+[node name="wall_detector_5" type="Area2D" parent="."]
+show_behind_parent = true
+collision_layer = 0
+collision_mask = 384
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_detector_5"]
+show_behind_parent = true
+position = Vector2( -15.5, 0.5 )
+shape = SubResource( 5 )
+
+[node name="wall_detector_6" type="Area2D" parent="."]
+show_behind_parent = true
+collision_layer = 0
+collision_mask = 384
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_detector_6"]
+show_behind_parent = true
+position = Vector2( 15.5, 15.5 )
+shape = SubResource( 6 )
+
+[node name="move_down" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="can_move" type="Timer" parent="."]
+wait_time = 0.125
+one_shot = true
+
+[node name="block_1_spawn" type="Position2D" parent="."]
+position = Vector2( -32, -16 )
+
+[node name="block_2_spawn" type="Position2D" parent="."]
+position = Vector2( 0, -16 )
+
+[node name="block_3_spawn" type="Position2D" parent="."]
+position = Vector2( 32, -16 )
+
+[node name="block_4_spawn" type="Position2D" parent="."]
+position = Vector2( 32, 16 )
+
+[connection signal="timeout" from="move_down" to="." method="_on_move_down_timeout"]
+[connection signal="timeout" from="can_move" to="." method="_on_can_move_timeout"]
