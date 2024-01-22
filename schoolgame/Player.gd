@@ -33,9 +33,11 @@ var Player_Bullet = preload("res://player_bullet.tscn")
 var can_shoot = true
 var riding_dog = false
 var dog_was_in_op_mode = false
+var op_mode_timer = true
 var can_shoot_grenade = true
 var get_out_in_hand = false
 var grappling = false
+var op_mode_get_out = 0
 var mouse_position = Vector2.ZERO
 var grenade_speed = 100
 var asparagus_gun_in_hand = false
@@ -84,6 +86,10 @@ func _ready():
 
 
 func _physics_process(delta):
+	if Global.OP_mode and op_mode_timer:
+		print("hi")
+		op_mode_timer = false
+		$OP_time.start()
 	
 	if Global.difficulty:
 		Global.player_health_for_insane_mode = health
@@ -281,6 +287,7 @@ func _physics_process(delta):
 			
 			if Input.is_action_pressed("shoot"):
 				if can_shoot and duck_hunt_gun_in_hand and ammo > 0 and not reloading:
+					
 					shoot()
 				elif get_out_in_hand and can_shoot_grenade:
 					if not Global.OP_mode:
@@ -414,6 +421,7 @@ func _on_you_lose_timer_timeout():
 
 
 func _on_OP_time_timeout():
+	print("HELLO")
 	$AnimatedSprite/asparagus_gun/Area2D/CollisionShape2D.scale = Vector2.ONE
 	can_wear_hat = true
 	Global.player_speed /= 1.25
@@ -422,6 +430,7 @@ func _on_OP_time_timeout():
 		$AnimatedSprite.play("hold")
 		$AnimatedSprite/hat_holding.show()
 	Global.OP_mode = false
+	op_mode_timer = true
 
 
 

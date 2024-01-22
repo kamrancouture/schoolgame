@@ -221,6 +221,7 @@ tetris_push_down={
 2d_physics/layer_7="high_hop_obstacle"
 2d_physics/layer_8="tetris_bottom"
 2d_physics/layer_9="tetris_walls"
+2d_physics/layer_10="bullet_to_wall"
 
 [physics]
 

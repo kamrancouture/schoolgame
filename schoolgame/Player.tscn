@@ -322,7 +322,6 @@ visible = false
 position = Vector2( 55, 16 )
 frames = SubResource( 16 )
 animation = "asparagus_gun"
-frame = 1
 playing = true
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite/asparagus_gun"]
@@ -514,7 +513,7 @@ __meta__ = {
 shape = SubResource( 15 )
 
 [node name="OP_time" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 8.0
 one_shot = true
 
 [node name="reload_timer" type="Timer" parent="."]
