@@ -26,7 +26,16 @@ func _physics_process(delta):
 		$move_down.start(0.1)
 	
 	if Input.is_action_just_pressed("rotate_left"):
-		global_rotation_degrees -= 90
+		if piece_rotate_up:
+			piece_rotate_up = false
+			global_position.x += 16
+			global_position.y += 16
+			global_rotation_degrees -= 90
+		elif not piece_rotate_up:
+			piece_rotate_up = true
+			global_position.x -= 16
+			global_position.y -= 16
+			global_rotation_degrees -= 90
 	if Input.is_action_just_pressed("rotate_right"):
 		if piece_rotate_up:
 			piece_rotate_up = false
@@ -38,6 +47,7 @@ func _physics_process(delta):
 			global_position.x -= 16
 			global_position.y -= 16
 			global_rotation_degrees += 90
+	
 	detect_walls()
 	
 	if Input.is_action_pressed("move_left") and can_move and can_move_left:
@@ -118,6 +128,9 @@ func _on_move_down_timeout():
 				$move_down.start(0.5)
 	
 
+func error_detector():
+	if $error_detector.get_overlapping_areas():
+		pass
 
 func place():
 	get_parent().can_spawn = true

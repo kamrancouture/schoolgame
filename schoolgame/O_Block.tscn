@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Piece.gd" type="Script" id=1]
 [ext_resource path="res://Assets/tetris/pieces/O_Block.png" type="Texture" id=2]
@@ -14,6 +14,9 @@ extents = Vector2( 30, 0.5 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 30, 0.5 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 16, 16 )
 
 [node name="O_Block" type="Sprite"]
 texture = ExtResource( 2 )
@@ -78,6 +81,11 @@ position = Vector2( -16, 16 )
 
 [node name="block_4_spawn" type="Position2D" parent="."]
 position = Vector2( 16, 16 )
+
+[node name="error_detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="error_detector"]
+shape = SubResource( 5 )
 
 [connection signal="timeout" from="move_down" to="." method="_on_move_down_timeout"]
 [connection signal="timeout" from="can_move" to="." method="_on_can_move_timeout"]

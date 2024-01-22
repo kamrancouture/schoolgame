@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://J_Block.gd" type="Script" id=1]
 [ext_resource path="res://Assets/tetris/pieces/J_Block.png" type="Texture" id=2]
@@ -20,6 +20,12 @@ extents = Vector2( 30.5, 0.5 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 0.5, 14.5 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 32, 8 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 8, 16 )
 
 [node name="J_Block" type="Sprite"]
 texture = ExtResource( 2 )
@@ -108,6 +114,18 @@ position = Vector2( 32, -16 )
 
 [node name="block_4_spawn" type="Position2D" parent="."]
 position = Vector2( 32, 16 )
+
+[node name="error_detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 385
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="error_detector"]
+position = Vector2( 0, -16 )
+shape = SubResource( 11 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="error_detector"]
+position = Vector2( 32, 0 )
+shape = SubResource( 12 )
 
 [connection signal="timeout" from="move_down" to="." method="_on_move_down_timeout"]
 [connection signal="timeout" from="can_move" to="." method="_on_can_move_timeout"]
