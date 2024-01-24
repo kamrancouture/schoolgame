@@ -15,13 +15,14 @@ var duck_move_right = [
 ]
 
 func _ready():
+	Global.duck_hunt_highscore = 570600
 	$AnimationPlayer.play("dog_laughing")
 	randomize()
 	rng.randomize()
 	Input.set_custom_mouse_cursor(crosshair , Input.CURSOR_ARROW , Vector2(72 , 72))
 
 func _physics_process(delta):
-	
+	print(Global.duck_hunt_highscore)
 	if not restarting:
 		$mistake_panel/CenterContainer/mistakes_left.text = String(lives)
 	
@@ -63,9 +64,10 @@ func _on_right_wall_area_entered(area):
 
 func _on_restart_timer_timeout():
 	
-	if score > Global.duck_hunt_highscore:
-		Global.duck_hunt_highscore = score
 	
+#	if score > Global.duck_hunt_highscore:
+#		Global.duck_hunt_highscore = score
+
 	if score < Global.duck_hunt_highscore or Global.duck_hunt_defeated:
 		restart()
 	else:
