@@ -83,7 +83,6 @@ motion_scale = Vector2( 0.2, 0.2 )
 motion_mirroring = Vector2( 1800, 1350 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/star_sky"]
-visible = false
 position = Vector2( 534, 253 )
 scale = Vector2( 3, 3 )
 z_index = -10
