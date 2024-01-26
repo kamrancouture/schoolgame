@@ -71,6 +71,7 @@ func _on_restart_timer_timeout():
 	if score < Global.duck_hunt_highscore or Global.duck_hunt_defeated:
 		restart()
 	else:
+		Global.your_high_score = score
 		recieve_dog()
 		Global.XP += 90
 		$text_popups/you_won.pop_up()

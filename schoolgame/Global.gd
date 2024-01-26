@@ -8,6 +8,7 @@ var get_out = preload("res://Assets/get_out_icon_proper_size2.png")
 var hat = preload("res://Assets/high_hop_hat_icon.png")
 var player_alive = true
 var player_speed = 0
+var your_high_score = 0
 var duck_hunt_defeated = false
 var duck_hunt_highscore = 570600
 var player_previous_position = null

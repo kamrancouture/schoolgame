@@ -417,7 +417,7 @@ margin_top = -33.5
 margin_right = 296.0
 margin_bottom = 33.5
 custom_fonts/font = SubResource( 3 )
-text = "MISTAKES_LEFT:"
+text = "MISTAKES LEFT:"
 
 [node name="CenterContainer" type="CenterContainer" parent="mistake_panel"]
 margin_left = 302.0

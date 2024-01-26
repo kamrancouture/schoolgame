@@ -5,7 +5,7 @@ func _physics_process(delta):
 	if Global.duck_hunt_defeated:
 		$DuckHuntLeaderboardStarter.hide()
 		$DuckHuntLeaderboardPlayerScore.show()
-		$DuckHuntLeaderboardPlayerScore/record.text = String(Global.duck_hunt_highscore)
+		$DuckHuntLeaderboardPlayerScore/record.text = String(Global.your_high_score)
 	else:
 		$DuckHuntLeaderboardPlayerScore.hide()
 		$DuckHuntLeaderboardStarter.show()
