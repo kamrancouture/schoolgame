@@ -7,7 +7,7 @@ var Blood_Effect = preload("res://zombie_blood_effect.tscn")
 onready var player = get_parent().get_node("Player")
 var aggro = false
 var rng = RandomNumberGenerator.new()
-var health = 100
+var health = 50
 var velocity = Vector2.ZERO
 var speed = 500
 var damage = 0.03
@@ -27,7 +27,7 @@ func _ready():
 	rng.randomize()
 	
 func _physics_process(delta):
-	
+	print(health)
 	if Global.player_alive:
 		$name_teg.rect_rotation = -rotation
 		if $attack_box.get_overlapping_bodies():

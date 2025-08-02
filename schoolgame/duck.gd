@@ -18,7 +18,7 @@ var ducks = [
 func _ready():
 	rng.randomize()
 	randomize()
-	speed = rng.randf_range(5,15)
+	speed = rng.randf_range(5,10)
 	if moving_right:
 		$duck_type.flip_h = false
 		global_position.x = -50

@@ -59,21 +59,22 @@ func _physics_process(delta):
 	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master") , volume)
 	
-	if Input.is_action_just_pressed("f2"):
-		get_tree().change_scene("res://computer_class.tscn")
-		world = "computer_class"
-	if Input.is_action_just_pressed("f3"):
-		get_tree().change_scene("res://high_tech_hop.tscn")
-		world = "high_tech_hop"
-	if Input.is_action_just_pressed("f5"):
-		get_tree().change_scene("res://asparagus_world.tscn")
-		world = "asparagus_world"
-	if Input.is_action_just_pressed("f6"):
-		get_tree().change_scene("res://aspara-gus_world.tscn")
-		world = "aspara_gus_world"
-	if Input.is_action_just_pressed("f4"):
-		get_tree().change_scene("res://Mike_hunt_world.tscn")
-		world = "mike_hunt_world"
-	if Input.is_action_just_pressed("f7"):
-		get_tree().change_scene("res://Tetris_world.tscn")
-		world = "tetris_world"
+	if Input.is_action_pressed("Control") and Input.is_action_pressed("Control"):
+		if Input.is_action_just_pressed("World2"):
+			get_tree().change_scene("res://computer_class.tscn")
+			world = "computer_class"
+		if Input.is_action_just_pressed("world3"):
+			get_tree().change_scene("res://high_tech_hop.tscn")
+			world = "high_tech_hop"
+		if Input.is_action_just_pressed("world4"):
+			get_tree().change_scene("res://asparagus_world.tscn")
+			world = "asparagus_world"
+		if Input.is_action_just_pressed("world5"):
+			get_tree().change_scene("res://aspara-gus_world.tscn")
+			world = "aspara_gus_world"
+		if Input.is_action_just_pressed("world6"):
+			get_tree().change_scene("res://Mike_hunt_world.tscn")
+			world = "mike_hunt_world"
+		if Input.is_action_just_pressed("world7"):
+			get_tree().change_scene("res://Tetris_world.tscn")
+			world = "tetris_world"

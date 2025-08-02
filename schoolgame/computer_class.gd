@@ -116,9 +116,9 @@ func wave_four():
 		add_child(student)
 
 func wave_five():
-	Global.students_alive = 15
+	Global.students_alive = 10
 	wave_going = true
-	for i in 15:
+	for i in 10:
 		$delay_spawn_timer.start()
 		yield($delay_spawn_timer , "timeout")
 		var student = Student.instance()

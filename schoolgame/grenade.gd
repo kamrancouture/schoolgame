@@ -46,8 +46,6 @@ func _on_grenade_body_entered(body):
 	if "health" in body:
 		body.hit()
 		body.health -= 5
-		if Global.OP_mode:
-			body.health -= 15
 		set_physics_process(false)
 		
 		

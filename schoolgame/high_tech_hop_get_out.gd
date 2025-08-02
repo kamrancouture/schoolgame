@@ -24,8 +24,8 @@ func _physics_process(delta):
 			ammo -= 1
 			can_shoot = false 
 			var grenade = Grenade.instance()
-			grenade.global_position = $high_tech_hop_get_out/grenade_spawn.global_position
 			get_parent().get_parent().add_child(grenade)
+			grenade.global_position = $high_tech_hop_get_out/grenade_spawn.global_position
 			$high_tech_hop_get_out/fire_rate.start()
 	else:
 		hide()

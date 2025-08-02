@@ -292,7 +292,10 @@ func _physics_process(delta):
 				elif get_out_in_hand and can_shoot_grenade:
 					if not Global.OP_mode:
 						can_shoot_grenade = false
-						$get_out_fire_rate.start()
+						$get_out_fire_rate.start(5)
+					else:
+						can_shoot_grenade = false
+						$get_out_fire_rate.start(1)
 					shoot_grenade()
 				elif hat_in_hand and can_wear_hat and hat_equips > 0:
 					hat_equips -= 1
@@ -358,12 +361,15 @@ func shoot():
 	get_parent().add_child(player_bullet)
 	$gunshot.play()
 	if Global.OP_mode:
-		$fire_rate.start(fire_rate / 4)
+		$fire_rate.start(fire_rate / 2)
 	else:
 		$fire_rate.start(fire_rate)
 
 func shoot_grenade():
 	if not Global.OP_mode:
+		$CanvasLayer/get_out_ammo.hide()
+		$CanvasLayer/get_out_ammo_reload.show()
+	else:
 		$CanvasLayer/get_out_ammo.hide()
 		$CanvasLayer/get_out_ammo_reload.show()
 	var grenade = Grenade.instance()
@@ -421,7 +427,7 @@ func _on_you_lose_timer_timeout():
 
 
 func _on_OP_time_timeout():
-	print("HELLO")
+
 	$AnimatedSprite/asparagus_gun/Area2D/CollisionShape2D.scale = Vector2.ONE
 	can_wear_hat = true
 	Global.player_speed /= 1.25

@@ -17,12 +17,10 @@ var duck_move_right = [
 func _ready():
 	Global.duck_hunt_highscore = 570600
 	$AnimationPlayer.play("dog_laughing")
-	randomize()
 	rng.randomize()
 	Input.set_custom_mouse_cursor(crosshair , Input.CURSOR_ARROW , Vector2(72 , 72))
 
 func _physics_process(delta):
-	print(Global.duck_hunt_highscore)
 	if not restarting:
 		$mistake_panel/CenterContainer/mistakes_left.text = String(lives)
 	
@@ -39,10 +37,10 @@ func _physics_process(delta):
 func _on_Timer_timeout():
 	if not restarting:
 		var duck = Duck.instance()
-		duck.global_position.y = rng.randf_range(200,570)
 		duck_move_right.shuffle()
 		duck.moving_right = duck_move_right.front()
 		add_child(duck)
+		duck.global_position.y = rng.randf_range(200,570)
 
 func restart():
 	restarting = false
