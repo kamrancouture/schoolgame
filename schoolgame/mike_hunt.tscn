@@ -81,7 +81,7 @@ margin_left = -16.0
 margin_top = -52.0
 margin_right = 16.0
 margin_bottom = -38.0
-text = "hello"
+text = "Mike"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 

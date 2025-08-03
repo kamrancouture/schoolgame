@@ -9,7 +9,7 @@ var aggro = false
 var rng = RandomNumberGenerator.new()
 var health = 1
 var velocity = Vector2.ZERO
-var speed = 335
+var speed = 250
 var damage = 0.025
 var wander_speed = 1
 var rotate_amount : float
@@ -59,6 +59,7 @@ func _physics_process(delta):
 				$mikeCollisionShape2D.disabled = true
 				$big_mikeCollisionShape2D2.disabled = false
 				$attack_box/mikeCollisionShape2D.disabled = true
+				$name_tag.text = "big_mike"
 			elif not set_sprite:
 				set_sprite = true
 				$AnimatedSprite.play("default")

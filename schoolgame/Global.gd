@@ -66,13 +66,13 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("world3"):
 			get_tree().change_scene("res://high_tech_hop.tscn")
 			world = "high_tech_hop"
-		if Input.is_action_just_pressed("world4"):
+		if Input.is_action_just_pressed("world5"):
 			get_tree().change_scene("res://asparagus_world.tscn")
 			world = "asparagus_world"
-		if Input.is_action_just_pressed("world5"):
+		if Input.is_action_just_pressed("world6"):
 			get_tree().change_scene("res://aspara-gus_world.tscn")
 			world = "aspara_gus_world"
-		if Input.is_action_just_pressed("world6"):
+		if Input.is_action_just_pressed("world4"):
 			get_tree().change_scene("res://Mike_hunt_world.tscn")
 			world = "mike_hunt_world"
 		if Input.is_action_just_pressed("world7"):
